@@ -1,0 +1,3 @@
+tasks:
+  - init: cargo build && pnpm install
+    command: cargo watch -x run
