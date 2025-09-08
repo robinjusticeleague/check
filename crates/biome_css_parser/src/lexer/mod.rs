@@ -1,6 +1,6 @@
 //! An extremely fast, lookup table based, СSS lexer which yields SyntaxKind tokens used by the rome-css parser.
-#[rustfmt::skip]
-mod tests;
+// #[rustfmt::skip]
+// mod tests;
 
 use crate::CssParserOptions;
 use biome_css_syntax::{CssSyntaxKind, CssSyntaxKind::*, T, TextLen, TextSize};

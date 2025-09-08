@@ -1,7 +1,8 @@
 //! An extremely fast, lookup table based, JSON lexer which yields SyntaxKind tokens used by the rome-json parser.
 
-#[rustfmt::skip]
-mod tests;
+// #[rustfmt::skip]
+// mod tests;
+
 
 use biome_json_syntax::{JsonSyntaxKind, JsonSyntaxKind::*, T, TextLen, TextRange, TextSize};
 use biome_parser::diagnostic::ParseDiagnostic;

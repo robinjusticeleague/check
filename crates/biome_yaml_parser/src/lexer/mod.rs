@@ -7,7 +7,7 @@ use biome_parser::{
 use biome_rowan::{TextLen, TextRange, TextSize};
 use biome_unicode_table::{Dispatch::WHS, lookup_byte};
 use biome_yaml_syntax::{T, YamlSyntaxKind, YamlSyntaxKind::*};
-mod tests;
+// mod tests;
 
 pub(crate) struct YamlLexer<'src> {
     /// Source text

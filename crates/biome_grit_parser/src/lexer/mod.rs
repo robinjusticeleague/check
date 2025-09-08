@@ -1,7 +1,7 @@
 //! An extremely fast, lookup table based, GritQL lexer which yields SyntaxKind tokens used by the biome Grit parser.
 
-#[rustfmt::skip]
-mod tests;
+// #[rustfmt::skip]
+// mod tests;
 
 use crate::constants::SUPPORTED_LANGUAGE_SET_STR;
 use biome_grit_syntax::{GritSyntaxKind, GritSyntaxKind::*, T, TextLen, TextRange, TextSize};

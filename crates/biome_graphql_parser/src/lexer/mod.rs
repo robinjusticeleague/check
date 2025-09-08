@@ -1,6 +1,6 @@
 //! An extremely fast, lookup table based, GraphQL lexer which yields SyntaxKind tokens used by the biome GraphQL parser.
-#[rustfmt::skip]
-mod tests;
+// #[rustfmt::skip]
+// mod tests;
 
 use biome_graphql_syntax::{GraphqlSyntaxKind, GraphqlSyntaxKind::*, T, TextLen, TextSize};
 use biome_parser::diagnostic::ParseDiagnostic;

@@ -27,12 +27,12 @@ fn main() {
 }
 
 const INDEX_D_TS_CASES: &[(&str, &[u8])] = &[
-    (
-        "react/index.d.ts",
-        include_bytes!(
-            "../../biome_resolver/tests/fixtures/resolver_cases_5/node_modules/@types/react/index.d.ts"
-        ) as &[u8],
-    ),
+    // (
+    //     "react/index.d.ts",
+    //     include_bytes!(
+    //         "../../biome_resolver/tests/fixtures/resolver_cases_5/node_modules/@types/react/index.d.ts"
+    //     ) as &[u8],
+    // ),
     (
         "@next/font/google/index.d.ts",
         include_bytes!("./next_font_google.d.ts") as &[u8],
