@@ -1,3 +1,9 @@
+# Check
+
+```bash
+find . -type d \( -name "tests" -o -name "benches" \) -exec rm -rf {} +
+```
+
 <div align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/biomejs/resources/main/svg/slogan-dark-transparent.svg">
