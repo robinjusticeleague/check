@@ -1,21 +1,21 @@
-use biome_js_factory::make;
-use biome_js_formatter::{context::JsFormatOptions, format_node};
-use biome_js_syntax::{
+use check_js_factory::make;
+use check_js_formatter::{context::JsFormatOptions, format_node};
+use check_js_syntax::{
     AnyJsBinding, AnyJsBindingPattern, AnyJsCallArgument, AnyJsDeclaration, AnyJsDeclarationClause,
     AnyJsExportClause, AnyJsExpression, AnyJsFormalParameter, AnyJsImportClause,
     AnyJsLiteralExpression, AnyJsModuleItem, AnyJsName, AnyJsNamedImportSpecifier,
     AnyJsObjectMember, AnyJsObjectMemberName, AnyJsParameter, AnyJsStatement, AnyTsName,
     AnyTsReturnType, AnyTsType, AnyTsTypeMember, JsFileSource, T, TriviaPieceKind,
 };
-use biome_rowan::AstNode;
-use biome_service::workspace_types::{ModuleQueue, generate_type, methods};
-use biome_string_case::Case;
+use check_rowan::AstNode;
+use check_service::workspace_types::{ModuleQueue, generate_type, methods};
+use check_string_case::Case;
 use schemars::r#gen::{SchemaGenerator, SchemaSettings};
 use xtask::{Mode, Result, project_root};
 use xtask_codegen::update;
 
 pub(crate) fn generate_workspace_bindings(mode: Mode) -> Result<()> {
-    let bindings_path = project_root().join("packages/@biomejs/backend-jsonrpc/src/workspace.ts");
+    let bindings_path = project_root().join("packages/@checkjs/backend-jsonrpc/src/workspace.ts");
     let methods = methods();
 
     let mut declarations = Vec::new();
@@ -126,7 +126,7 @@ pub(crate) fn generate_workspace_bindings(mode: Mode) -> Result<()> {
                                             [
                                                 AnyJsCallArgument::AnyJsExpression(
                                                     AnyJsExpression::AnyJsLiteralExpression(
-                                                        AnyJsLiteralExpression::JsStringLiteralExpression(make::js_string_literal_expression(make::js_string_literal(&format!("biome/{}", method.name)))),
+                                                        AnyJsLiteralExpression::JsStringLiteralExpression(make::js_string_literal_expression(make::js_string_literal(&format!("check/{}", method.name)))),
                                                     ),
                                                 ),
                                                 AnyJsCallArgument::AnyJsExpression(
@@ -156,13 +156,13 @@ pub(crate) fn generate_workspace_bindings(mode: Mode) -> Result<()> {
     }
     // HACK: these types doesn't get picked up in the loop above, so we add it manually
     let support_kind_schema = SchemaGenerator::from(SchemaSettings::openapi3())
-        .root_schema_for::<biome_service::workspace::SupportKind>();
+        .root_schema_for::<check_service::workspace::SupportKind>();
     generate_type(&mut declarations, &mut queue, &support_kind_schema);
     let rule_domain_schema = SchemaGenerator::from(SchemaSettings::openapi3())
-        .root_schema_for::<biome_analyze::RuleDomain>();
+        .root_schema_for::<check_analyze::RuleDomain>();
     generate_type(&mut declarations, &mut queue, &rule_domain_schema);
     let rule_domain_value_schema = SchemaGenerator::from(SchemaSettings::openapi3())
-        .root_schema_for::<biome_configuration::analyzer::RuleDomainValue>(
+        .root_schema_for::<check_configuration::analyzer::RuleDomainValue>(
     );
     generate_type(&mut declarations, &mut queue, &rule_domain_value_schema);
 

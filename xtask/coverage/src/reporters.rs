@@ -1,8 +1,8 @@
 use crate::runner::{TestCaseFiles, TestRunOutcome, TestRunResult, TestSuite, TestSuiteInstance};
 use crate::{Summary, TestResults};
 use ascii_table::{Align, AsciiTable};
-use biome_diagnostics::termcolor::Buffer;
-use biome_diagnostics::{DiagnosticExt, Error};
+use check_diagnostics::termcolor::Buffer;
+use check_diagnostics::{DiagnosticExt, Error};
 use colored::Colorize;
 use indicatif::ProgressBar;
 use serde_json::Value;

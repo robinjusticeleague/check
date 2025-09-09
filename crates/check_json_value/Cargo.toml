@@ -1,0 +1,26 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Mutable JSON values constructable from check_json_syntax"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_json_value"
+repository.workspace = true
+version              = "0.1.0"
+
+[lints]
+workspace = true
+
+[dependencies]
+check_deserialize        = { workspace = true, features = ["indexmap"] }
+check_deserialize_macros = { workspace = true }
+check_json_syntax        = { workspace = true }
+check_rowan              = { workspace = true }
+indexmap                 = { workspace = true }
+rustc-hash               = { workspace = true }
+static_assertions        = { workspace = true }
+
+[dev-dependencies]
+check_json_parser = { workspace = true }

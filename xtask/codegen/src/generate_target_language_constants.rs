@@ -2,7 +2,7 @@ use crate::{
     js_kinds_src::{AstSrc, Field},
     language_kind::LanguageKind,
 };
-use biome_string_case::Case;
+use check_string_case::Case;
 use xtask::Result;
 
 pub fn generate_target_language_constants(
@@ -39,8 +39,8 @@ pub fn generate_target_language_constants(
         _ => unimplemented!(),
     };
     let syntax_kind_module = match language_kind {
-        LanguageKind::Css => "biome_css_syntax",
-        LanguageKind::Js => "biome_js_syntax",
+        LanguageKind::Css => "check_css_syntax",
+        LanguageKind::Js => "check_js_syntax",
         _ => unimplemented!(),
     };
 

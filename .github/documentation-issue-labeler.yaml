@@ -5,16 +5,16 @@
 # documentation URL.
 
 'Lang-Chinese':
-  - 'https://biomejs.dev/zh-cn/'
+  - 'https://checkjs.dev/zh-cn/'
 'Lang-English':
-  - 'https://biomejs.dev/(?!(zh-cn|fr|ja|pt-br|es|uk))'
+  - 'https://checkjs.dev/(?!(zh-cn|fr|ja|pt-br|es|uk))'
 'Lang-French':
-  - 'https://biomejs.dev/fr/'
+  - 'https://checkjs.dev/fr/'
 'Lang-Japanese':
-  - 'https://biomejs.dev/ja/'
+  - 'https://checkjs.dev/ja/'
 'Lang-Portuguese':
-  - 'https://biomejs.dev/pt-br/'
+  - 'https://checkjs.dev/pt-br/'
 'Lang-Spanish':
-  - 'https://biomejs.dev/es/'
+  - 'https://checkjs.dev/es/'
 'Lang-Ukrainian':
-  - 'https://biomejs.dev/uk/'
+  - 'https://checkjs.dev/uk/'

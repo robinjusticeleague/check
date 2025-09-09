@@ -1,17 +1,17 @@
 # End-to-end tests
 
-`e2e-tests` directory allows testing the Biome CLI directly.
-Each directory in `e2e-tests` is a test that represents a project using Biome.
+`e2e-tests` directory allows testing the Check CLI directly.
+Each directory in `e2e-tests` is a test that represents a project using Check.
 Every directory must include a shell script named `test.sh`.
 The exit status of the script determines if the test passed or failed.
 
-For example, the following script executes `biome lint`:
+For example, the following script executes `check lint`:
 
 ```sh
 # fail if any command fail or if some variables are undefined
 set -eu
 
-cargo run --bin biome -- lint src
+cargo run --bin check -- lint src
 
 ```
 

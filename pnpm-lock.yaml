@@ -24,13 +24,13 @@ importers:
         specifier: 3.6.2
         version: 3.6.2
 
-  crates/biome_formatter_test/src/prettier:
+  crates/check_formatter_test/src/prettier:
     dependencies:
       prettier:
         specifier: 3.6.2
         version: 3.6.2
 
-  packages/@biomejs/backend-jsonrpc:
+  packages/@checkjs/backend-jsonrpc:
     devDependencies:
       '@types/node':
         specifier: 22.17.1
@@ -45,83 +45,83 @@ importers:
         specifier: 3.2.4
         version: 3.2.4(@types/node@22.17.1)(happy-dom@18.0.1)
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64':
+      '@checkjs/cli-darwin-arm64':
         specifier: 2.2.3
         version: link:../cli-darwin-arm64
-      '@biomejs/cli-darwin-x64':
+      '@checkjs/cli-darwin-x64':
         specifier: 2.2.3
         version: link:../cli-darwin-x64
-      '@biomejs/cli-linux-arm64':
+      '@checkjs/cli-linux-arm64':
         specifier: 2.2.3
         version: link:../cli-linux-arm64
-      '@biomejs/cli-linux-arm64-musl':
+      '@checkjs/cli-linux-arm64-musl':
         specifier: 2.2.3
         version: link:../cli-linux-arm64-musl
-      '@biomejs/cli-linux-x64':
+      '@checkjs/cli-linux-x64':
         specifier: 2.2.3
         version: link:../cli-linux-x64
-      '@biomejs/cli-linux-x64-musl':
+      '@checkjs/cli-linux-x64-musl':
         specifier: 2.2.3
         version: link:../cli-linux-x64-musl
-      '@biomejs/cli-win32-arm64':
+      '@checkjs/cli-win32-arm64':
         specifier: 2.2.3
         version: link:../cli-win32-arm64
-      '@biomejs/cli-win32-x64':
+      '@checkjs/cli-win32-x64':
         specifier: 2.2.3
         version: link:../cli-win32-x64
 
-  packages/@biomejs/biome:
+  packages/@checkjs/check:
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64':
+      '@checkjs/cli-darwin-arm64':
         specifier: 2.2.3
         version: link:../cli-darwin-arm64
-      '@biomejs/cli-darwin-x64':
+      '@checkjs/cli-darwin-x64':
         specifier: 2.2.3
         version: link:../cli-darwin-x64
-      '@biomejs/cli-linux-arm64':
+      '@checkjs/cli-linux-arm64':
         specifier: 2.2.3
         version: link:../cli-linux-arm64
-      '@biomejs/cli-linux-arm64-musl':
+      '@checkjs/cli-linux-arm64-musl':
         specifier: 2.2.3
         version: link:../cli-linux-arm64-musl
-      '@biomejs/cli-linux-x64':
+      '@checkjs/cli-linux-x64':
         specifier: 2.2.3
         version: link:../cli-linux-x64
-      '@biomejs/cli-linux-x64-musl':
+      '@checkjs/cli-linux-x64-musl':
         specifier: 2.2.3
         version: link:../cli-linux-x64-musl
-      '@biomejs/cli-win32-arm64':
+      '@checkjs/cli-win32-arm64':
         specifier: 2.2.3
         version: link:../cli-win32-arm64
-      '@biomejs/cli-win32-x64':
+      '@checkjs/cli-win32-x64':
         specifier: 2.2.3
         version: link:../cli-win32-x64
 
-  packages/@biomejs/cli-darwin-arm64: {}
+  packages/@checkjs/cli-darwin-arm64: {}
 
-  packages/@biomejs/cli-darwin-x64: {}
+  packages/@checkjs/cli-darwin-x64: {}
 
-  packages/@biomejs/cli-linux-arm64: {}
+  packages/@checkjs/cli-linux-arm64: {}
 
-  packages/@biomejs/cli-linux-arm64-musl: {}
+  packages/@checkjs/cli-linux-arm64-musl: {}
 
-  packages/@biomejs/cli-linux-x64: {}
+  packages/@checkjs/cli-linux-x64: {}
 
-  packages/@biomejs/cli-linux-x64-musl: {}
+  packages/@checkjs/cli-linux-x64-musl: {}
 
-  packages/@biomejs/cli-win32-arm64: {}
+  packages/@checkjs/cli-win32-arm64: {}
 
-  packages/@biomejs/cli-win32-x64: {}
+  packages/@checkjs/cli-win32-x64: {}
 
-  packages/@biomejs/js-api:
+  packages/@checkjs/js-api:
     devDependencies:
-      '@biomejs/wasm-bundler':
+      '@checkjs/wasm-bundler':
         specifier: workspace:*
         version: link:../wasm-bundler
-      '@biomejs/wasm-nodejs':
+      '@checkjs/wasm-nodejs':
         specifier: workspace:*
         version: link:../wasm-nodejs
-      '@biomejs/wasm-web':
+      '@checkjs/wasm-web':
         specifier: workspace:*
         version: link:../wasm-web
       typescript:
@@ -134,17 +134,17 @@ importers:
         specifier: 3.2.4
         version: 3.2.4(@types/node@22.17.1)(happy-dom@18.0.1)
 
-  packages/@biomejs/plugin-api:
+  packages/@checkjs/plugin-api:
     dependencies:
-      '@biomejs/biome':
+      '@checkjs/check':
         specifier: '*'
-        version: link:../biome
+        version: link:../check
 
-  packages/@biomejs/wasm-bundler: {}
+  packages/@checkjs/wasm-bundler: {}
 
-  packages/@biomejs/wasm-nodejs: {}
+  packages/@checkjs/wasm-nodejs: {}
 
-  packages/@biomejs/wasm-web: {}
+  packages/@checkjs/wasm-web: {}
 
   packages/aria-data:
     dependencies:
@@ -1300,7 +1300,7 @@ packages:
     engines: {node: '>=10'}
 
 ignoredOptionalDependencies:
-  - '@biomejs/cli*-'
+  - '@checkjs/cli*-'
 
 snapshots:
 

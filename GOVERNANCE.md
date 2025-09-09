@@ -1,6 +1,6 @@
 # Governance
 
-This document outlines the governance model for Biome.
+This document outlines the governance model for Check.
 
 It describes various parts of how the project is managed as well as accepted practices for day-to-day operation:
 
@@ -45,8 +45,8 @@ Leads have additional privileges over core contributors. Leads control and maint
 
 These assets and responsibilities are but are not limited to:
 - Access to social accounts.
-- Administration privileges of the [Biome Discord server][discord].
-- Administration privileges of the [Biome GitHub org][gh-org].
+- Administration privileges of the [Check Discord server][discord].
+- Administration privileges of the [Check GitHub org][gh-org].
 - Website credentials (hosting platform, domain name, etc.).
 - Access to sensitive emails, such as the CoC email.
 
@@ -75,10 +75,10 @@ In the event of a rejection, the nominated person will be privately given the re
 
 ### Core Contributor
 
-Core Contributors are outstanding [maintainers](#maintainer), are ambassadors of Biome organization and lead by example the community.
+Core Contributors are outstanding [maintainers](#maintainer), are ambassadors of Check organization and lead by example the community.
 
-- Push access to the [Biome GitHub org][gh-org], this includes all repositories
-- `Core contributor` status on the [Biome Discord server][discord]
+- Push access to the [Check GitHub org][gh-org], this includes all repositories
+- `Core contributor` status on the [Check Discord server][discord]
 - Takes part in [project decisions](#project-direction-and-planning)
 - Ability to [vote](#maintainer-nomination) on new maintainers and [vote](#core-contributor-nomination) on new core contributors
 - Onboard new [maintainers](#maintainer)
@@ -116,8 +116,8 @@ In the event of a rejection, the nominated person will be privately given the re
 
 Maintainers are those with a history of consistent contributions, including but not limited to pull requests, project management, or support. These privileges include:
 
-- Push access to some of the repositories of the [Biome GitHub org][gh-org]
-- `Maintainer` status on the [Biome Discord server][discord]
+- Push access to some of the repositories of the [Check GitHub org][gh-org]
+- `Maintainer` status on the [Check Discord server][discord]
 - Ability to [vote](#voting) on project decisions
 - Ability to [vote](#maintainer-nomination) on new maintainers
 - Access to the Discord `Maintainers` category and channels that belong to this category.
@@ -193,7 +193,7 @@ The span of a roadmap should cover one year, but it might vary.
 
 ## Code review
 
-We have a reasonably liberal approach to code review and merging. We value quick iteration and low development friction, which comes with great responsibility. Reverting code is easy, so landing code should be just as easy. Because of this, Biome will have discrete releases rather than rolling releases that are automatically published.
+We have a reasonably liberal approach to code review and merging. We value quick iteration and low development friction, which comes with great responsibility. Reverting code is easy, so landing code should be just as easy. Because of this, Check will have discrete releases rather than rolling releases that are automatically published.
 
 - If you own a particular area, you can merge it without any review despite PR size.
 - If there are comments or suggestions after a PR is merged after the fact, allow yourself time to address them in a follow-up PR. If you don't respond in a reasonable timeframe, then create an issue to track.
@@ -207,48 +207,48 @@ We have a reasonably liberal approach to code review and merging. We value quick
 
 ## Financial Contributions
 
-There are three ways to fund Biome and its development: sponsorship, funded bounties, and paid
+There are three ways to fund Check and its development: sponsorship, funded bounties, and paid
 contracts. We strongly prefer and recommend sponsorship, but are willing to facilitate both bounties
 and contracting under some conditions.
 
 ### Sponsorship
 
-Sponsorship is the first and foremost way of making financial contributions to Biome. Sponsorship can be
+Sponsorship is the first and foremost way of making financial contributions to Check. Sponsorship can be
 done through a one-time donation, or through recurring donations. We offer incentives for certain levels of recurring donations.
 
-To learn more about sponsorship incentives, or to make a donation, please visit our [Open Collective page](https://opencollective.com/biome).
-You can also sponsor the project through [GitHub](https://github.com/sponsors/biomejs).
+To learn more about sponsorship incentives, or to make a donation, please visit our [Open Collective page](https://opencollective.com/check).
+You can also sponsor the project through [GitHub](https://github.com/sponsors/checkjs).
 
 ### Community-Funded Bounties (currently halted)
 
-Bounties are the second approach towards funding Biome development. Unlike sponsorship, bounties are directed towards the implementation of a specific feature. Compared to sponsorship, bounties come with a few risks, both for Biome as a project and for the people or entities offering and collecting the bounty. To minimize these risks, we only sanction bounties under the following conditions:
+Bounties are the second approach towards funding Check development. Unlike sponsorship, bounties are directed towards the implementation of a specific feature. Compared to sponsorship, bounties come with a few risks, both for Check as a project and for the people or entities offering and collecting the bounty. To minimize these risks, we only sanction bounties under the following conditions:
 
 - Bounties must be pledged through [...] on an issue that is opened in our issue tracker.
-  - Unless otherwise specified, Biome reserves 30% of the payment amount, meaning contributors receive 70% of the pledged amount.
+  - Unless otherwise specified, Check reserves 30% of the payment amount, meaning contributors receive 70% of the pledged amount.
   - We reserve the right to decide on a different split in the future.
 - Bounties cannot be opened for bug fixes. Users who wish to see bugs fixed are advised to consider [sponsorship](#sponsorship) instead, in order to give the project a better long-term ability to fix bugs as well.
 - If an issue in our issue tracker is not yet open for pledges, the person who wishes to pledge should indicate their desire in the comments of the issue, or do so through the `Community > #funding` channel on Discord. A [Core Contributor](#core-contributor) can then **accept** or **reject** the request for the bounty. Reasons for rejection include, but are not limited to:
-  - Implementation of the task would conflict with the project direction or [its values](https://biomejs.dev/internals/philosophy/).
+  - Implementation of the task would conflict with the project direction or [its values](https://checkjs.dev/internals/philosophy/).
   - Implementation of the task is (currently) technically infeasible.
   - The suggested pledge is deemed inappropriate for the amount of work involved.
 - The person making the pledge acknowledges their pledge does not come with a guarantee of work done.
-- A task is only completed when a Biome maintainer merges the pull request that closes the task. The person trying to complete the task is responsible for addressing review comments to make sure the work meets the quality standards of the Biome project.
+- A task is only completed when a Check maintainer merges the pull request that closes the task. The person trying to complete the task is responsible for addressing review comments to make sure the work meets the quality standards of the Check project.
 - There is a 6 month expiration on pledges
 - If you are receiving money as part of a bounty, please consider whether you need to pay taxes in your country. Core contributors and Maintainers aren't obligated to give tax advice over the money received.
 
 ### Project-Funded Bounties
 
-In some cases, Biome funds bounties on its own issues in order to further the project goals as laid out in its [roadmap](#roadmap). Because Biome is the one funding these issues, it also means **100% of the pledged amount will go to the contributor completing the task**. Project-Funded Bounties have the same conditions applied to them as [Community-Funded Bounties](#community-funded-bounties). But given that these issues are funded using money that ultimately comes from our sponsors, we have additional restrictions in place:
+In some cases, Check funds bounties on its own issues in order to further the project goals as laid out in its [roadmap](#roadmap). Because Check is the one funding these issues, it also means **100% of the pledged amount will go to the contributor completing the task**. Project-Funded Bounties have the same conditions applied to them as [Community-Funded Bounties](#community-funded-bounties). But given that these issues are funded using money that ultimately comes from our sponsors, we have additional restrictions in place:
 
-- Implementation of the task funded by Biome must advance our [roadmap](#roadmap) or help with essential infrastructure.
+- Implementation of the task funded by Check must advance our [roadmap](#roadmap) or help with essential infrastructure.
   - The task description must include a clear rationale for why this task is eligible for funding.
 - We ask contributors to take the money directly from our Open Collective account upon completion of the task.
   - Unfortunately, this means Project-Funded Bounties can only be assigned to [Core Contributors](#core-contributor) at this moment since they have access to our Open Collective account.
 
 Additionally, there is a strict process for assigning Project-Funded Bounties:
 
-- To request Biome funding for a task, a request with a clear rationale must be made in the `Community > #funding` channel on Discord.
-  - To make sure our Core Contributors don't have to worry about overlooking Biome-funding-related decisions, requests made on GitHub issues are not sufficient for a funding request.
+- To request Check funding for a task, a request with a clear rationale must be made in the `Community > #funding` channel on Discord.
+  - To make sure our Core Contributors don't have to worry about overlooking Check-funding-related decisions, requests made on GitHub issues are not sufficient for a funding request.
 - If no Core Contributor raises objections within three (3) days, then any Core Contributor can assign the pledge to the issue and assign the requester to it.
   - The waiting period is optional if a Lead approves the request.
   - If an objection is raised, the request is put on hold until a Lead makes the final decision.
@@ -256,21 +256,21 @@ Additionally, there is a strict process for assigning Project-Funded Bounties:
 
 ### Paid Contracting
 
-Core Contributors may enter freelance contracts with clients to work on Biome. Such contracts are
+Core Contributors may enter freelance contracts with clients to work on Check. Such contracts are
 between the contributor and their client, so they fall mostly outside the responsibility of the
-Biome project. Nevertheless, we can explicitly endorse such contracts under the following
+Check project. Nevertheless, we can explicitly endorse such contracts under the following
 conditions:
 
 - Core Contributors that are open to contracts may be advertised on the project website if they
   please.
-- Clients that hire a Core Contributor to work on Biome for an extended period (3 months or more)
+- Clients that hire a Core Contributor to work on Check for an extended period (3 months or more)
   are eligible to the same benefits as a project sponsor. Their sponsorship benefits will be based
   on the monthly fee paid to the Core Contributor.
-- If the work that is expected to be delivered does not contribute to Biome's last-published
-  roadmap, Biome asks for a 30% fee over the total gross amount, excluding VAT, earned through the
+- If the work that is expected to be delivered does not contribute to Check's last-published
+  roadmap, Check asks for a 30% fee over the total gross amount, excluding VAT, earned through the
   contract. This is to cover review, project upkeep and continued maintenance of the functionality
   after merging.
-  - For work that directly benefits the Biome roadmap, no such fee is required. For work that partly
+  - For work that directly benefits the Check roadmap, no such fee is required. For work that partly
     or indirectly benefits the roadmap, a customized fee may be negotiated.
   - If the last-published roadmap is more than 12 months old, the Core Contributor is asked to
     consult with the Core team about alignment with the project goals.
@@ -278,11 +278,11 @@ conditions:
     in the `Core > #core-team` channel.
   - Custom fees require the approval of at least one Lead.
 - The work may not conflict with the project direction or
-  [its values](https://biomejs.dev/internals/philosophy/).
+  [its values](https://checkjs.dev/internals/philosophy/).
 - When a Core Contributor starts or ends a paid contract, it should be announced in the
   `Core > #core-team` channel.
-- Biome and its members cannot be held responsible for the performance of any individual
-  contributor. We may help clients who are interested in hiring a Biome contributor for a contract
+- Check and its members cannot be held responsible for the performance of any individual
+  contributor. We may help clients who are interested in hiring a Check contributor for a contract
   to get in contact with them, but we cannot guarantee their performance. It is the client's
   responsibility to do due diligence and determine whether the contributor is suitable for the
   assigned contract.
@@ -298,7 +298,7 @@ Additionally, we may use funds for assigning [Project-Funded Bounties](#project-
 
 #### Expenses
 
-Core contributors are allowed to claim expenses related to conferences where they talk about Biome, or Biome workshops that they run. Expenses that can be claimed include, but are not limited to: trip (plane, train, etc.), meals, transport, parking.
+Core contributors are allowed to claim expenses related to conferences where they talk about Check, or Check workshops that they run. Expenses that can be claimed include, but are not limited to: trip (plane, train, etc.), meals, transport, parking.
   - The person will have to provide proof of attendance (badge, video, etc.);
   - Expenses will have to be uploaded via the open collective website.
   - Only the expenses that are afforded in the days of the workspace/conference are accepted:
@@ -318,10 +318,10 @@ Outlined below is the process for Code of Conduct violation reviews.
 
 Anyone may report a violation. Violations can be reported in the following ways:
 
-- In private, via <biomejs@googlegroups.com> which is listed in the [Code of Conduct](./CODE_OF_CONDUCT.md). All core contributors monitor this email address.
+- In private, via <checkjs@googlegroups.com> which is listed in the [Code of Conduct](./CODE_OF_CONDUCT.md). All core contributors monitor this email address.
 - In private, via email to one or more core contributors.
 - In private, via direct message to a core contributor on [Discord server][discord].
-- In public, via a GitHub comment (mentioning `@biomejs/core-contributors`).
+- In public, via a GitHub comment (mentioning `@checkjs/core-contributors`).
 - In public, via the project [Discord server][discord].
 
 ### Who gets involved?
@@ -355,5 +355,5 @@ The reviewers will determine responses based on the information gathered and the
 - Permanent ban from the GitHub org and Discord server
 - Revoked contributor or moderator status
 
-[gh-org]: https://github.com/biomejs
-[discord]: https://biomejs.dev/chat
+[gh-org]: https://github.com/checkjs
+[discord]: https://checkjs.dev/chat

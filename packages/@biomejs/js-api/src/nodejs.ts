@@ -1,11 +1,11 @@
-import type { Configuration, Diagnostic } from "@biomejs/wasm-nodejs";
-import * as moduleNodeJs from "@biomejs/wasm-nodejs";
-import { BiomeCommon } from "./common";
+import type { Configuration, Diagnostic } from "@checkjs/wasm-nodejs";
+import * as moduleNodeJs from "@checkjs/wasm-nodejs";
+import { CheckCommon } from "./common";
 
 export type * from "./common";
 export type { Configuration, Diagnostic };
 
-export class Biome extends BiomeCommon<Configuration, Diagnostic> {
+export class Check extends CheckCommon<Configuration, Diagnostic> {
 	constructor() {
 		super(moduleNodeJs);
 	}

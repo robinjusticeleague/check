@@ -117,16 +117,16 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_analyze"
+name = "check_analyze"
 version = "0.5.7"
 dependencies = [
- "biome_console",
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_parser",
- "biome_rowan",
- "biome_suppression",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_parser",
+ "check_rowan",
+ "check_suppression",
  "camino",
  "enumflags2",
  "indexmap",
@@ -136,19 +136,19 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_aria"
+name = "check_aria"
 version = "0.5.7"
 dependencies = [
- "biome_aria_metadata",
+ "check_aria_metadata",
 ]
 
 [[package]]
-name = "biome_aria_metadata"
+name = "check_aria_metadata"
 version = "0.5.7"
 dependencies = [
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_string_case",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_string_case",
  "prettyplease",
  "proc-macro2",
  "quote",
@@ -158,41 +158,41 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_cli"
+name = "check_cli"
 version = "0.0.0"
 dependencies = [
  "anyhow",
- "biome_analyze",
- "biome_configuration",
- "biome_console",
- "biome_css_analyze",
- "biome_css_formatter",
- "biome_css_syntax",
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_flags",
- "biome_formatter",
- "biome_fs",
- "biome_glob",
- "biome_graphql_analyze",
- "biome_graphql_syntax",
- "biome_grit_patterns",
- "biome_html_formatter",
- "biome_js_analyze",
- "biome_js_formatter",
- "biome_js_syntax",
- "biome_json_analyze",
- "biome_json_formatter",
- "biome_json_parser",
- "biome_json_syntax",
- "biome_lsp",
- "biome_migrate",
- "biome_resolver",
- "biome_rowan",
- "biome_rule_options",
- "biome_service",
- "biome_text_edit",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_css_analyze",
+ "check_css_formatter",
+ "check_css_syntax",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_flags",
+ "check_formatter",
+ "check_fs",
+ "check_glob",
+ "check_graphql_analyze",
+ "check_graphql_syntax",
+ "check_grit_patterns",
+ "check_html_formatter",
+ "check_js_analyze",
+ "check_js_formatter",
+ "check_js_syntax",
+ "check_json_analyze",
+ "check_json_formatter",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_lsp",
+ "check_migrate",
+ "check_resolver",
+ "check_rowan",
+ "check_rule_options",
+ "check_service",
+ "check_text_edit",
  "bpaf",
  "camino",
  "crossbeam",
@@ -218,26 +218,26 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_configuration"
+name = "check_configuration"
 version = "0.0.1"
 dependencies = [
- "biome_analyze",
- "biome_console",
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_flags",
- "biome_formatter",
- "biome_glob",
- "biome_html_formatter",
- "biome_html_syntax",
- "biome_js_formatter",
- "biome_json_formatter",
- "biome_json_parser",
- "biome_json_syntax",
- "biome_resolver",
- "biome_rowan",
- "biome_rule_options",
+ "check_analyze",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_flags",
+ "check_formatter",
+ "check_glob",
+ "check_html_formatter",
+ "check_html_syntax",
+ "check_js_formatter",
+ "check_json_formatter",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_resolver",
+ "check_rowan",
+ "check_rule_options",
  "bpaf",
  "camino",
  "codspeed-criterion-compat",
@@ -252,11 +252,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_console"
+name = "check_console"
 version = "0.5.7"
 dependencies = [
- "biome_markup",
- "biome_text_size",
+ "check_markup",
+ "check_text_size",
  "schemars",
  "serde",
  "termcolor",
@@ -266,33 +266,33 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_control_flow"
+name = "check_control_flow"
 version = "0.5.7"
 dependencies = [
- "biome_rowan",
+ "check_rowan",
  "rustc-hash 2.1.1",
 ]
 
 [[package]]
-name = "biome_css_analyze"
+name = "check_css_analyze"
 version = "0.5.7"
 dependencies = [
- "biome_analyze",
- "biome_console",
- "biome_css_factory",
- "biome_css_parser",
- "biome_css_semantic",
- "biome_css_syntax",
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_fs",
- "biome_plugin_loader",
- "biome_rowan",
- "biome_rule_options",
- "biome_string_case",
- "biome_suppression",
- "biome_test_utils",
+ "check_analyze",
+ "check_console",
+ "check_css_factory",
+ "check_css_parser",
+ "check_css_semantic",
+ "check_css_syntax",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_fs",
+ "check_plugin_loader",
+ "check_rowan",
+ "check_rule_options",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
  "camino",
  "codspeed-criterion-compat",
  "insta",
@@ -306,30 +306,30 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_css_factory"
+name = "check_css_factory"
 version = "0.5.7"
 dependencies = [
- "biome_css_syntax",
- "biome_rowan",
+ "check_css_syntax",
+ "check_rowan",
 ]
 
 [[package]]
-name = "biome_css_formatter"
+name = "check_css_formatter"
 version = "0.5.7"
 dependencies = [
- "biome_configuration",
- "biome_css_parser",
- "biome_css_syntax",
- "biome_diagnostics",
- "biome_formatter",
- "biome_formatter_test",
- "biome_fs",
- "biome_parser",
- "biome_rowan",
- "biome_service",
- "biome_string_case",
- "biome_suppression",
- "biome_test_utils",
+ "check_configuration",
+ "check_css_parser",
+ "check_css_syntax",
+ "check_diagnostics",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
  "camino",
  "codspeed-criterion-compat",
  "countme",
@@ -341,21 +341,21 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_css_parser"
+name = "check_css_parser"
 version = "0.5.7"
 dependencies = [
- "biome_configuration",
- "biome_console",
- "biome_css_factory",
- "biome_css_syntax",
- "biome_deserialize",
- "biome_diagnostics",
- "biome_fs",
- "biome_parser",
- "biome_rowan",
- "biome_service",
- "biome_test_utils",
- "biome_unicode_table",
+ "check_configuration",
+ "check_console",
+ "check_css_factory",
+ "check_css_syntax",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_fs",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_test_utils",
+ "check_unicode_table",
  "camino",
  "codspeed-criterion-compat",
  "insta",
@@ -368,39 +368,39 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_css_semantic"
+name = "check_css_semantic"
 version = "0.0.0"
 dependencies = [
- "biome_css_parser",
- "biome_css_syntax",
- "biome_formatter",
- "biome_rowan",
+ "check_css_parser",
+ "check_css_syntax",
+ "check_formatter",
+ "check_rowan",
  "rustc-hash 2.1.1",
 ]
 
 [[package]]
-name = "biome_css_syntax"
+name = "check_css_syntax"
 version = "0.5.7"
 dependencies = [
- "biome_css_factory",
- "biome_css_parser",
- "biome_rowan",
- "biome_string_case",
+ "check_css_factory",
+ "check_css_parser",
+ "check_rowan",
+ "check_string_case",
  "camino",
  "schemars",
  "serde",
 ]
 
 [[package]]
-name = "biome_deserialize"
+name = "check_deserialize"
 version = "0.6.0"
 dependencies = [
- "biome_console",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_json_parser",
- "biome_json_syntax",
- "biome_rowan",
+ "check_console",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_rowan",
  "camino",
  "enumflags2",
  "indexmap",
@@ -410,10 +410,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_deserialize_macros"
+name = "check_deserialize_macros"
 version = "0.6.0"
 dependencies = [
- "biome_string_case",
+ "check_string_case",
  "proc-macro-error2",
  "proc-macro2",
  "quote",
@@ -421,16 +421,16 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_diagnostics"
+name = "check_diagnostics"
 version = "0.5.7"
 dependencies = [
  "backtrace",
- "biome_console",
- "biome_diagnostics_categories",
- "biome_diagnostics_macros",
- "biome_rowan",
- "biome_text_edit",
- "biome_text_size",
+ "check_console",
+ "check_diagnostics_categories",
+ "check_diagnostics_macros",
+ "check_rowan",
+ "check_text_edit",
+ "check_text_size",
  "bpaf",
  "camino",
  "enumflags2",
@@ -445,7 +445,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_diagnostics_categories"
+name = "check_diagnostics_categories"
 version = "0.5.7"
 dependencies = [
  "quote",
@@ -454,7 +454,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_diagnostics_macros"
+name = "check_diagnostics_macros"
 version = "0.5.7"
 dependencies = [
  "proc-macro-error2",
@@ -464,24 +464,24 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_flags"
+name = "check_flags"
 version = "0.0.0"
 dependencies = [
- "biome_console",
+ "check_console",
 ]
 
 [[package]]
-name = "biome_formatter"
+name = "check_formatter"
 version = "0.5.7"
 dependencies = [
- "biome_console",
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_js_parser",
- "biome_js_syntax",
- "biome_rowan",
- "biome_string_case",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_rowan",
+ "check_string_case",
  "camino",
  "cfg-if",
  "countme",
@@ -496,18 +496,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_formatter_test"
+name = "check_formatter_test"
 version = "0.0.0"
 dependencies = [
- "biome_configuration",
- "biome_console",
- "biome_deserialize",
- "biome_diagnostics",
- "biome_formatter",
- "biome_fs",
- "biome_parser",
- "biome_rowan",
- "biome_service",
+ "check_configuration",
+ "check_console",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_formatter",
+ "check_fs",
+ "check_parser",
+ "check_rowan",
+ "check_service",
  "camino",
  "insta",
  "serde",
@@ -517,10 +517,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_fs"
+name = "check_fs"
 version = "0.5.7"
 dependencies = [
- "biome_diagnostics",
+ "check_diagnostics",
  "camino",
  "crossbeam",
  "directories",
@@ -538,34 +538,34 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_glob"
+name = "check_glob"
 version = "0.1.0"
 dependencies = [
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_text_size",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_text_size",
  "globset",
  "schemars",
  "serde",
 ]
 
 [[package]]
-name = "biome_graphql_analyze"
+name = "check_graphql_analyze"
 version = "0.0.1"
 dependencies = [
- "biome_analyze",
- "biome_console",
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_graphql_factory",
- "biome_graphql_parser",
- "biome_graphql_syntax",
- "biome_rowan",
- "biome_rule_options",
- "biome_string_case",
- "biome_suppression",
- "biome_test_utils",
+ "check_analyze",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_graphql_factory",
+ "check_graphql_parser",
+ "check_graphql_syntax",
+ "check_rowan",
+ "check_rule_options",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
  "camino",
  "insta",
  "schemars",
@@ -574,29 +574,29 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_graphql_factory"
+name = "check_graphql_factory"
 version = "0.1.0"
 dependencies = [
- "biome_graphql_syntax",
- "biome_rowan",
+ "check_graphql_syntax",
+ "check_rowan",
 ]
 
 [[package]]
-name = "biome_graphql_formatter"
+name = "check_graphql_formatter"
 version = "0.1.0"
 dependencies = [
- "biome_configuration",
- "biome_diagnostics",
- "biome_formatter",
- "biome_formatter_test",
- "biome_fs",
- "biome_graphql_parser",
- "biome_graphql_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_service",
- "biome_suppression",
- "biome_test_utils",
+ "check_configuration",
+ "check_diagnostics",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_graphql_parser",
+ "check_graphql_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_suppression",
+ "check_test_utils",
  "camino",
  "codspeed-criterion-compat",
  "countme",
@@ -608,17 +608,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_graphql_parser"
+name = "check_graphql_parser"
 version = "0.1.0"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_graphql_factory",
- "biome_graphql_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_test_utils",
- "biome_unicode_table",
+ "check_console",
+ "check_diagnostics",
+ "check_graphql_factory",
+ "check_graphql_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
+ "check_unicode_table",
  "codspeed-criterion-compat",
  "insta",
  "mimalloc",
@@ -631,48 +631,48 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_graphql_semantic"
+name = "check_graphql_semantic"
 version = "0.0.0"
 dependencies = [
- "biome_graphql_parser",
- "biome_graphql_syntax",
- "biome_rowan",
+ "check_graphql_parser",
+ "check_graphql_syntax",
+ "check_rowan",
  "rustc-hash 2.1.1",
 ]
 
 [[package]]
-name = "biome_graphql_syntax"
+name = "check_graphql_syntax"
 version = "0.1.0"
 dependencies = [
- "biome_rowan",
- "biome_string_case",
+ "check_rowan",
+ "check_string_case",
  "camino",
  "schemars",
  "serde",
 ]
 
 [[package]]
-name = "biome_grit_factory"
+name = "check_grit_factory"
 version = "0.5.7"
 dependencies = [
- "biome_grit_syntax",
- "biome_rowan",
+ "check_grit_syntax",
+ "check_rowan",
 ]
 
 [[package]]
-name = "biome_grit_formatter"
+name = "check_grit_formatter"
 version = "0.0.0"
 dependencies = [
- "biome_configuration",
- "biome_formatter",
- "biome_formatter_test",
- "biome_fs",
- "biome_grit_factory",
- "biome_grit_parser",
- "biome_grit_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_service",
+ "check_configuration",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_grit_factory",
+ "check_grit_parser",
+ "check_grit_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
  "camino",
  "serde",
  "serde_json",
@@ -680,16 +680,16 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_grit_parser"
+name = "check_grit_parser"
 version = "0.1.0"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_grit_factory",
- "biome_grit_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_test_utils",
+ "check_console",
+ "check_diagnostics",
+ "check_grit_factory",
+ "check_grit_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
  "insta",
  "quickcheck",
  "quickcheck_macros",
@@ -703,22 +703,22 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_grit_patterns"
+name = "check_grit_patterns"
 version = "0.0.1"
 dependencies = [
- "biome_analyze",
- "biome_console",
- "biome_css_parser",
- "biome_css_syntax",
- "biome_diagnostics",
- "biome_grit_parser",
- "biome_grit_syntax",
- "biome_js_parser",
- "biome_js_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_string_case",
- "biome_test_utils",
+ "check_analyze",
+ "check_console",
+ "check_css_parser",
+ "check_css_syntax",
+ "check_diagnostics",
+ "check_grit_parser",
+ "check_grit_syntax",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_string_case",
+ "check_test_utils",
  "camino",
  "grit-pattern-matcher",
  "grit-util",
@@ -734,43 +734,43 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_grit_syntax"
+name = "check_grit_syntax"
 version = "0.5.7"
 dependencies = [
- "biome_rowan",
- "biome_string_case",
+ "check_rowan",
+ "check_string_case",
  "camino",
  "schemars",
  "serde",
 ]
 
 [[package]]
-name = "biome_html_factory"
+name = "check_html_factory"
 version = "0.5.7"
 dependencies = [
- "biome_html_syntax",
- "biome_rowan",
+ "check_html_syntax",
+ "check_rowan",
 ]
 
 [[package]]
-name = "biome_html_formatter"
+name = "check_html_formatter"
 version = "0.0.0"
 dependencies = [
- "biome_configuration",
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics_categories",
- "biome_formatter",
- "biome_formatter_test",
- "biome_fs",
- "biome_html_parser",
- "biome_html_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_service",
- "biome_string_case",
- "biome_suppression",
- "biome_test_utils",
+ "check_configuration",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics_categories",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_html_parser",
+ "check_html_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
  "camino",
  "codspeed-criterion-compat",
  "countme",
@@ -782,17 +782,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_html_parser"
+name = "check_html_parser"
 version = "0.0.1"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_html_factory",
- "biome_html_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_test_utils",
- "biome_unicode_table",
+ "check_console",
+ "check_diagnostics",
+ "check_html_factory",
+ "check_html_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
+ "check_unicode_table",
  "camino",
  "codspeed-criterion-compat",
  "insta",
@@ -805,48 +805,48 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_html_syntax"
+name = "check_html_syntax"
 version = "0.5.7"
 dependencies = [
- "biome_rowan",
- "biome_string_case",
+ "check_rowan",
+ "check_string_case",
  "camino",
  "schemars",
  "serde",
 ]
 
 [[package]]
-name = "biome_js_analyze"
+name = "check_js_analyze"
 version = "0.5.7"
 dependencies = [
- "biome_analyze",
- "biome_aria",
- "biome_aria_metadata",
- "biome_console",
- "biome_control_flow",
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_fs",
- "biome_glob",
- "biome_js_factory",
- "biome_js_parser",
- "biome_js_semantic",
- "biome_js_syntax",
- "biome_js_type_info",
- "biome_jsdoc_comment",
- "biome_module_graph",
- "biome_package",
- "biome_plugin_loader",
- "biome_project_layout",
- "biome_resolver",
- "biome_rowan",
- "biome_rule_options",
- "biome_service",
- "biome_string_case",
- "biome_suppression",
- "biome_test_utils",
- "biome_unicode_table",
+ "check_analyze",
+ "check_aria",
+ "check_aria_metadata",
+ "check_console",
+ "check_control_flow",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_fs",
+ "check_glob",
+ "check_js_factory",
+ "check_js_parser",
+ "check_js_semantic",
+ "check_js_syntax",
+ "check_js_type_info",
+ "check_jsdoc_comment",
+ "check_module_graph",
+ "check_package",
+ "check_plugin_loader",
+ "check_project_layout",
+ "check_resolver",
+ "check_rowan",
+ "check_rule_options",
+ "check_service",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
+ "check_unicode_table",
  "bitvec",
  "camino",
  "codspeed-criterion-compat",
@@ -865,34 +865,34 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_js_factory"
+name = "check_js_factory"
 version = "0.5.7"
 dependencies = [
- "biome_js_syntax",
- "biome_rowan",
+ "check_js_syntax",
+ "check_rowan",
 ]
 
 [[package]]
-name = "biome_js_formatter"
+name = "check_js_formatter"
 version = "0.5.7"
 dependencies = [
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics_categories",
- "biome_formatter",
- "biome_formatter_test",
- "biome_fs",
- "biome_js_factory",
- "biome_js_parser",
- "biome_js_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_service",
- "biome_string_case",
- "biome_suppression",
- "biome_test_utils",
- "biome_text_size",
- "biome_unicode_table",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics_categories",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_js_factory",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
+ "check_text_size",
+ "check_unicode_table",
  "camino",
  "codspeed-criterion-compat",
  "countme",
@@ -908,21 +908,21 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_js_parser"
+name = "check_js_parser"
 version = "0.5.7"
 dependencies = [
- "biome_configuration",
- "biome_console",
- "biome_deserialize",
- "biome_diagnostics",
- "biome_fs",
- "biome_js_factory",
- "biome_js_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_service",
- "biome_test_utils",
- "biome_unicode_table",
+ "check_configuration",
+ "check_console",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_fs",
+ "check_js_factory",
+ "check_js_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_test_utils",
+ "check_unicode_table",
  "camino",
  "codspeed-criterion-compat",
  "drop_bomb",
@@ -943,43 +943,43 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_js_runtime"
+name = "check_js_runtime"
 version = "0.0.1"
 dependencies = [
- "biome_analyze",
- "biome_diagnostics",
- "biome_resolver",
- "biome_text_size",
+ "check_analyze",
+ "check_diagnostics",
+ "check_resolver",
+ "check_text_size",
  "boa_engine",
  "camino",
  "rustc-hash 2.1.1",
 ]
 
 [[package]]
-name = "biome_js_semantic"
+name = "check_js_semantic"
 version = "0.5.7"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_formatter",
- "biome_js_parser",
- "biome_js_syntax",
- "biome_rowan",
+ "check_console",
+ "check_diagnostics",
+ "check_formatter",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_rowan",
  "rust-lapper",
  "rustc-hash 2.1.1",
  "smallvec",
 ]
 
 [[package]]
-name = "biome_js_syntax"
+name = "check_js_syntax"
 version = "0.5.7"
 dependencies = [
- "biome_aria",
- "biome_aria_metadata",
- "biome_js_factory",
- "biome_js_parser",
- "biome_rowan",
- "biome_string_case",
+ "check_aria",
+ "check_aria_metadata",
+ "check_js_factory",
+ "check_js_parser",
+ "check_rowan",
+ "check_string_case",
  "camino",
  "enumflags2",
  "schemars",
@@ -987,34 +987,34 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_js_transform"
+name = "check_js_transform"
 version = "0.5.7"
 dependencies = [
- "biome_analyze",
- "biome_diagnostics",
- "biome_js_factory",
- "biome_js_formatter",
- "biome_js_parser",
- "biome_js_syntax",
- "biome_rowan",
- "biome_test_utils",
+ "check_analyze",
+ "check_diagnostics",
+ "check_js_factory",
+ "check_js_formatter",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_rowan",
+ "check_test_utils",
  "camino",
  "insta",
  "tests_macros",
 ]
 
 [[package]]
-name = "biome_js_type_info"
+name = "check_js_type_info"
 version = "0.0.1"
 dependencies = [
- "biome_formatter",
- "biome_js_formatter",
- "biome_js_parser",
- "biome_js_syntax",
- "biome_js_type_info_macros",
- "biome_resolver",
- "biome_rowan",
- "biome_test_utils",
+ "check_formatter",
+ "check_js_formatter",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_js_type_info_macros",
+ "check_resolver",
+ "check_rowan",
+ "check_test_utils",
  "camino",
  "hashbrown 0.15.5",
  "insta",
@@ -1022,7 +1022,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_js_type_info_macros"
+name = "check_js_type_info_macros"
 version = "0.0.1"
 dependencies = [
  "proc-macro-error2",
@@ -1032,30 +1032,30 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_jsdoc_comment"
+name = "check_jsdoc_comment"
 version = "0.0.1"
 dependencies = [
- "biome_formatter",
- "biome_js_syntax",
- "biome_js_type_info",
- "biome_rowan",
+ "check_formatter",
+ "check_js_syntax",
+ "check_js_type_info",
+ "check_rowan",
 ]
 
 [[package]]
-name = "biome_json_analyze"
+name = "check_json_analyze"
 version = "0.5.7"
 dependencies = [
- "biome_analyze",
- "biome_console",
- "biome_diagnostics",
- "biome_json_factory",
- "biome_json_parser",
- "biome_json_syntax",
- "biome_rowan",
- "biome_rule_options",
- "biome_string_case",
- "biome_suppression",
- "biome_test_utils",
+ "check_analyze",
+ "check_console",
+ "check_diagnostics",
+ "check_json_factory",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_rowan",
+ "check_rule_options",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
  "camino",
  "codspeed-criterion-compat",
  "insta",
@@ -1066,30 +1066,30 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_json_factory"
+name = "check_json_factory"
 version = "0.5.7"
 dependencies = [
- "biome_json_syntax",
- "biome_rowan",
+ "check_json_syntax",
+ "check_rowan",
 ]
 
 [[package]]
-name = "biome_json_formatter"
+name = "check_json_formatter"
 version = "0.5.7"
 dependencies = [
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_formatter",
- "biome_formatter_test",
- "biome_fs",
- "biome_json_parser",
- "biome_json_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_service",
- "biome_suppression",
- "biome_test_utils",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_suppression",
+ "check_test_utils",
  "camino",
  "codspeed-criterion-compat",
  "countme",
@@ -1102,17 +1102,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_json_parser"
+name = "check_json_parser"
 version = "0.5.7"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_json_factory",
- "biome_json_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_test_utils",
- "biome_unicode_table",
+ "check_console",
+ "check_diagnostics",
+ "check_json_factory",
+ "check_json_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
+ "check_unicode_table",
  "codspeed-criterion-compat",
  "insta",
  "mimalloc",
@@ -1125,11 +1125,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_json_syntax"
+name = "check_json_syntax"
 version = "0.5.7"
 dependencies = [
- "biome_rowan",
- "biome_string_case",
+ "check_rowan",
+ "check_string_case",
  "camino",
  "dirs",
  "schemars",
@@ -1137,44 +1137,44 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_json_value"
+name = "check_json_value"
 version = "0.1.0"
 dependencies = [
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_json_parser",
- "biome_json_syntax",
- "biome_rowan",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_rowan",
  "indexmap",
  "rustc-hash 2.1.1",
  "static_assertions",
 ]
 
 [[package]]
-name = "biome_line_index"
+name = "check_line_index"
 version = "0.1.0"
 dependencies = [
- "biome_text_size",
+ "check_text_size",
  "rustc-hash 2.1.1",
 ]
 
 [[package]]
-name = "biome_lsp"
+name = "check_lsp"
 version = "0.0.0"
 dependencies = [
  "anyhow",
- "biome_analyze",
- "biome_configuration",
- "biome_console",
- "biome_deserialize",
- "biome_diagnostics",
- "biome_fs",
- "biome_line_index",
- "biome_lsp_converters",
- "biome_resolver",
- "biome_rowan",
- "biome_service",
- "biome_text_edit",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_fs",
+ "check_line_index",
+ "check_lsp_converters",
+ "check_resolver",
+ "check_rowan",
+ "check_service",
+ "check_text_edit",
  "camino",
  "crossbeam",
  "futures",
@@ -1189,37 +1189,37 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_lsp_converters"
+name = "check_lsp_converters"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "biome_line_index",
- "biome_text_size",
+ "check_line_index",
+ "check_text_size",
  "rustc-hash 2.1.1",
  "tower",
  "tower-lsp-server",
 ]
 
 [[package]]
-name = "biome_markdown_factory"
+name = "check_markdown_factory"
 version = "0.0.1"
 dependencies = [
- "biome_markdown_syntax",
- "biome_rowan",
+ "check_markdown_syntax",
+ "check_rowan",
 ]
 
 [[package]]
-name = "biome_markdown_parser"
+name = "check_markdown_parser"
 version = "0.0.1"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_markdown_factory",
- "biome_markdown_syntax",
- "biome_parser",
- "biome_rowan",
- "biome_test_utils",
- "biome_unicode_table",
+ "check_console",
+ "check_diagnostics",
+ "check_markdown_factory",
+ "check_markdown_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
+ "check_unicode_table",
  "insta",
  "quickcheck",
  "quickcheck_macros",
@@ -1229,16 +1229,16 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_markdown_syntax"
+name = "check_markdown_syntax"
 version = "0.0.1"
 dependencies = [
- "biome_rowan",
+ "check_rowan",
  "schemars",
  "serde",
 ]
 
 [[package]]
-name = "biome_markup"
+name = "check_markup"
 version = "0.5.7"
 dependencies = [
  "proc-macro-error2",
@@ -1247,21 +1247,21 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_migrate"
+name = "check_migrate"
 version = "0.0.0"
 dependencies = [
- "biome_analyze",
- "biome_configuration",
- "biome_console",
- "biome_diagnostics",
- "biome_glob",
- "biome_json_factory",
- "biome_json_formatter",
- "biome_json_parser",
- "biome_json_syntax",
- "biome_package",
- "biome_rowan",
- "biome_test_utils",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_diagnostics",
+ "check_glob",
+ "check_json_factory",
+ "check_json_formatter",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_package",
+ "check_rowan",
+ "check_test_utils",
  "camino",
  "insta",
  "rustc-hash 2.1.1",
@@ -1269,27 +1269,27 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_module_graph"
+name = "check_module_graph"
 version = "0.0.1"
 dependencies = [
- "biome_console",
- "biome_deserialize",
- "biome_diagnostics",
- "biome_formatter",
- "biome_fs",
- "biome_js_formatter",
- "biome_js_parser",
- "biome_js_semantic",
- "biome_js_syntax",
- "biome_js_type_info",
- "biome_jsdoc_comment",
- "biome_json_parser",
- "biome_json_value",
- "biome_package",
- "biome_project_layout",
- "biome_resolver",
- "biome_rowan",
- "biome_test_utils",
+ "check_console",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_formatter",
+ "check_fs",
+ "check_js_formatter",
+ "check_js_parser",
+ "check_js_semantic",
+ "check_js_syntax",
+ "check_js_type_info",
+ "check_jsdoc_comment",
+ "check_json_parser",
+ "check_json_value",
+ "check_package",
+ "check_project_layout",
+ "check_resolver",
+ "check_rowan",
+ "check_test_utils",
  "camino",
  "cfg-if",
  "codspeed-divan-compat",
@@ -1309,20 +1309,20 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_package"
+name = "check_package"
 version = "0.5.7"
 dependencies = [
- "biome_console",
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_fs",
- "biome_json_parser",
- "biome_json_syntax",
- "biome_json_value",
- "biome_parser",
- "biome_rowan",
- "biome_text_size",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_fs",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_json_value",
+ "check_parser",
+ "check_rowan",
+ "check_text_size",
  "camino",
  "codspeed-divan-compat",
  "indexmap",
@@ -1336,39 +1336,39 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_parser"
+name = "check_parser"
 version = "0.5.7"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_rowan",
- "biome_unicode_table",
+ "check_console",
+ "check_diagnostics",
+ "check_rowan",
+ "check_unicode_table",
  "drop_bomb",
  "enumflags2",
  "unicode-bom",
 ]
 
 [[package]]
-name = "biome_plugin_loader"
+name = "check_plugin_loader"
 version = "0.0.1"
 dependencies = [
- "biome_analyze",
- "biome_configuration",
- "biome_console",
- "biome_css_syntax",
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_fs",
- "biome_grit_patterns",
- "biome_js_parser",
- "biome_js_runtime",
- "biome_js_syntax",
- "biome_json_parser",
- "biome_parser",
- "biome_resolver",
- "biome_rowan",
- "biome_text_size",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_css_syntax",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_fs",
+ "check_grit_patterns",
+ "check_js_parser",
+ "check_js_runtime",
+ "check_js_syntax",
+ "check_json_parser",
+ "check_parser",
+ "check_resolver",
+ "check_rowan",
+ "check_text_size",
  "boa_engine",
  "camino",
  "grit-pattern-matcher",
@@ -1382,36 +1382,36 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_project_layout"
+name = "check_project_layout"
 version = "0.0.1"
 dependencies = [
- "biome_package",
- "biome_parser",
- "biome_rowan",
+ "check_package",
+ "check_parser",
+ "check_rowan",
  "camino",
  "papaya",
  "rustc-hash 2.1.1",
 ]
 
 [[package]]
-name = "biome_resolver"
+name = "check_resolver"
 version = "0.1.0"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_fs",
- "biome_json_value",
- "biome_package",
- "biome_rowan",
+ "check_console",
+ "check_diagnostics",
+ "check_fs",
+ "check_json_value",
+ "check_package",
+ "check_rowan",
  "camino",
 ]
 
 [[package]]
-name = "biome_rowan"
+name = "check_rowan"
 version = "0.5.7"
 dependencies = [
- "biome_text_edit",
- "biome_text_size",
+ "check_text_edit",
+ "check_text_size",
  "countme",
  "hashbrown 0.15.5",
  "iai",
@@ -1424,18 +1424,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_rule_options"
+name = "check_rule_options"
 version = "0.0.1"
 dependencies = [
- "biome_console",
- "biome_deserialize",
- "biome_deserialize_macros",
- "biome_diagnostics",
- "biome_glob",
- "biome_js_syntax",
- "biome_resolver",
- "biome_rowan",
- "biome_string_case",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_glob",
+ "check_js_syntax",
+ "check_resolver",
+ "check_rowan",
+ "check_string_case",
  "camino",
  "enumflags2",
  "regex",
@@ -1446,54 +1446,54 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_service"
+name = "check_service"
 version = "0.0.0"
 dependencies = [
  "append-only-vec",
- "biome_analyze",
- "biome_configuration",
- "biome_console",
- "biome_css_analyze",
- "biome_css_formatter",
- "biome_css_parser",
- "biome_css_semantic",
- "biome_css_syntax",
- "biome_deserialize",
- "biome_diagnostics",
- "biome_formatter",
- "biome_fs",
- "biome_glob",
- "biome_graphql_analyze",
- "biome_graphql_formatter",
- "biome_graphql_parser",
- "biome_graphql_syntax",
- "biome_grit_formatter",
- "biome_grit_parser",
- "biome_grit_patterns",
- "biome_grit_syntax",
- "biome_html_formatter",
- "biome_html_parser",
- "biome_html_syntax",
- "biome_js_analyze",
- "biome_js_factory",
- "biome_js_formatter",
- "biome_js_parser",
- "biome_js_semantic",
- "biome_js_syntax",
- "biome_js_type_info",
- "biome_json_analyze",
- "biome_json_formatter",
- "biome_json_parser",
- "biome_json_syntax",
- "biome_module_graph",
- "biome_package",
- "biome_parser",
- "biome_plugin_loader",
- "biome_project_layout",
- "biome_resolver",
- "biome_rowan",
- "biome_string_case",
- "biome_text_edit",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_css_analyze",
+ "check_css_formatter",
+ "check_css_parser",
+ "check_css_semantic",
+ "check_css_syntax",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_formatter",
+ "check_fs",
+ "check_glob",
+ "check_graphql_analyze",
+ "check_graphql_formatter",
+ "check_graphql_parser",
+ "check_graphql_syntax",
+ "check_grit_formatter",
+ "check_grit_parser",
+ "check_grit_patterns",
+ "check_grit_syntax",
+ "check_html_formatter",
+ "check_html_parser",
+ "check_html_syntax",
+ "check_js_analyze",
+ "check_js_factory",
+ "check_js_formatter",
+ "check_js_parser",
+ "check_js_semantic",
+ "check_js_syntax",
+ "check_js_type_info",
+ "check_json_analyze",
+ "check_json_formatter",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_module_graph",
+ "check_package",
+ "check_parser",
+ "check_plugin_loader",
+ "check_project_layout",
+ "check_resolver",
+ "check_rowan",
+ "check_string_case",
+ "check_text_edit",
  "camino",
  "crossbeam",
  "enumflags2",
@@ -1515,52 +1515,52 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_string_case"
+name = "check_string_case"
 version = "0.5.7"
 dependencies = [
- "biome_rowan",
+ "check_rowan",
 ]
 
 [[package]]
-name = "biome_suppression"
+name = "check_suppression"
 version = "0.5.7"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_rowan",
+ "check_console",
+ "check_diagnostics",
+ "check_rowan",
 ]
 
 [[package]]
-name = "biome_syntax_codegen"
+name = "check_syntax_codegen"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "biome_string_case",
- "biome_ungrammar",
+ "check_string_case",
+ "check_ungrammar",
  "proc-macro2",
  "quote",
 ]
 
 [[package]]
-name = "biome_tailwind_factory"
+name = "check_tailwind_factory"
 version = "0.0.1"
 dependencies = [
- "biome_rowan",
- "biome_tailwind_syntax",
+ "check_rowan",
+ "check_tailwind_syntax",
 ]
 
 [[package]]
-name = "biome_tailwind_parser"
+name = "check_tailwind_parser"
 version = "0.0.1"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_parser",
- "biome_rowan",
- "biome_tailwind_factory",
- "biome_tailwind_syntax",
- "biome_test_utils",
- "biome_unicode_table",
+ "check_console",
+ "check_diagnostics",
+ "check_parser",
+ "check_rowan",
+ "check_tailwind_factory",
+ "check_tailwind_syntax",
+ "check_test_utils",
+ "check_unicode_table",
  "camino",
  "insta",
  "mimalloc",
@@ -1571,35 +1571,35 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_tailwind_syntax"
+name = "check_tailwind_syntax"
 version = "0.0.1"
 dependencies = [
- "biome_rowan",
+ "check_rowan",
  "schemars",
  "serde",
 ]
 
 [[package]]
-name = "biome_test_utils"
+name = "check_test_utils"
 version = "0.0.0"
 dependencies = [
  "ansi_rgb",
- "biome_analyze",
- "biome_configuration",
- "biome_console",
- "biome_deserialize",
- "biome_diagnostics",
- "biome_formatter",
- "biome_fs",
- "biome_js_parser",
- "biome_js_type_info",
- "biome_json_parser",
- "biome_module_graph",
- "biome_package",
- "biome_project_layout",
- "biome_rowan",
- "biome_service",
- "biome_string_case",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_formatter",
+ "check_fs",
+ "check_js_parser",
+ "check_js_type_info",
+ "check_json_parser",
+ "check_module_graph",
+ "check_package",
+ "check_project_layout",
+ "check_rowan",
+ "check_service",
+ "check_string_case",
  "camino",
  "countme",
  "json_comments",
@@ -1610,17 +1610,17 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_text_edit"
+name = "check_text_edit"
 version = "0.5.7"
 dependencies = [
- "biome_text_size",
+ "check_text_size",
  "schemars",
  "serde",
  "similar",
 ]
 
 [[package]]
-name = "biome_text_size"
+name = "check_text_size"
 version = "0.5.7"
 dependencies = [
  "schemars",
@@ -1630,24 +1630,24 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_ungrammar"
+name = "check_ungrammar"
 version = "0.3.1"
 
 [[package]]
-name = "biome_unicode_table"
+name = "check_unicode_table"
 version = "0.5.7"
 
 [[package]]
-name = "biome_wasm"
+name = "check_wasm"
 version = "1.9.4"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_fs",
- "biome_js_factory",
- "biome_js_formatter",
- "biome_rowan",
- "biome_service",
+ "check_console",
+ "check_diagnostics",
+ "check_fs",
+ "check_js_factory",
+ "check_js_formatter",
+ "check_rowan",
+ "check_service",
  "camino",
  "console_error_panic_hook",
  "js-sys",
@@ -1659,25 +1659,25 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_yaml_factory"
+name = "check_yaml_factory"
 version = "0.0.1"
 dependencies = [
- "biome_rowan",
- "biome_yaml_syntax",
+ "check_rowan",
+ "check_yaml_syntax",
 ]
 
 [[package]]
-name = "biome_yaml_parser"
+name = "check_yaml_parser"
 version = "0.0.1"
 dependencies = [
- "biome_console",
- "biome_diagnostics",
- "biome_parser",
- "biome_rowan",
- "biome_test_utils",
- "biome_unicode_table",
- "biome_yaml_factory",
- "biome_yaml_syntax",
+ "check_console",
+ "check_diagnostics",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
+ "check_unicode_table",
+ "check_yaml_factory",
+ "check_yaml_syntax",
  "insta",
  "quickcheck",
  "quickcheck_macros",
@@ -1686,11 +1686,11 @@ dependencies = [
 ]
 
 [[package]]
-name = "biome_yaml_syntax"
+name = "check_yaml_syntax"
 version = "0.0.1"
 dependencies = [
- "biome_rowan",
- "biome_string_case",
+ "check_rowan",
+ "check_string_case",
  "camino",
  "schemars",
  "serde",
@@ -4285,7 +4285,7 @@ dependencies = [
 name = "tests_macros"
 version = "0.0.0"
 dependencies = [
- "biome_string_case",
+ "check_string_case",
  "case",
  "globwalk",
  "proc-macro-error2",

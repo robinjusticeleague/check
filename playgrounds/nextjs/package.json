@@ -6,9 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "check": "bun run biome check --write",
-    "lint": "biome link --write",
-    "format": "biome format --write"
+    "check": "bun run check check --write",
+    "lint": "check link --write",
+    "format": "check format --write"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
@@ -59,7 +59,7 @@
     "zod": "^4.1.5"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.0",
+    "@checkjs/check": "2.2.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

@@ -14,9 +14,9 @@ permissions:
 
 env:
   CARGO_TERM_COLOR: always
-  BIOME_WEBSITE_REPO: biomejs/website
-  BIOME_DOCKER_REPO: biomejs/docker
-  BIOME_RELEASE_CLI_EVENT: biome-release-cli-event
+  CHECK_WEBSITE_REPO: checkjs/website
+  CHECK_DOCKER_REPO: checkjs/docker
+  CHECK_RELEASE_CLI_EVENT: check-release-cli-event
 
 jobs:
   changesets:
@@ -47,10 +47,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ripgrep
           pnpm exec changeset status --output="changeset_status.json"
-          NEW_VERSION=$(jq -r '.releases[] | select(.name=="@biomejs/biome") | .newVersion' changeset_status.json)
+          NEW_VERSION=$(jq -r '.releases[] | select(.name=="@checkjs/check") | .newVersion' changeset_status.json)
           rm changeset_status.json
           if [ -z "$NEW_VERSION" ]; then
-            echo "No new @biomejs/biome version detected; skipping rule version metadata update."
+            echo "No new @checkjs/check version detected; skipping rule version metadata update."
             exit 0
           fi
           scripts/update-next-version.sh --replace "$NEW_VERSION"
@@ -65,7 +65,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # Retrieve version of `@biomejs/biome` and `@biomejs/js-api`
+  # Retrieve version of `@checkjs/check` and `@checkjs/js-api`
   version:
     runs-on: depot-ubuntu-24.04-arm-small
     needs: changesets
@@ -86,13 +86,13 @@ jobs:
       - name: Check CLI version changes
         id: cli-version-changed
         run: |
-          version=$(node --experimental-strip-types scripts/version-check.ts packages/@biomejs/biome/package.json)
+          version=$(node --experimental-strip-types scripts/version-check.ts packages/@checkjs/check/package.json)
           echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Check JS API version changes
         id: js-api-version-changed
         run: |
-          version=$(node --experimental-strip-types scripts/version-check.ts packages/@biomejs/js-api/package.json)
+          version=$(node --experimental-strip-types scripts/version-check.ts packages/@checkjs/js-api/package.json)
           echo "version=$version" >> $GITHUB_OUTPUT
 
   # Building jobs
@@ -152,31 +152,31 @@ jobs:
 
       # Build the CLI binary
       - name: Build binaries
-        run: cargo build -p biome_cli --release --target ${{ matrix.target }}
+        run: cargo build -p check_cli --release --target ${{ matrix.target }}
         env:
           # Strip all debug symbols from the resulting binaries
           RUSTFLAGS: "-C strip=symbols -C codegen-units=1"
           # Inline the version of the npm package in the CLI binary
-          BIOME_VERSION: ${{ needs.version.outputs.cli-version }}
+          CHECK_VERSION: ${{ needs.version.outputs.cli-version }}
 
       # Copy the CLI binary and rename it to include the name of the target platform
       - name: Copy CLI binary
         if: matrix.os == 'depot-windows-2022-16'
         run: |
           mkdir dist
-          cp target/${{ matrix.target }}/release/biome.exe ./dist/biome-${{ matrix.code-target }}.exe
+          cp target/${{ matrix.target }}/release/check.exe ./dist/check-${{ matrix.code-target }}.exe
       - name: Copy CLI binary
         if: matrix.os != 'depot-windows-2022-16'
         run: |
           mkdir dist
-          cp target/${{ matrix.target }}/release/biome ./dist/biome-${{ matrix.code-target }}
+          cp target/${{ matrix.target }}/release/check ./dist/check-${{ matrix.code-target }}
 
       # Upload the CLI binary as a build artifact
       - name: Upload CLI artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: cli-${{ matrix.target }}
-          path: ./dist/biome-*
+          path: ./dist/check-*
           if-no-files-found: error
 
   # Build GNU/Linux binaries in Docker, using Debian 11 (bullseye), to support older versions of glibc.
@@ -211,25 +211,25 @@ jobs:
 
       # Build the CLI binary
       - name: Build binaries
-        run: cargo build -p biome_cli --release --target ${{ matrix.target }}
+        run: cargo build -p check_cli --release --target ${{ matrix.target }}
         env:
           # Strip all debug symbols from the resulting binaries
           RUSTFLAGS: "-C strip=symbols -C codegen-units=1"
           # Inline the version of the npm package in the CLI binary
-          BIOME_VERSION: ${{ needs.version.outputs.cli-version }}
+          CHECK_VERSION: ${{ needs.version.outputs.cli-version }}
 
       # Copy the CLI binary and rename it to include the name of the target platform
       - name: Copy CLI binary
         run: |
           mkdir dist
-          cp target/${{ matrix.target }}/release/biome ./dist/biome-${{ matrix.code-target }}
+          cp target/${{ matrix.target }}/release/check ./dist/check-${{ matrix.code-target }}
 
       # Upload the CLI binary as a build artifact
       - name: Upload CLI artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: cli-${{ matrix.target }}
-          path: ./dist/biome-*
+          path: ./dist/check-*
           if-no-files-found: error
 
   build-wasm:
@@ -245,20 +245,20 @@ jobs:
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - name: Build WASM module for bundlers
-        run: wasm-pack build --out-dir ../../packages/@biomejs/wasm-bundler --target bundler --release --scope biomejs crates/biome_wasm
+        run: wasm-pack build --out-dir ../../packages/@checkjs/wasm-bundler --target bundler --release --scope checkjs crates/check_wasm
       - name: Build WASM module for node.js
-        run: wasm-pack build --out-dir ../../packages/@biomejs/wasm-nodejs --target nodejs --release --scope biomejs crates/biome_wasm
+        run: wasm-pack build --out-dir ../../packages/@checkjs/wasm-nodejs --target nodejs --release --scope checkjs crates/check_wasm
       - name: Build WASM module for the web
-        run: wasm-pack build --out-dir ../../packages/@biomejs/wasm-web --target web --release --scope biomejs crates/biome_wasm
+        run: wasm-pack build --out-dir ../../packages/@checkjs/wasm-web --target web --release --scope checkjs crates/check_wasm
 
       - name: Upload WASM artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: wasm-${{ matrix.target }}
           path: |
-            ./packages/@biomejs/wasm-bundler
-            ./packages/@biomejs/wasm-nodejs
-            ./packages/@biomejs/wasm-web
+            ./packages/@checkjs/wasm-bundler
+            ./packages/@checkjs/wasm-nodejs
+            ./packages/@checkjs/wasm-web
           if-no-files-found: error
 
   build-js-api:
@@ -290,23 +290,23 @@ jobs:
       - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
       - name: Compile backends
         run: |
-          pnpm --filter @biomejs/js-api run build:wasm-bundler
-          pnpm --filter @biomejs/js-api run build:wasm-node
-          pnpm --filter @biomejs/js-api run build:wasm-web
-          pnpm --filter @biomejs/backend-jsonrpc i
-          pnpm --filter @biomejs/backend-jsonrpc run build
+          pnpm --filter @checkjs/js-api run build:wasm-bundler
+          pnpm --filter @checkjs/js-api run build:wasm-node
+          pnpm --filter @checkjs/js-api run build:wasm-web
+          pnpm --filter @checkjs/backend-jsonrpc i
+          pnpm --filter @checkjs/backend-jsonrpc run build
 
       - name: Build package
         run: |
-          pnpm --filter @biomejs/js-api i
-          pnpm --filter @biomejs/js-api run build
+          pnpm --filter @checkjs/js-api i
+          pnpm --filter @checkjs/js-api run build
 
       - name: Upload JS API artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: js-api
           path: |
-            ./packages/@biomejs/js-api/dist
+            ./packages/@checkjs/js-api/dist
           if-no-files-found: error
 
   # Publishing jobs
@@ -336,7 +336,7 @@ jobs:
         with:
           pattern: wasm-*
           merge-multiple: true
-          path: packages/@biomejs
+          path: packages/@checkjs
       - name: Install Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
@@ -355,52 +355,52 @@ jobs:
       # The WASM job updates the package.json file, because of wasm-pack, which we need to restore
       - name: Restore packages changes
         run: |
-          git restore packages/@biomejs/wasm-bundler/package.json
-          git restore packages/@biomejs/wasm-nodejs/package.json
-          git restore packages/@biomejs/wasm-web/package.json
+          git restore packages/@checkjs/wasm-bundler/package.json
+          git restore packages/@checkjs/wasm-nodejs/package.json
+          git restore packages/@checkjs/wasm-web/package.json
 
       - name: Generate npm packages
-        run: node packages/@biomejs/biome/scripts/generate-packages.mjs
+        run: node packages/@checkjs/check/scripts/generate-packages.mjs
 
       - name: Publish npm packages as latest
-        run: for package in packages/@biomejs/*; do if [ $package != "packages/@biomejs/js-api" ] && [ $package != "packages/@biomejs/plugin-api" ]; then npm publish $package  --tag latest --access public --provenance; fi; done
+        run: for package in packages/@checkjs/*; do if [ $package != "packages/@checkjs/js-api" ] && [ $package != "packages/@checkjs/plugin-api" ]; then npm publish $package  --tag latest --access public --provenance; fi; done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish release for @biomejs/biome
+      - name: Publish release for @checkjs/check
         run: |
           bash scripts/print-changelog.sh ${{ needs.build-binaries.outputs.version }} >| ${{ github.workspace }}/RELEASE_NOTES
 
-      - name: Create GitHub @biomejs/biome release and tag
+      - name: Create GitHub @checkjs/check release and tag
         uses: softprops/action-gh-release@6cbd405e2c4e67a21c47fa9e383d020e4e28b836 # v2.3.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           name: |
-            Biome CLI v${{ needs.build-binaries.outputs.version }}
+            Check CLI v${{ needs.build-binaries.outputs.version }}
           tag_name: |
-            @biomejs/biome@${{ needs.build-binaries.outputs.version }}
+            @checkjs/check@${{ needs.build-binaries.outputs.version }}
           draft: false
           body_path: ${{ github.workspace }}/RELEASE_NOTES
           files: |
-            biome-*
+            check-*
           fail_on_unmatched_files: true
           generate_release_notes: true
 
       - name: Codegen website schema
         uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 # v3
         with:
-          token: ${{ secrets.BIOME_REPOSITORY_DISPATCH }}
-          repository: ${{ env.BIOME_WEBSITE_REPO }}
-          event-type: ${{ env.BIOME_RELEASE_CLI_EVENT }}
+          token: ${{ secrets.CHECK_REPOSITORY_DISPATCH }}
+          repository: ${{ env.CHECK_WEBSITE_REPO }}
+          event-type: ${{ env.CHECK_RELEASE_CLI_EVENT }}
           client-payload: |
-            { "sha": "${{ github.sha }}", "tag": "@biomejs/biome@${{ needs.build-binaries.outputs.version }}", "version": "${{ needs.build-binaries.outputs.version }}" }
+            { "sha": "${{ github.sha }}", "tag": "@checkjs/check@${{ needs.build-binaries.outputs.version }}", "version": "${{ needs.build-binaries.outputs.version }}" }
       - name: Generate docker images
         uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 # v3
         with:
-          token: ${{ secrets.BIOME_REPOSITORY_DISPATCH }}
-          repository: ${{ env.BIOME_DOCKER_REPO }}
-          event-type: ${{ env.BIOME_RELEASE_CLI_EVENT }}
+          token: ${{ secrets.CHECK_REPOSITORY_DISPATCH }}
+          repository: ${{ env.CHECK_DOCKER_REPO }}
+          event-type: ${{ env.CHECK_RELEASE_CLI_EVENT }}
 
   publish-js-api:
     name: Publish JS API
@@ -418,7 +418,7 @@ jobs:
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: js-api
-          path: packages/@biomejs/js-api/dist
+          path: packages/@checkjs/js-api/dist
 
       - name: Install Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
@@ -436,15 +436,15 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Publish npm package as latest
-        run: pnpm publish packages/@biomejs/js-api --no-git-checks --tag latest --access public
+        run: pnpm publish packages/@checkjs/js-api --no-git-checks --tag latest --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish release for @biomejs/js-api
+      - name: Publish release for @checkjs/js-api
         run: |
-          bash scripts/print-changelog.sh ${{ needs.build-js-api.outputs.version }} packages/@biomejs/js-api/CHANGELOG.md  >| ${{ github.workspace }}/JS_RELEASE_NOTES
+          bash scripts/print-changelog.sh ${{ needs.build-js-api.outputs.version }} packages/@checkjs/js-api/CHANGELOG.md  >| ${{ github.workspace }}/JS_RELEASE_NOTES
 
-      - name: Create GitHub @biomejs/js-api release and tag
+      - name: Create GitHub @checkjs/js-api release and tag
         uses: softprops/action-gh-release@6cbd405e2c4e67a21c47fa9e383d020e4e28b836 # v2.3.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -452,7 +452,7 @@ jobs:
           name: |
             JavaScript APIs v${{ needs.build-js-api.outputs.version }}
           tag_name: |
-            @biomejs/js-api@${{ needs.build-js-api.outputs.version }}
+            @checkjs/js-api@${{ needs.build-js-api.outputs.version }}
           draft: false
           body_path: ${{ github.workspace }}/JS_RELEASE_NOTES
           fail_on_unmatched_files: true

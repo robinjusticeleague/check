@@ -94,7 +94,7 @@ pub enum TaskCommand {
     Configuration,
     #[bpaf(command)]
     MigrateEslint,
-    /// Generate the JSON schema for the Biome configuration file format
+    /// Generate the JSON schema for the Check configuration file format
     #[bpaf(command)]
     Schema,
     /// Generate TypeScript definitions for the JavaScript bindings to the Workspace API

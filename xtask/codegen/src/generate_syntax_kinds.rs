@@ -1,7 +1,7 @@
 use crate::Result;
 use crate::language_kind::LanguageKind;
 use crate::{generate_nodes::should_token_be_quoted, kind_src::KindsSrc};
-use biome_string_case::Case;
+use check_string_case::Case;
 use proc_macro2::{Literal, Punct, Spacing};
 use quote::{format_ident, quote};
 

@@ -1,4 +1,4 @@
-# @biomejs/cli-linux-x64-musl
+# @checkjs/cli-linux-x64-musl
 
 ## 2.2.3
 

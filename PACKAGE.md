@@ -1,16 +1,16 @@
 {
-  "name": "@biomejs/monorepo",
+  "name": "@checkjs/monorepo",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "check:write": "cargo biome-cli-dev check --write --unsafe",
-    "check": "cargo biome-cli-dev check",
-    "ci": "cargo biome-cli-dev ci",
+    "check:write": "cargo check-cli-dev check --write --unsafe",
+    "check": "cargo check-cli-dev check",
+    "ci": "cargo check-cli-dev ci",
     "//": "when we create the release PR, we need to update the lock file with the new versions",
     "version": "changeset version && pnpm i --lockfile-only"
   },
   "keywords": [],
-  "author": "Biome Developers and Contributors",
+  "author": "Check Developers and Contributors",
   "license": "MIT OR Apache-2.0",
   "packageManager": "pnpm@10.12.1",
   "engines": {
@@ -18,7 +18,7 @@
   },
   "type": "module",
   "devDependencies": {
-    "@biomejs/plugin-api": "workspace:",
+    "@checkjs/plugin-api": "workspace:",
     "@changesets/changelog-github": "0.5.1",
     "@changesets/cli": "2.29.6",
     "@types/node": "22.17.2"

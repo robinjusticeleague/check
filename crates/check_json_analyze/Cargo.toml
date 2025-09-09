@@ -1,0 +1,47 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Check's JSON linter"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_json_analyze"
+repository.workspace = true
+version              = "0.5.7"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+check_analyze      = { workspace = true }
+check_console      = { workspace = true }
+check_diagnostics  = { workspace = true }
+check_json_factory = { workspace = true }
+check_json_syntax  = { workspace = true }
+check_rowan        = { workspace = true }
+check_rule_options = { workspace = true }
+check_string_case  = { workspace = true }
+check_suppression  = { workspace = true }
+rustc-hash         = { workspace = true }
+
+[dev-dependencies]
+check_json_parser = { path = "../check_json_parser" }
+check_test_utils  = { path = "../check_test_utils" }
+camino            = { workspace = true }
+criterion         = { package = "codspeed-criterion-compat", version = "=3.0.3" }
+insta             = { workspace = true, features = ["glob"] }
+tests_macros      = { path = "../tests_macros" }
+
+[target.'cfg(target_os = "windows")'.dev-dependencies]
+mimalloc = { workspace = true }
+
+[target.'cfg(all(target_family="unix", not(all(target_arch = "aarch64", target_env = "musl"))))'.dev-dependencies]
+tikv-jemallocator = { workspace = true }
+
+
+[lints]
+workspace = true
+
+[[bench]]
+harness = false
+name    = "json_analyzer"

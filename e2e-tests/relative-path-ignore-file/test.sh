@@ -1,3 +1,3 @@
 set -eu
 
-! cargo run --bin biome -- lint . 2>&1 | grep -q debugger
+! cargo run --bin check -- lint . 2>&1 | grep -q debugger

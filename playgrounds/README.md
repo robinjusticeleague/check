@@ -1,3 +1,3 @@
 # Check Benchmakr
-biome -
+check -
 check - 

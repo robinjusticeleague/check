@@ -1,10 +1,10 @@
 use crate::runner::{
     TestCase, TestCaseFiles, TestRunOutcome, TestSuite, create_bogus_node_in_tree_diagnostic,
 };
-use biome_js_parser::{JsParserOptions, parse};
-use biome_js_syntax::JsFileSource;
-use biome_rowan::AstNode;
-use biome_rowan::syntax::SyntaxKind;
+use check_js_parser::{JsParserOptions, parse};
+use check_js_syntax::JsFileSource;
+use check_rowan::AstNode;
+use check_rowan::syntax::SyntaxKind;
 use regex::Regex;
 use serde::Deserialize;
 use std::io;

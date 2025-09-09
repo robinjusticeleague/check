@@ -1,6 +1,6 @@
 use crate::js_kinds_src::{AstNodeSrc, AstSrc, Field, TokenKind};
 use crate::language_kind::LanguageKind;
-use biome_string_case::Case;
+use check_string_case::Case;
 use proc_macro2::{Literal, TokenStream};
 use quote::{format_ident, quote};
 use std::collections::HashMap;
@@ -745,7 +745,7 @@ pub fn generate_nodes(ast: &AstSrc, language_kind: LanguageKind) -> Result<Strin
                 .expect("expected a plain *Bogus node")
         );
         quote! {
-            biome_rowan::declare_node_union! {
+            check_rowan::declare_node_union! {
                 pub #ident = #(#kinds)*
             }
         }
@@ -936,7 +936,7 @@ pub fn generate_nodes(ast: &AstSrc, language_kind: LanguageKind) -> Result<Strin
             #syntax_kind::{self as SyntaxKind, *},
             #syntax_list as SyntaxList, #syntax_node as SyntaxNode, #syntax_token as SyntaxToken,
         };
-        use biome_rowan::{
+        use check_rowan::{
             AstNodeList, AstNodeListIterator,  AstNodeSlotMap, AstSeparatedList, AstSeparatedListNodesIterator,
             support, AstNode,SyntaxKindSet, RawSyntaxKind, SyntaxResult
         };

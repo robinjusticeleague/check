@@ -126,15 +126,15 @@ impl LanguageKind {
     }
 
     pub fn formatter_crate_name(&self) -> String {
-        format!("biome_{self}_formatter")
+        format!("check_{self}_formatter")
     }
 
     pub fn syntax_crate_name(&self) -> String {
-        format!("biome_{self}_syntax")
+        format!("check_{self}_syntax")
     }
 
     pub fn factory_crate_name(&self) -> String {
-        format!("biome_{self}_factory")
+        format!("check_{self}_factory")
     }
 
     pub fn grit_target_language_module_name(&self) -> String {

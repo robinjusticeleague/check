@@ -2,8 +2,8 @@ import * as fs from "node:fs";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const BIOME_CLI_ROOT = resolve(fileURLToPath(import.meta.url), "../..");
-const MANIFEST_PATH = resolve(BIOME_CLI_ROOT, "package.json");
+const CHECK_CLI_ROOT = resolve(fileURLToPath(import.meta.url), "../..");
+const MANIFEST_PATH = resolve(CHECK_CLI_ROOT, "package.json");
 
 const rootManifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf-8"));
 

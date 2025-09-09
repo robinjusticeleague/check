@@ -2,11 +2,11 @@
 import type { Transport } from "./transport";
 export interface SupportsFeatureParams {
 	features: FeatureName;
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export type FeatureName = FeatureKind[];
-export type BiomePath = string;
+export type CheckPath = string;
 export type ProjectKey = number;
 export type FeatureKind = "format" | "lint" | "search" | "assist" | "debug";
 export interface FileFeaturesResult {
@@ -22,10 +22,10 @@ export type SupportKind =
 export interface UpdateSettingsParams {
 	configuration: Configuration;
 	projectKey: ProjectKey;
-	workspaceDirectory?: BiomePath;
+	workspaceDirectory?: CheckPath;
 }
 /**
- * The configuration that is contained inside the file `biome.json`
+ * The configuration that is contained inside the file `check.json`
  */
 export interface Configuration {
 	/**
@@ -85,7 +85,7 @@ export interface Configuration {
 	 */
 	plugins?: Plugins;
 	/**
-	 * Indicates whether this configuration file is at the root of a Biome project. By default, this is `true`.
+	 * Indicates whether this configuration file is at the root of a Check project. By default, this is `true`.
 	 */
 	root?: Bool;
 	/**
@@ -96,15 +96,15 @@ export interface Configuration {
 export type Schema = string;
 export interface AssistConfiguration {
 	/**
-	 * Whether Biome should fail in CLI if the assist were not applied to the code.
+	 * Whether Check should fail in CLI if the assist were not applied to the code.
 	 */
 	actions?: Actions;
 	/**
-	 * Whether Biome should enable assist via LSP and CLI.
+	 * Whether Check should enable assist via LSP and CLI.
 	 */
 	enabled?: Bool;
 	/**
-	 * A list of glob patterns. Biome will include files/folders that will match these patterns.
+	 * A list of glob patterns. Check will include files/folders that will match these patterns.
 	 */
 	includes?: NormalizedGlob[];
 }
@@ -139,9 +139,9 @@ export type Extends = string[] | string;
  */
 export interface FilesConfiguration {
 	/**
-	* Set of file and folder names that should be unconditionally ignored by Biome's scanner.
+	* Set of file and folder names that should be unconditionally ignored by Check's scanner.
 
-Biome maintains an internal list of default ignore entries, which is based on user feedback and which may change in any release. This setting allows overriding this internal list completely.
+Check maintains an internal list of default ignore entries, which is based on user feedback and which may change in any release. This setting allows overriding this internal list completely.
 
 This is considered an advanced feature that users _should_ not need to tweak themselves, but they can as a last resort. This setting can only be configured in root configurations, and is ignored in nested configs.
 
@@ -159,11 +159,11 @@ Please be aware that rules relying on the module graph or type inference informa
 	 */
 	experimentalScannerIgnores?: string[];
 	/**
-	 * Tells Biome to not emit diagnostics when handling files that doesn't know
+	 * Tells Check to not emit diagnostics when handling files that doesn't know
 	 */
 	ignoreUnknown?: Bool;
 	/**
-	 * A list of glob patterns. Biome will handle only those files/folders that will match these patterns.
+	 * A list of glob patterns. Check will handle only those files/folders that will match these patterns.
 	 */
 	includes?: NormalizedGlob[];
 	/**
@@ -189,7 +189,7 @@ export interface FormatterConfiguration {
 	bracketSpacing?: BracketSpacing;
 	enabled?: Bool;
 	/**
-	 * Whether to expand arrays and objects on multiple lines. When set to `auto`, object literals are formatted on multiple lines if the first property has a newline, and array literals are formatted on a single line if it fits in the line. When set to `always`, these literals are formatted on multiple lines, regardless of length of the list. When set to `never`, these literals are formatted on a single line if it fits in the line. When formatting `package.json`, Biome will use `always` unless configured otherwise. Defaults to "auto".
+	 * Whether to expand arrays and objects on multiple lines. When set to `auto`, object literals are formatted on multiple lines if the first property has a newline, and array literals are formatted on a single line if it fits in the line. When set to `always`, these literals are formatted on multiple lines, regardless of length of the list. When set to `never`, these literals are formatted on a single line if it fits in the line. When formatting `package.json`, Check will use `always` unless configured otherwise. Defaults to "auto".
 	 */
 	expand?: Expand;
 	/**
@@ -217,7 +217,7 @@ export interface FormatterConfiguration {
 	 */
 	lineWidth?: LineWidth;
 	/**
-	* Use any `.editorconfig` files to configure the formatter. Configuration in `biome.json` will override `.editorconfig` configuration.
+	* Use any `.editorconfig` files to configure the formatter. Configuration in `check.json` will override `.editorconfig` configuration.
 
 Default: `true`. 
 	 */
@@ -341,7 +341,7 @@ export type Overrides = OverridePattern[];
 export type Plugins = PluginConfiguration[];
 export type Bool = boolean;
 /**
- * Set of properties to integrate Biome with a VCS software.
+ * Set of properties to integrate Check with a VCS software.
  */
 export interface VcsConfiguration {
 	/**
@@ -353,29 +353,29 @@ export interface VcsConfiguration {
 	 */
 	defaultBranch?: string;
 	/**
-	 * Whether Biome should integrate itself with the VCS client
+	 * Whether Check should integrate itself with the VCS client
 	 */
 	enabled?: Bool;
 	/**
-	* The folder where Biome should check for VCS files. By default, Biome will use the same folder where `biome.json` was found.
+	* The folder where Check should check for VCS files. By default, Check will use the same folder where `check.json` was found.
 
-If Biome can't find the configuration, it will attempt to use the current working directory. If no current working directory can't be found, Biome won't use the VCS integration, and a diagnostic will be emitted 
+If Check can't find the configuration, it will attempt to use the current working directory. If no current working directory can't be found, Check won't use the VCS integration, and a diagnostic will be emitted 
 	 */
 	root?: string;
 	/**
-	 * Whether Biome should use the VCS ignore file. When [true], Biome will ignore the files specified in the ignore file.
+	 * Whether Check should use the VCS ignore file. When [true], Check will ignore the files specified in the ignore file.
 	 */
 	useIgnoreFile?: Bool;
 }
 export interface Actions {
 	/**
-	 * It enables the assist actions recommended by Biome. `true` by default.
+	 * It enables the assist actions recommended by Check. `true` by default.
 	 */
 	recommended?: boolean;
 	source?: Source;
 }
 /**
- * Normalized Biome glob pattern that strips `./` from the pattern.
+ * Normalized Check glob pattern that strips `./` from the pattern.
  */
 export type NormalizedGlob = Glob;
 /**
@@ -628,7 +628,7 @@ export interface JsFormatterConfiguration {
 	 */
 	enabled?: Bool;
 	/**
-	 * Whether to expand arrays and objects on multiple lines. When set to `auto`, object literals are formatted on multiple lines if the first property has a newline, and array literals are formatted on a single line if it fits in the line. When set to `always`, these literals are formatted on multiple lines, regardless of length of the list. When set to `never`, these literals are formatted on a single line if it fits in the line. When formatting `package.json`, Biome will use `always` unless configured otherwise. Defaults to "auto".
+	 * Whether to expand arrays and objects on multiple lines. When set to `auto`, object literals are formatted on multiple lines if the first property has a newline, and array literals are formatted on a single line if it fits in the line. When set to `always`, these literals are formatted on multiple lines, regardless of length of the list. When set to `never`, these literals are formatted on a single line if it fits in the line. When formatting `package.json`, Check will use `always` unless configured otherwise. Defaults to "auto".
 	 */
 	expand?: Expand;
 	/**
@@ -725,7 +725,7 @@ export interface JsonFormatterConfiguration {
 	 */
 	enabled?: Bool;
 	/**
-	 * Whether to expand arrays and objects on multiple lines. When set to `auto`, object literals are formatted on multiple lines if the first property has a newline, and array literals are formatted on a single line if it fits in the line. When set to `always`, these literals are formatted on multiple lines, regardless of length of the list. When set to `never`, these literals are formatted on a single line if it fits in the line. When formatting `package.json`, Biome will use `always` unless configured otherwise. Defaults to "auto".
+	 * Whether to expand arrays and objects on multiple lines. When set to `auto`, object literals are formatted on multiple lines if the first property has a newline, and array literals are formatted on a single line if it fits in the line. When set to `always`, these literals are formatted on multiple lines, regardless of length of the list. When set to `never`, these literals are formatted on a single line if it fits in the line. When formatting `package.json`, Check will use `always` unless configured otherwise. Defaults to "auto".
 	 */
 	expand?: Expand;
 	/**
@@ -779,7 +779,7 @@ export interface Rules {
 	nursery?: SeverityOrGroup_for_Nursery;
 	performance?: SeverityOrGroup_for_Performance;
 	/**
-	 * It enables the lint rules recommended by Biome. `true` by default.
+	 * It enables the lint rules recommended by Check. `true` by default.
 	 */
 	recommended?: boolean;
 	security?: SeverityOrGroup_for_Security;
@@ -816,7 +816,7 @@ export interface OverridePattern {
 	 */
 	html?: HtmlConfiguration;
 	/**
-	 * A list of glob patterns. Biome will include files/folders that will match these patterns.
+	 * A list of glob patterns. Check will include files/folders that will match these patterns.
 	 */
 	includes?: OverrideGlobs;
 	/**
@@ -958,7 +958,7 @@ export interface OverrideFormatterConfiguration {
 	bracketSpacing?: BracketSpacing;
 	enabled?: Bool;
 	/**
-	 * Whether to expand arrays and objects on multiple lines. When set to `auto`, object literals are formatted on multiple lines if the first property has a newline, and array literals are formatted on a single line if it fits in the line. When set to `always`, these literals are formatted on multiple lines, regardless of length of the list. When set to `never`, these literals are formatted on a single line if it fits in the line. When formatting `package.json`, Biome will use `always` unless configured otherwise. Defaults to "auto".
+	 * Whether to expand arrays and objects on multiple lines. When set to `auto`, object literals are formatted on multiple lines if the first property has a newline, and array literals are formatted on a single line if it fits in the line. When set to `always`, these literals are formatted on multiple lines, regardless of length of the list. When set to `never`, these literals are formatted on a single line if it fits in the line. When formatting `package.json`, Check will use `always` unless configured otherwise. Defaults to "auto".
 	 */
 	expand?: Expand;
 	/**
@@ -2144,7 +2144,7 @@ export interface Suspicious {
 	/**
 	 * Prevents the use of the ! pattern in the first position of files.includes in the configuration file.
 	 */
-	noBiomeFirstException?: RuleFixConfiguration_for_NoBiomeFirstExceptionOptions;
+	noCheckFirstException?: RuleFixConfiguration_for_NoCheckFirstExceptionOptions;
 	/**
 	 * Disallow bitwise operators.
 	 */
@@ -2358,9 +2358,9 @@ export interface Suspicious {
 	 */
 	noPrototypeBuiltins?: RuleFixConfiguration_for_NoPrototypeBuiltinsOptions;
 	/**
-	 * Disallow the use if quickfix.biome inside editor settings file.
+	 * Disallow the use if quickfix.check inside editor settings file.
 	 */
-	noQuickfixBiome?: RuleFixConfiguration_for_NoQuickfixBiomeOptions;
+	noQuickfixCheck?: RuleFixConfiguration_for_NoQuickfixCheckOptions;
 	/**
 	 * Prevents React-specific JSX properties from being used.
 	 */
@@ -2456,7 +2456,7 @@ export interface Suspicious {
 	/**
 	 * Promotes the correct usage for ignoring folders in the configuration file.
 	 */
-	useBiomeIgnoreFolder?: RuleFixConfiguration_for_UseBiomeIgnoreFolderOptions;
+	useCheckIgnoreFolder?: RuleFixConfiguration_for_UseCheckIgnoreFolderOptions;
 	/**
 	 * Enforce default clauses in switch statements to be last
 	 */
@@ -3338,9 +3338,9 @@ export type RuleConfiguration_for_NoAssignInExpressionsOptions =
 export type RuleConfiguration_for_NoAsyncPromiseExecutorOptions =
 	| RulePlainConfiguration
 	| RuleWithOptions_for_NoAsyncPromiseExecutorOptions;
-export type RuleFixConfiguration_for_NoBiomeFirstExceptionOptions =
+export type RuleFixConfiguration_for_NoCheckFirstExceptionOptions =
 	| RulePlainConfiguration
-	| RuleWithFixOptions_for_NoBiomeFirstExceptionOptions;
+	| RuleWithFixOptions_for_NoCheckFirstExceptionOptions;
 export type RuleConfiguration_for_NoBitwiseOperatorsOptions =
 	| RulePlainConfiguration
 	| RuleWithOptions_for_NoBitwiseOperatorsOptions;
@@ -3500,9 +3500,9 @@ export type RuleFixConfiguration_for_NoOctalEscapeOptions =
 export type RuleFixConfiguration_for_NoPrototypeBuiltinsOptions =
 	| RulePlainConfiguration
 	| RuleWithFixOptions_for_NoPrototypeBuiltinsOptions;
-export type RuleFixConfiguration_for_NoQuickfixBiomeOptions =
+export type RuleFixConfiguration_for_NoQuickfixCheckOptions =
 	| RulePlainConfiguration
-	| RuleWithFixOptions_for_NoQuickfixBiomeOptions;
+	| RuleWithFixOptions_for_NoQuickfixCheckOptions;
 export type RuleFixConfiguration_for_NoReactSpecificPropsOptions =
 	| RulePlainConfiguration
 	| RuleWithFixOptions_for_NoReactSpecificPropsOptions;
@@ -3569,9 +3569,9 @@ export type RuleConfiguration_for_UseAdjacentOverloadSignaturesOptions =
 export type RuleConfiguration_for_UseAwaitOptions =
 	| RulePlainConfiguration
 	| RuleWithOptions_for_UseAwaitOptions;
-export type RuleFixConfiguration_for_UseBiomeIgnoreFolderOptions =
+export type RuleFixConfiguration_for_UseCheckIgnoreFolderOptions =
 	| RulePlainConfiguration
-	| RuleWithFixOptions_for_UseBiomeIgnoreFolderOptions;
+	| RuleWithFixOptions_for_UseCheckIgnoreFolderOptions;
 export type RuleConfiguration_for_UseDefaultSwitchClauseLastOptions =
 	| RulePlainConfiguration
 	| RuleWithOptions_for_UseDefaultSwitchClauseLastOptions;
@@ -6771,7 +6771,7 @@ export interface RuleWithOptions_for_NoAsyncPromiseExecutorOptions {
 	 */
 	options: NoAsyncPromiseExecutorOptions;
 }
-export interface RuleWithFixOptions_for_NoBiomeFirstExceptionOptions {
+export interface RuleWithFixOptions_for_NoCheckFirstExceptionOptions {
 	/**
 	 * The kind of the code actions emitted by the rule
 	 */
@@ -6783,7 +6783,7 @@ export interface RuleWithFixOptions_for_NoBiomeFirstExceptionOptions {
 	/**
 	 * Rule's options
 	 */
-	options: NoBiomeFirstExceptionOptions;
+	options: NoCheckFirstExceptionOptions;
 }
 export interface RuleWithOptions_for_NoBitwiseOperatorsOptions {
 	/**
@@ -7379,7 +7379,7 @@ export interface RuleWithFixOptions_for_NoPrototypeBuiltinsOptions {
 	 */
 	options: NoPrototypeBuiltinsOptions;
 }
-export interface RuleWithFixOptions_for_NoQuickfixBiomeOptions {
+export interface RuleWithFixOptions_for_NoQuickfixCheckOptions {
 	/**
 	 * The kind of the code actions emitted by the rule
 	 */
@@ -7391,7 +7391,7 @@ export interface RuleWithFixOptions_for_NoQuickfixBiomeOptions {
 	/**
 	 * Rule's options
 	 */
-	options: NoQuickfixBiomeOptions;
+	options: NoQuickfixCheckOptions;
 }
 export interface RuleWithFixOptions_for_NoReactSpecificPropsOptions {
 	/**
@@ -7645,7 +7645,7 @@ export interface RuleWithOptions_for_UseAwaitOptions {
 	 */
 	options: UseAwaitOptions;
 }
-export interface RuleWithFixOptions_for_UseBiomeIgnoreFolderOptions {
+export interface RuleWithFixOptions_for_UseCheckIgnoreFolderOptions {
 	/**
 	 * The kind of the code actions emitted by the rule
 	 */
@@ -7657,7 +7657,7 @@ export interface RuleWithFixOptions_for_UseBiomeIgnoreFolderOptions {
 	/**
 	 * Rule's options
 	 */
-	options: UseBiomeIgnoreFolderOptions;
+	options: UseCheckIgnoreFolderOptions;
 }
 export interface RuleWithOptions_for_UseDefaultSwitchClauseLastOptions {
 	/**
@@ -8321,7 +8321,7 @@ export interface NoApproximativeNumericConstantOptions {}
 export interface NoArrayIndexKeyOptions {}
 export interface NoAssignInExpressionsOptions {}
 export interface NoAsyncPromiseExecutorOptions {}
-export interface NoBiomeFirstExceptionOptions {}
+export interface NoCheckFirstExceptionOptions {}
 export interface NoBitwiseOperatorsOptions {
 	/**
 	 * Allows a list of bitwise operators to be used as exceptions.
@@ -8397,7 +8397,7 @@ export interface NoMisplacedAssertionOptions {}
 export interface NoMisrefactoredShorthandAssignOptions {}
 export interface NoOctalEscapeOptions {}
 export interface NoPrototypeBuiltinsOptions {}
-export interface NoQuickfixBiomeOptions {
+export interface NoQuickfixCheckOptions {
 	/**
 	 * A list of additional JSON files that should be checked.
 	 */
@@ -8425,7 +8425,7 @@ export interface NoVarOptions {}
 export interface NoWithOptions {}
 export interface UseAdjacentOverloadSignaturesOptions {}
 export interface UseAwaitOptions {}
-export interface UseBiomeIgnoreFolderOptions {}
+export interface UseCheckIgnoreFolderOptions {}
 export interface UseDefaultSwitchClauseLastOptions {}
 export interface UseErrorMessageOptions {}
 export interface UseGetterReturnOptions {}
@@ -8834,7 +8834,7 @@ export type Category =
 	| "lint/nursery/noVueReservedKeys"
 	| "lint/nursery/noVueReservedProps"
 	| "lint/nursery/useAnchorHref"
-	| "lint/nursery/useBiomeSuppressionComment"
+	| "lint/nursery/useCheckSuppressionComment"
 	| "lint/nursery/useConsistentArrowReturn"
 	| "lint/nursery/useConsistentObjectDefinition"
 	| "lint/nursery/useConsistentTypeDefinitions"
@@ -8943,7 +8943,7 @@ export type Category =
 	| "lint/suspicious/noArrayIndexKey"
 	| "lint/suspicious/noAssignInExpressions"
 	| "lint/suspicious/noAsyncPromiseExecutor"
-	| "lint/suspicious/noBiomeFirstException"
+	| "lint/suspicious/noCheckFirstException"
 	| "lint/suspicious/noBitwiseOperators"
 	| "lint/suspicious/noCatchAssign"
 	| "lint/suspicious/noClassAssign"
@@ -8998,7 +8998,7 @@ export type Category =
 	| "lint/suspicious/noMisrefactoredShorthandAssign"
 	| "lint/suspicious/noOctalEscape"
 	| "lint/suspicious/noPrototypeBuiltins"
-	| "lint/suspicious/noQuickfixBiome"
+	| "lint/suspicious/noQuickfixCheck"
 	| "lint/suspicious/noReactSpecificProps"
 	| "lint/suspicious/noRedeclare"
 	| "lint/suspicious/noRedundantUseStrict"
@@ -9021,7 +9021,7 @@ export type Category =
 	| "lint/suspicious/noWith"
 	| "lint/suspicious/useAdjacentOverloadSignatures"
 	| "lint/suspicious/useAwait"
-	| "lint/suspicious/useBiomeIgnoreFolder"
+	| "lint/suspicious/useCheckIgnoreFolder"
 	| "lint/suspicious/useDefaultSwitchClauseLast"
 	| "lint/suspicious/useErrorMessage"
 	| "lint/suspicious/useGetterReturn"
@@ -9172,13 +9172,13 @@ export interface BacktraceSymbol {
 }
 export interface OpenProjectParams {
 	/**
-	 * Whether the folder should be opened as a project, even if no `biome.json` can be found.
+	 * Whether the folder should be opened as a project, even if no `check.json` can be found.
 	 */
 	openUninitialized: boolean;
 	/**
 	 * The path to open
 	 */
-	path: BiomePath;
+	path: CheckPath;
 }
 export interface OpenProjectResult {
 	/**
@@ -9217,7 +9217,7 @@ If a target path indicates a folder, all files within are scanned as well.
 
 Target paths must be absolute. 
 	 */
-				targetPaths: BiomePath[];
+				targetPaths: CheckPath[];
 			};
 	  }
 	| "project";
@@ -9225,7 +9225,7 @@ export interface ScanProjectResult {
 	/**
 	 * A list of child configuration files found inside the project
 	 */
-	configurationFiles: BiomePath[];
+	configurationFiles: CheckPath[];
 	/**
 	 * Diagnostics reported while scanning the project.
 	 */
@@ -9242,7 +9242,7 @@ export interface Duration {
 export interface OpenFileParams {
 	content: FileContent;
 	documentFileSource?: DocumentFileSource;
-	path: BiomePath;
+	path: CheckPath;
 	/**
 	* Set to `true` to persist the node cache used during parsing, in order to speed up subsequent reparsing if the document has been edited.
 
@@ -9312,7 +9312,7 @@ export type JsonFileVariant = "standard" | "jsonc";
 /**
 	* The style of CSS contained in the file.
 
-Currently, Biome only supports plain CSS, and aims to be compatible with the latest Recommendation level standards. 
+Currently, Check only supports plain CSS, and aims to be compatible with the latest Recommendation level standards. 
 	 */
 export type CssVariant = "standard";
 /**
@@ -9331,7 +9331,7 @@ export interface OpenFileResult {
 }
 export interface ChangeFileParams {
 	content: string;
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 	version: number;
 }
@@ -9339,15 +9339,15 @@ export interface ChangeFileResult {
 	diagnostics: Diagnostic[];
 }
 export interface CloseFileParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export interface FileExitsParams {
-	filePath: BiomePath;
+	filePath: CheckPath;
 }
 export interface PathIsIgnoredParams {
 	/**
-	 * Whether the path is ignored for specific features e.g. `formatter.includes`. When this field is empty, Biome checks only `files.includes`.
+	 * Whether the path is ignored for specific features e.g. `formatter.includes`. When this field is empty, Check checks only `files.includes`.
 	 */
 	features: FeatureName;
 	/**
@@ -9357,12 +9357,12 @@ export interface PathIsIgnoredParams {
 	/**
 	 * The path to inspect
 	 */
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export type IgnoreKind = "path" | "ancestors";
 export interface UpdateModuleGraphParams {
-	path: BiomePath;
+	path: CheckPath;
 	/**
 	 * The kind of update to apply to the module graph
 	 */
@@ -9370,7 +9370,7 @@ export interface UpdateModuleGraphParams {
 }
 export type UpdateKind = "addOrUpdate" | "remove";
 export interface GetSyntaxTreeParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export interface GetSyntaxTreeResult {
@@ -9378,7 +9378,7 @@ export interface GetSyntaxTreeResult {
 	cst: string;
 }
 export interface CheckFileSizeParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export interface CheckFileSizeResult {
@@ -9386,28 +9386,28 @@ export interface CheckFileSizeResult {
 	limit: number;
 }
 export interface GetFileContentParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export interface GetControlFlowGraphParams {
 	cursor: TextSize;
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export interface GetFormatterIRParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export interface GetTypeInfoParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export interface GetRegisteredTypesParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export interface GetSemanticModelParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export interface GetModuleGraphParams {}
@@ -9447,7 +9447,7 @@ export interface PullDiagnosticsParams {
 	 */
 	enabledRules?: RuleCode[];
 	only?: RuleCode[];
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 	/**
 	 * When `false` the diagnostics, don't have code frames of the code actions (fixes, suppressions, etc.)
@@ -9467,7 +9467,7 @@ export interface PullActionsParams {
 	categories?: RuleCategories;
 	enabledRules?: RuleCode[];
 	only?: RuleCode[];
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 	range?: TextRange;
 	skip?: RuleCode[];
@@ -9492,7 +9492,7 @@ export type ActionCategory =
 	| { source: SourceActionKind }
 	| { other: OtherActionCategory };
 /**
- * A Suggestion that is provided by Biome's linter, and can be reported to the user, and can be automatically applied if it has the right [`Applicability`].
+ * A Suggestion that is provided by Check's linter, and can be reported to the user, and can be automatically applied if it has the right [`Applicability`].
  */
 export interface CodeSuggestion {
 	applicability: Applicability;
@@ -9529,7 +9529,7 @@ export type OtherActionCategory =
  */
 export type Applicability = "always" | "maybeIncorrect";
 export interface FormatFileParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export interface Printed {
@@ -9552,13 +9552,13 @@ export interface SourceMarker {
 	source: TextSize;
 }
 export interface FormatRangeParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 	range: TextRange;
 }
 export interface FormatOnTypeParams {
 	offset: TextSize;
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 export interface FixFileParams {
@@ -9568,7 +9568,7 @@ export interface FixFileParams {
 	enabledRules?: RuleCode[];
 	fixFileMode: FixFileMode;
 	only?: RuleCode[];
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 	ruleCategories: RuleCategories;
 	shouldFormat: boolean;
@@ -9612,7 +9612,7 @@ export interface FixAction {
 }
 export interface RenameParams {
 	newName: string;
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 	symbolAt: TextSize;
 }
@@ -9636,13 +9636,13 @@ export interface ParsePatternResult {
 }
 export type PatternId = string;
 export interface SearchPatternParams {
-	path: BiomePath;
+	path: CheckPath;
 	pattern: PatternId;
 	projectKey: ProjectKey;
 }
 export interface SearchResults {
 	matches: TextRange[];
-	path: BiomePath;
+	path: CheckPath;
 }
 export interface DropPatternParams {
 	pattern: PatternId;
@@ -9684,91 +9684,91 @@ export interface Workspace {
 export function createWorkspace(transport: Transport): Workspace {
 	return {
 		fileFeatures(params) {
-			return transport.request("biome/file_features", params);
+			return transport.request("check/file_features", params);
 		},
 		updateSettings(params) {
-			return transport.request("biome/update_settings", params);
+			return transport.request("check/update_settings", params);
 		},
 		openProject(params) {
-			return transport.request("biome/open_project", params);
+			return transport.request("check/open_project", params);
 		},
 		scanProject(params) {
-			return transport.request("biome/scan_project", params);
+			return transport.request("check/scan_project", params);
 		},
 		openFile(params) {
-			return transport.request("biome/open_file", params);
+			return transport.request("check/open_file", params);
 		},
 		changeFile(params) {
-			return transport.request("biome/change_file", params);
+			return transport.request("check/change_file", params);
 		},
 		closeFile(params) {
-			return transport.request("biome/close_file", params);
+			return transport.request("check/close_file", params);
 		},
 		fileExists(params) {
-			return transport.request("biome/file_exists", params);
+			return transport.request("check/file_exists", params);
 		},
 		isPathIgnored(params) {
-			return transport.request("biome/is_path_ignored", params);
+			return transport.request("check/is_path_ignored", params);
 		},
 		updateModuleGraph(params) {
-			return transport.request("biome/update_module_graph", params);
+			return transport.request("check/update_module_graph", params);
 		},
 		getSyntaxTree(params) {
-			return transport.request("biome/get_syntax_tree", params);
+			return transport.request("check/get_syntax_tree", params);
 		},
 		checkFileSize(params) {
-			return transport.request("biome/check_file_size", params);
+			return transport.request("check/check_file_size", params);
 		},
 		getFileContent(params) {
-			return transport.request("biome/get_file_content", params);
+			return transport.request("check/get_file_content", params);
 		},
 		getControlFlowGraph(params) {
-			return transport.request("biome/get_control_flow_graph", params);
+			return transport.request("check/get_control_flow_graph", params);
 		},
 		getFormatterIr(params) {
-			return transport.request("biome/get_formatter_ir", params);
+			return transport.request("check/get_formatter_ir", params);
 		},
 		getTypeInfo(params) {
-			return transport.request("biome/get_type_info", params);
+			return transport.request("check/get_type_info", params);
 		},
 		getRegisteredTypes(params) {
-			return transport.request("biome/get_registered_types", params);
+			return transport.request("check/get_registered_types", params);
 		},
 		getSemanticModel(params) {
-			return transport.request("biome/get_semantic_model", params);
+			return transport.request("check/get_semantic_model", params);
 		},
 		getModuleGraph(params) {
-			return transport.request("biome/get_module_graph", params);
+			return transport.request("check/get_module_graph", params);
 		},
 		pullDiagnostics(params) {
-			return transport.request("biome/pull_diagnostics", params);
+			return transport.request("check/pull_diagnostics", params);
 		},
 		pullActions(params) {
-			return transport.request("biome/pull_actions", params);
+			return transport.request("check/pull_actions", params);
 		},
 		formatFile(params) {
-			return transport.request("biome/format_file", params);
+			return transport.request("check/format_file", params);
 		},
 		formatRange(params) {
-			return transport.request("biome/format_range", params);
+			return transport.request("check/format_range", params);
 		},
 		formatOnType(params) {
-			return transport.request("biome/format_on_type", params);
+			return transport.request("check/format_on_type", params);
 		},
 		fixFile(params) {
-			return transport.request("biome/fix_file", params);
+			return transport.request("check/fix_file", params);
 		},
 		rename(params) {
-			return transport.request("biome/rename", params);
+			return transport.request("check/rename", params);
 		},
 		parsePattern(params) {
-			return transport.request("biome/parse_pattern", params);
+			return transport.request("check/parse_pattern", params);
 		},
 		searchPattern(params) {
-			return transport.request("biome/search_pattern", params);
+			return transport.request("check/search_pattern", params);
 		},
 		dropPattern(params) {
-			return transport.request("biome/drop_pattern", params);
+			return transport.request("check/drop_pattern", params);
 		},
 		destroy() {
 			transport.destroy();

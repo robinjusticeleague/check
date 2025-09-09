@@ -42,7 +42,7 @@ pub const GRIT_KINDS_SRC: KindsSrc = KindsSrc {
         "engine",
         "language",
         // engine names:
-        "biome",
+        "check",
         "marzano",
         // languages:
         "js",

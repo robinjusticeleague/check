@@ -25,7 +25,7 @@ jobs:
         id: version
         with:
           diff-search: true
-          file-name: packages/@biomejs/biome/package.json
+          file-name: packages/@checkjs/check/package.json
 
       - name: Set version name
         if: steps.version.outputs.changed == 'true'
@@ -37,7 +37,7 @@ jobs:
         if: env.nightly == 'true'
         run: |
           echo "prerelease=true" >> $GITHUB_ENV
-          echo "version=$(node packages/@biomejs/biome/scripts/update-nightly-version.mjs)" >> $GITHUB_ENV
+          echo "version=$(node packages/@checkjs/check/scripts/update-nightly-version.mjs)" >> $GITHUB_ENV
 
   build:
     strategy:
@@ -98,31 +98,31 @@ jobs:
 
       # Build the CLI binary
       - name: Build binaries
-        run: cargo build -p biome_cli --release --target ${{ matrix.target }}
+        run: cargo build -p check_cli --release --target ${{ matrix.target }}
         env:
           # Strip all debug symbols from the resulting binaries
           RUSTFLAGS: "-C strip=symbols -C codegen-units=1"
           # Inline the version of the npm package in the CLI binary
-          BIOME_VERSION: ${{ env.version }}
+          CHECK_VERSION: ${{ env.version }}
 
       # Copy the CLI binary and rename it to include the name of the target platform
       - name: Copy CLI binary
         if: matrix.os == 'depot-windows-2022-16'
         run: |
           mkdir dist
-          cp target/${{ matrix.target }}/release/biome.exe ./dist/biome-${{ matrix.code-target }}.exe
+          cp target/${{ matrix.target }}/release/check.exe ./dist/check-${{ matrix.code-target }}.exe
       - name: Copy CLI binary
         if: matrix.os != 'depot-windows-2022-16'
         run: |
           mkdir dist
-          cp target/${{ matrix.target }}/release/biome ./dist/biome-${{ matrix.code-target }}
+          cp target/${{ matrix.target }}/release/check ./dist/check-${{ matrix.code-target }}
 
       # Upload the CLI binary as a build artifact
       - name: Upload CLI artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: cli-${{ matrix.target }}
-          path: ./dist/biome-*
+          path: ./dist/check-*
           if-no-files-found: error
 
   # Build GNU/Linux binaries in Docker, using Debian 11 (bullseye), to support older versions of glibc.
@@ -159,25 +159,25 @@ jobs:
 
       # Build the CLI binary
       - name: Build binaries
-        run: cargo build -p biome_cli --release --target ${{ matrix.target }}
+        run: cargo build -p check_cli --release --target ${{ matrix.target }}
         env:
           # Strip all debug symbols from the resulting binaries
           RUSTFLAGS: "-C strip=symbols -C codegen-units=1"
           # Inline the version of the npm package in the CLI binary
-          BIOME_VERSION: ${{ env.version }}
+          CHECK_VERSION: ${{ env.version }}
 
       # Copy the CLI binary and rename it to include the name of the target platform
       - name: Copy CLI binary
         run: |
           mkdir dist
-          cp target/${{ matrix.target }}/release/biome ./dist/biome-${{ matrix.code-target }}
+          cp target/${{ matrix.target }}/release/check ./dist/check-${{ matrix.code-target }}
 
       # Upload the CLI binary as a build artifact
       - name: Upload CLI artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: cli-${{ matrix.target }}
-          path: ./dist/biome-*
+          path: ./dist/check-*
           if-no-files-found: error
 
   build-wasm:
@@ -192,20 +192,20 @@ jobs:
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - name: Build WASM module for bundlers
-        run: wasm-pack build --out-dir ../../packages/@biomejs/wasm-bundler --target bundler --release --scope biomejs crates/biome_wasm
+        run: wasm-pack build --out-dir ../../packages/@checkjs/wasm-bundler --target bundler --release --scope checkjs crates/check_wasm
       - name: Build WASM module for node.js
-        run: wasm-pack build --out-dir ../../packages/@biomejs/wasm-nodejs --target nodejs --release --scope biomejs crates/biome_wasm
+        run: wasm-pack build --out-dir ../../packages/@checkjs/wasm-nodejs --target nodejs --release --scope checkjs crates/check_wasm
       - name: Build WASM module for the web
-        run: wasm-pack build --out-dir ../../packages/@biomejs/wasm-web --target web --release --scope biomejs crates/biome_wasm
+        run: wasm-pack build --out-dir ../../packages/@checkjs/wasm-web --target web --release --scope checkjs crates/check_wasm
 
       - name: Upload WASM artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: wasm-${{ matrix.target }}
           path: |
-            ./packages/@biomejs/wasm-bundler
-            ./packages/@biomejs/wasm-nodejs
-            ./packages/@biomejs/wasm-web
+            ./packages/@checkjs/wasm-bundler
+            ./packages/@checkjs/wasm-nodejs
+            ./packages/@checkjs/wasm-web
           if-no-files-found: error
 
   publish:
@@ -232,7 +232,7 @@ jobs:
         with:
           pattern: wasm-*
           merge-multiple: true
-          path: packages/@biomejs
+          path: packages/@checkjs
 
       - name: Install Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
@@ -242,17 +242,17 @@ jobs:
 
       - name: Set release infos
         if: needs.build.outputs.prerelease == 'true'
-        run: node packages/@biomejs/biome/scripts/update-nightly-version.mjs
+        run: node packages/@checkjs/check/scripts/update-nightly-version.mjs
       - name: Generate npm packages
-        run: node packages/@biomejs/biome/scripts/generate-packages.mjs
+        run: node packages/@checkjs/check/scripts/generate-packages.mjs
 
       - name: Publish npm packages as latest
-        run: for package in packages/@biomejs/*; do if [ $package != "packages/@biomejs/js-api" ] && [ $package != "packages/@biomejs/plugin-api" ]; then npm publish $package --tag latest --access public --provenance; fi; done
+        run: for package in packages/@checkjs/*; do if [ $package != "packages/@checkjs/js-api" ] && [ $package != "packages/@checkjs/plugin-api" ]; then npm publish $package --tag latest --access public --provenance; fi; done
         if: needs.build.outputs.prerelease != 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish npm packages as nightly
-        run: for package in packages/@biomejs/*; do if [ $package != "packages/@biomejs/js-api" ] && [ $package != "packages/@biomejs/plugin-api" ]; then npm publish $package --tag nightly --access public --provenance; fi; done
+        run: for package in packages/@checkjs/*; do if [ $package != "packages/@checkjs/js-api" ] && [ $package != "packages/@checkjs/plugin-api" ]; then npm publish $package --tag nightly --access public --provenance; fi; done
         if: needs.build.outputs.prerelease == 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -271,6 +271,6 @@ jobs:
           prerelease: ${{ needs.build.outputs.prerelease == 'true' }}
           body_path: ${{ github.workspace }}/RELEASE_NOTES
           files: |
-            biome-*
+            check-*
           fail_on_unmatched_files: true
           generate_release_notes: true

@@ -1,0 +1,20 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Utilities to create YAML AST for check_yaml_parser"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_yaml_factory"
+repository.workspace = true
+version              = "0.0.1"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+check_rowan       = { workspace = true }
+check_yaml_syntax = { workspace = true }
+
+[lints]
+workspace = true

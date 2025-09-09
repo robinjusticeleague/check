@@ -1,9 +1,9 @@
-use biome_analyze::{
+use check_analyze::{
     GroupCategory, Queryable, RegistryVisitor, Rule, RuleCategory, RuleGroup, RuleMetadata,
     RuleSourceKind, RuleSourceWithKind,
 };
-use biome_rowan::syntax::Language;
-use biome_string_case::Case;
+use check_rowan::syntax::Language;
+use check_string_case::Case;
 use quote::{format_ident, quote};
 use std::collections::BTreeMap;
 use xtask::*;
@@ -11,8 +11,8 @@ use xtask_codegen::update;
 
 pub(crate) fn generate_migrate_eslint(mode: Mode) -> Result<()> {
     let mut visitor = EslintLintRulesVisitor::default();
-    biome_js_analyze::visit_registry(&mut visitor);
-    biome_json_analyze::visit_registry(&mut visitor);
+    check_js_analyze::visit_registry(&mut visitor);
+    check_json_analyze::visit_registry(&mut visitor);
     let mut lines = Vec::with_capacity(visitor.0.len());
     for ((eslint_name, source_kind), (group_name, rule_metadata)) in visitor.0 {
         let name = rule_metadata.name;
@@ -21,7 +21,7 @@ pub(crate) fn generate_migrate_eslint(mode: Mode) -> Result<()> {
         let check_inspired = if source_kind.is_inspired() {
             quote! {
                 if !options.include_inspired {
-                    results.add(eslint_name, eslint_to_biome::RuleMigrationResult::Inspired);
+                    results.add(eslint_name, eslint_to_check::RuleMigrationResult::Inspired);
                     return false;
                 }
             }
@@ -31,7 +31,7 @@ pub(crate) fn generate_migrate_eslint(mode: Mode) -> Result<()> {
         let check_nursery = if group_name == "nursery" {
             quote! {
                 if !options.include_nursery {
-                    results.add(eslint_name, eslint_to_biome::RuleMigrationResult::Nursery);
+                    results.add(eslint_name, eslint_to_check::RuleMigrationResult::Nursery);
                     return false;
                 }
             }
@@ -49,27 +49,27 @@ pub(crate) fn generate_migrate_eslint(mode: Mode) -> Result<()> {
         });
     }
     let tokens = xtask::reformat(quote! {
-        use super::{eslint_eslint, eslint_to_biome};
+        use super::{eslint_eslint, eslint_to_check};
         pub(crate) fn migrate_eslint_any_rule(
-            rules: &mut biome_configuration::Rules,
+            rules: &mut check_configuration::Rules,
             eslint_name: &str,
             rule_severity: eslint_eslint::Severity,
-            options: &eslint_to_biome::MigrationOptions,
-            results: &mut eslint_to_biome::MigrationResults,
+            options: &eslint_to_check::MigrationOptions,
+            results: &mut eslint_to_check::MigrationResults,
         ) -> bool {
             match eslint_name {
                 #( #lines )*
                 _ => {
-                    results.add(eslint_name, eslint_to_biome::RuleMigrationResult::Unsupported);
+                    results.add(eslint_name, eslint_to_check::RuleMigrationResult::Unsupported);
                     return false;
                 }
             }
-            results.add(eslint_name, eslint_to_biome::RuleMigrationResult::Migrated);
+            results.add(eslint_name, eslint_to_check::RuleMigrationResult::Migrated);
             true
         }
     });
     let file_path =
-        project_root().join("crates/biome_cli/src/execute/migrate/eslint_any_rule_to_biome.rs");
+        project_root().join("crates/check_cli/src/execute/migrate/eslint_any_rule_to_check.rs");
     update(&file_path, &tokens?, &mode)?;
     Ok(())
 }

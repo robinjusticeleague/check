@@ -1,0 +1,7 @@
+---
+source: crates/check_service/src/configuration/diagnostics.rs
+expression: content
+---
+check.json configuration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Couldn't parse the *******, reason: wildcards are either regular `*` or recursive `**`

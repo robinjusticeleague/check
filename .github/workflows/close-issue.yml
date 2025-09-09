@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   close-issues:
-    if: github.repository == 'biomejs/biome'
+    if: github.repository == 'checkjs/check'
     runs-on: depot-ubuntu-24.04-arm-small
     steps:
       - name: Close issue without reproduction

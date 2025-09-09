@@ -1,6 +1,6 @@
 {
   "root": false,
-  "$schema": "../packages/@biomejs/biome/configuration_schema.json",
+  "$schema": "../packages/@checkjs/check/configuration_schema.json",
   "formatter": {
     "includes": ["**/*.js", "**/*.jsx", "**/*.cjs", "**/*.ts", "**/*.tsx"],
     "indentStyle": "space"

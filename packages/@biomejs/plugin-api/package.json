@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@biomejs/plugin-api",
+  "name": "@checkjs/plugin-api",
   "version": "0.0.0",
-  "description": "JavaScript APIs for Biome JS plugins",
+  "description": "JavaScript APIs for Check JS plugins",
   "files": [
     "README.md",
     "LICENSE-APACHE",
@@ -18,17 +18,17 @@
   "main": "./index.js",
   "types": "./index.d.ts",
   "license": "MIT OR Apache-2.0",
-  "homepage": "https://biomejs.dev",
+  "homepage": "https://checkjs.dev",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/biomejs/biome.git",
-    "directory": "packages/@biomejs/plugin-api"
+    "url": "git+https://github.com/checkjs/check.git",
+    "directory": "packages/@checkjs/plugin-api"
   },
-  "author": "Biome Developers and Contributors",
-  "bugs": "https://github.com/biomejs/biome/issues",
+  "author": "Check Developers and Contributors",
+  "bugs": "https://github.com/checkjs/check/issues",
   "devDependencies": {},
   "peerDependencies": {
-    "@biomejs/biome": "*"
+    "@checkjs/check": "*"
   },
   "publishConfig": {
     "provenance": true

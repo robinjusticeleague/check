@@ -1,5 +1,5 @@
 ---
-"@biomejs/biome": patch
+"@checkjs/check": patch
 ---
 
 Added the new nursery lint rule `noJsxLiterals`, which disallows the use of string literals inside JSX.

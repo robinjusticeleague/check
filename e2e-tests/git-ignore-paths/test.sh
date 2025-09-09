@@ -1,6 +1,6 @@
 set +eu
 
-if cargo run --bin biome -- lint .; then
+if cargo run --bin check -- lint .; then
   # Command succeeded
   exit 1
 else

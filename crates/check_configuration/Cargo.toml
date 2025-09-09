@@ -1,0 +1,73 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Check Configuration"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_configuration"
+repository.workspace = true
+version              = "0.0.1"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+check_analyze            = { workspace = true, features = ["serde"] }
+check_console            = { workspace = true }
+check_deserialize        = { workspace = true }
+check_deserialize_macros = { workspace = true }
+check_diagnostics        = { workspace = true }
+check_flags              = { workspace = true }
+check_formatter          = { workspace = true, features = ["serde"] }
+check_glob               = { workspace = true, features = ["schema"] }
+check_html_formatter     = { workspace = true, features = ["serde"] }
+check_html_syntax        = { workspace = true }
+check_js_formatter       = { workspace = true, features = ["serde"] }
+check_json_formatter     = { workspace = true, features = ["serde"] }
+check_json_parser        = { workspace = true }
+check_json_syntax        = { workspace = true }
+check_resolver           = { workspace = true }
+check_rowan              = { workspace = true, features = ["serde"] }
+check_rule_options       = { workspace = true }
+bpaf                     = { workspace = true }
+camino                   = { workspace = true }
+regex                    = { workspace = true }
+rustc-hash               = { workspace = true }
+schemars                 = { workspace = true, optional = true }
+serde                    = { workspace = true, features = ["derive"] }
+
+[features]
+schema = [
+  "dep:schemars",
+  "check_formatter/schema",
+  "check_json_syntax/schema",
+  "check_html_formatter/schema",
+  "check_html_syntax/schema",
+  "check_analyze/schema",
+  "check_json_formatter/schema",
+  "check_js_formatter/schema",
+  "check_rule_options/schema",
+]
+
+[dev-dependencies]
+criterion    = { package = "codspeed-criterion-compat", version = "=3.0.3" }
+insta        = { workspace = true }
+tests_macros = { workspace = true }
+
+[target.'cfg(target_os = "windows")'.dev-dependencies]
+mimalloc = { workspace = true }
+
+[target.'cfg(all(target_family="unix", not(all(target_arch = "aarch64", target_env = "musl"))))'.dev-dependencies]
+tikv-jemallocator = { workspace = true }
+
+[lints]
+workspace = true
+
+[package.metadata.cargo-udeps.ignore]
+# currently technically not used, but needed in order to compile because of the `schema` feature
+normal = ["check_html_syntax"]
+
+[[bench]]
+harness = false
+name    = "check_json"

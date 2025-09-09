@@ -1,14 +1,14 @@
 # Releases
 
-This document is meant to explain the release process of Biome, and hopefully answer some questions.
+This document is meant to explain the release process of Check, and hopefully answer some questions.
 
 The team doesn't provide ETAs (Estimated Time of Arrival). The team believes that enforcing deadlines to a group of volunteers is counterproductive, and can have negative effects on people.
 
 ## Prerelease
 
-We publish pre-releases of the main `@biomejs/biome` package twice a week. These releases are built from `main`, they are meant for testing and verify that bugs are fixed.
+We publish pre-releases of the main `@checkjs/check` package twice a week. These releases are built from `main`, they are meant for testing and verify that bugs are fixed.
 
-These releases are published to `pkg.pr.new`, and an automated message is sent on [Discord](https://biomejs.dev/chat), in the `#release` channel.
+These releases are published to `pkg.pr.new`, and an automated message is sent on [Discord](https://checkjs.dev/chat), in the `#release` channel.
 
 > [!WARNING]
 > **Don't** use prerelease in **production**. Artifacts in `pkg.pr.new` are purged after roughly 30 days.

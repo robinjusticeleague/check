@@ -1,0 +1,20 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Utilities to suppress diagnostics"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_suppression"
+repository.workspace = true
+version              = "0.5.7"
+
+
+[dependencies]
+check_console     = { workspace = true }
+check_diagnostics = { workspace = true }
+check_rowan       = { workspace = true }
+
+[lints]
+workspace = true

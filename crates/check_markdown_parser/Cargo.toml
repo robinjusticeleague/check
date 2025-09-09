@@ -1,0 +1,36 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Check's Markdown parser"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_markdown_parser"
+repository.workspace = true
+version              = "0.0.1"
+
+[dependencies]
+check_console          = { workspace = true }
+check_diagnostics      = { workspace = true }
+check_markdown_factory = { workspace = true }
+check_markdown_syntax  = { workspace = true }
+check_parser           = { workspace = true }
+check_rowan            = { workspace = true }
+check_test_utils       = { workspace = true }
+check_unicode_table    = { workspace = true }
+tracing                = { workspace = true }
+unicode-bom            = { workspace = true }
+
+[dev-dependencies]
+insta             = { workspace = true }
+quickcheck        = { workspace = true }
+quickcheck_macros = { workspace = true }
+tests_macros      = { path = "../tests_macros" }
+
+# cargo-workspaces metadata
+[package.metadata.workspaces]
+independent = true
+
+[lints]
+workspace = true

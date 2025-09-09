@@ -1,4 +1,4 @@
-# @biomejs/cli-darwin-arm64
+# @checkjs/cli-darwin-arm64
 
 ## 2.2.3
 

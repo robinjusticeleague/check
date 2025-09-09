@@ -65,7 +65,7 @@ gen-tw:
   pnpm build
   pnpm execute
 
-# Generates the code of the grammars available in Biome
+# Generates the code of the grammars available in Check
 gen-grammar *args='':
   cargo run -p xtask_codegen -- grammar {{args}}
 
@@ -125,7 +125,7 @@ _touch file:
 test:
 	cargo test run --no-fail-fast
 
-# Run tests for the crate passed as argument e.g. just test-create biome_cli
+# Run tests for the crate passed as argument e.g. just test-create check_cli
 test-crate name:
 	cargo test run -p {{name}} --no-fail-fast
 
@@ -135,19 +135,19 @@ test-doc:
 
 # Tests a lint rule. The name of the rule needs to be camel case
 test-lintrule name:
-  just _touch crates/biome_js_analyze/tests/spec_tests.rs
-  just _touch crates/biome_json_analyze/tests/spec_tests.rs
-  just _touch crates/biome_css_analyze/tests/spec_tests.rs
-  just _touch crates/biome_graphql_analyze/tests/spec_tests.rs
-  cargo test -p biome_js_analyze -- {{snakecase(name)}} --show-output
-  cargo test -p biome_json_analyze -- {{snakecase(name)}} --show-output
-  cargo test -p biome_css_analyze -- {{snakecase(name)}} --show-output
-  cargo test -p biome_graphql_analyze -- {{snakecase(name)}} --show-output
+  just _touch crates/check_js_analyze/tests/spec_tests.rs
+  just _touch crates/check_json_analyze/tests/spec_tests.rs
+  just _touch crates/check_css_analyze/tests/spec_tests.rs
+  just _touch crates/check_graphql_analyze/tests/spec_tests.rs
+  cargo test -p check_js_analyze -- {{snakecase(name)}} --show-output
+  cargo test -p check_json_analyze -- {{snakecase(name)}} --show-output
+  cargo test -p check_css_analyze -- {{snakecase(name)}} --show-output
+  cargo test -p check_graphql_analyze -- {{snakecase(name)}} --show-output
 
 # Tests a lint rule. The name of the rule needs to be camel case
 test-transformation name:
-  just _touch crates/biome_js_transform/tests/spec_tests.rs
-  cargo test -p biome_js_transform -- {{snakecase(name)}} --show-output
+  just _touch crates/check_js_transform/tests/spec_tests.rs
+  cargo test -p check_js_transform -- {{snakecase(name)}} --show-output
 
 # Run the quick_test for the given package.
 test-quick package:
@@ -157,7 +157,7 @@ test-quick package:
 lint:
   cargo lint
 
-# Checks if the docs of the lint rules follow Biome's requirements
+# Checks if the docs of the lint rules follow Check's requirements
 lint-rules:
   cargo run -p rules_check
 

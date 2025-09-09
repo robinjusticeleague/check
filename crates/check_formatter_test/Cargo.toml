@@ -1,0 +1,36 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Check's formatter test shared infrastructure"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_formatter_test"
+publish              = false
+repository.workspace = true
+version              = "0.0.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+check_configuration = { workspace = true }
+check_console       = { workspace = true }
+check_deserialize   = { workspace = true }
+check_diagnostics   = { workspace = true }
+check_formatter     = { workspace = true }
+check_fs            = { workspace = true }
+check_parser        = { workspace = true }
+check_rowan         = { workspace = true, features = ["countme"] }
+check_service       = { workspace = true }
+camino              = { workspace = true }
+insta               = { workspace = true, features = ["glob"] }
+serde               = { workspace = true, features = ["derive"] }
+serde_json          = { workspace = true }
+similar             = { workspace = true }
+similar-asserts     = "1.7.0"
+
+[dev-dependencies]
+
+[lints]
+workspace = true

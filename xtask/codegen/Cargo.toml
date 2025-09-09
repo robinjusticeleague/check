@@ -15,60 +15,60 @@ serde          = { workspace = true, optional = true }
 ureq           = "3.0.12"
 xtask          = { path = '../', version = "0.0" }
 
-biome_analyze         = { workspace = true, features = ["schema"], optional = true }
-biome_cli             = { workspace = true, optional = true }
-biome_configuration   = { workspace = true, features = ["schema"], optional = true }
-biome_css_analyze     = { workspace = true, optional = true }
-biome_css_syntax      = { workspace = true, optional = true }
-biome_diagnostics     = { workspace = true, optional = true }
-biome_graphql_analyze = { workspace = true, optional = true }
-biome_graphql_parser  = { workspace = true, optional = true }
-biome_graphql_syntax  = { workspace = true, optional = true }
-biome_js_analyze      = { workspace = true, optional = true }
-biome_js_factory      = { workspace = true, optional = true }
-biome_js_formatter    = { workspace = true, optional = true }
-biome_js_parser       = { workspace = true, optional = true }
-biome_js_syntax       = { workspace = true, optional = true }
-biome_json_analyze    = { workspace = true, optional = true }
-biome_json_formatter  = { workspace = true, optional = true }
-biome_json_parser     = { workspace = true, optional = true }
-biome_json_syntax     = { workspace = true, optional = true }
-biome_rowan           = { workspace = true, optional = true }
-biome_service         = { workspace = true, features = ["schema"], optional = true }
-biome_string_case     = { workspace = true }
-biome_ungrammar       = { workspace = true }
+check_analyze         = { workspace = true, features = ["schema"], optional = true }
+check_cli             = { workspace = true, optional = true }
+check_configuration   = { workspace = true, features = ["schema"], optional = true }
+check_css_analyze     = { workspace = true, optional = true }
+check_css_syntax      = { workspace = true, optional = true }
+check_diagnostics     = { workspace = true, optional = true }
+check_graphql_analyze = { workspace = true, optional = true }
+check_graphql_parser  = { workspace = true, optional = true }
+check_graphql_syntax  = { workspace = true, optional = true }
+check_js_analyze      = { workspace = true, optional = true }
+check_js_factory      = { workspace = true, optional = true }
+check_js_formatter    = { workspace = true, optional = true }
+check_js_parser       = { workspace = true, optional = true }
+check_js_syntax       = { workspace = true, optional = true }
+check_json_analyze    = { workspace = true, optional = true }
+check_json_formatter  = { workspace = true, optional = true }
+check_json_parser     = { workspace = true, optional = true }
+check_json_syntax     = { workspace = true, optional = true }
+check_rowan           = { workspace = true, optional = true }
+check_service         = { workspace = true, features = ["schema"], optional = true }
+check_string_case     = { workspace = true }
+check_ungrammar       = { workspace = true }
 schemars              = { workspace = true, optional = true }
 serde_json            = { workspace = true, optional = true }
 
 [features]
 configuration = [
-  "biome_analyze",
-  "biome_js_analyze",
-  "biome_js_syntax",
-  "biome_json_analyze",
-  "biome_json_syntax",
-  "biome_css_analyze",
-  "biome_css_syntax",
-  "biome_graphql_analyze",
-  "biome_graphql_syntax",
-  "biome_rowan",
+  "check_analyze",
+  "check_js_analyze",
+  "check_js_syntax",
+  "check_json_analyze",
+  "check_json_syntax",
+  "check_css_analyze",
+  "check_css_syntax",
+  "check_graphql_analyze",
+  "check_graphql_syntax",
+  "check_rowan",
   "pulldown-cmark",
-  "biome_diagnostics",
+  "check_diagnostics",
 ]
 license = ["ureq/default", "ureq/json", "serde", "serde_json"]
 schema = [
   "schemars",
   "serde_json",
-  "biome_analyze",
-  "biome_rowan",
-  "biome_service",
-  "biome_js_syntax",
-  "biome_js_factory",
-  "biome_js_formatter",
-  "biome_json_formatter",
-  "biome_json_parser",
-  "biome_diagnostics",
-  "biome_configuration",
+  "check_analyze",
+  "check_rowan",
+  "check_service",
+  "check_js_syntax",
+  "check_js_factory",
+  "check_js_formatter",
+  "check_json_formatter",
+  "check_json_parser",
+  "check_diagnostics",
+  "check_configuration",
 ]
 
 [lints]

@@ -1,21 +1,21 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.5/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "biomejs/biome" }],
+  "changelog": ["@changesets/changelog-github", { "repo": "checkjs/check" }],
   "commit": false,
   "fixed": [
     [
-      "@biomejs/biome",
-      "@biomejs/cli-win32-x64",
-      "@biomejs/cli-win32-arm64",
-      "@biomejs/cli-darwin-x64",
-      "@biomejs/cli-darwin-arm64",
-      "@biomejs/cli-linux-x64",
-      "@biomejs/cli-linux-arm64",
-      "@biomejs/cli-linux-x64-musl",
-      "@biomejs/cli-linux-arm64-musl",
-      "@biomejs/wasm-web",
-      "@biomejs/wasm-bundler",
-      "@biomejs/wasm-nodejs"
+      "@checkjs/check",
+      "@checkjs/cli-win32-x64",
+      "@checkjs/cli-win32-arm64",
+      "@checkjs/cli-darwin-x64",
+      "@checkjs/cli-darwin-arm64",
+      "@checkjs/cli-linux-x64",
+      "@checkjs/cli-linux-arm64",
+      "@checkjs/cli-linux-x64-musl",
+      "@checkjs/cli-linux-arm64-musl",
+      "@checkjs/wasm-web",
+      "@checkjs/wasm-bundler",
+      "@checkjs/wasm-nodejs"
     ]
   ],
   "linked": [],
@@ -23,9 +23,9 @@
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [
-    "@biomejs/aria-data",
-    "@biomejs/benchmark",
-    "@biomejs/plugin-api",
+    "@checkjs/aria-data",
+    "@checkjs/benchmark",
+    "@checkjs/plugin-api",
     "tailwindcss-config-analyzer"
   ]
 }

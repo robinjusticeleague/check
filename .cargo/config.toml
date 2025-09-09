@@ -1,6 +1,6 @@
 [alias]
-biome-cli             = "run -p biome_cli --release --"
-biome-cli-dev         = "run -p biome_cli --"
+check-cli             = "run -p check_cli --release --"
+check-cli-dev         = "run -p check_cli --"
 codegen               = "run -p xtask_codegen --"
 codegen-bindings      = "run -p xtask_codegen --features schema -- bindings"
 codegen-configuration = "run -p xtask_codegen --features configuration -- configuration"
@@ -12,24 +12,24 @@ contributors = "run -p xtask_contributors --"
 coverage = "run -p xtask_coverage --profile=release-with-debug --"
 documentation = """
     doc \
-    -p biome_*formatter \
-    -p biome_control_flow \
-    -p biome_analyze \
-    -p biome_*analyze \
-    -p biome_*_syntax \
-    -p biome_*_factory \
-    -p biome_diagnostics \
-    -p biome_service \
-    -p biome_cli \
-    -p biome_console \
-    -p biome_*parser \
-    -p biome_text_edit \
-    -p biome_text_size \
-    -p biome_js_semantic \
-    -p biome_markup \
-    -p biome_rowan
-    -p biome_string_case \
-    -p biome_configuration \
+    -p check_*formatter \
+    -p check_control_flow \
+    -p check_analyze \
+    -p check_*analyze \
+    -p check_*_syntax \
+    -p check_*_factory \
+    -p check_diagnostics \
+    -p check_service \
+    -p check_cli \
+    -p check_console \
+    -p check_*parser \
+    -p check_text_edit \
+    -p check_text_size \
+    -p check_js_semantic \
+    -p check_markup \
+    -p check_rowan
+    -p check_string_case \
+    -p check_configuration \
     --no-deps
 """
 format = "fmt --all --verbose"

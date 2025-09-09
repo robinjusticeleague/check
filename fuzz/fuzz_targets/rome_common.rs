@@ -3,18 +3,18 @@
 
 #![expect(dead_code)]
 
-use biome_analyze::{AnalysisFilter, AnalyzerOptions, ControlFlow, RuleFilter};
-use biome_diagnostics::Diagnostic;
-use biome_formatter::format_node;
-use biome_js_analyze::analyze;
-use biome_js_formatter::context::JsFormatOptions;
-use biome_js_formatter::JsFormatLanguage;
-use biome_js_parser::parse;
-use biome_js_syntax::JsFileSource;
-use biome_json_formatter::context::JsonFormatOptions;
-use biome_json_formatter::JsonFormatLanguage;
-use biome_json_parser::parse_json;
-use biome_service::Rules;
+use check_analyze::{AnalysisFilter, AnalyzerOptions, ControlFlow, RuleFilter};
+use check_diagnostics::Diagnostic;
+use check_formatter::format_node;
+use check_js_analyze::analyze;
+use check_js_formatter::context::JsFormatOptions;
+use check_js_formatter::JsFormatLanguage;
+use check_js_parser::parse;
+use check_js_syntax::JsFileSource;
+use check_json_formatter::context::JsonFormatOptions;
+use check_json_formatter::JsonFormatLanguage;
+use check_json_parser::parse_json;
+use check_service::Rules;
 use libfuzzer_sys::Corpus;
 use similar::TextDiff;
 use std::fmt::{Display, Formatter};

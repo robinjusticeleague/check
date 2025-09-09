@@ -1,8 +1,8 @@
 ---
-"@biomejs/biome": patch
+"@checkjs/check": patch
 ---
 
-Fixed an issue (#6393) where the [useHookAtTopLevel](https://biomejs.dev/linter/rules/use-hook-at-top-level/) rule reported excessive diagnostics for nested hook calls.
+Fixed an issue (#6393) where the [useHookAtTopLevel](https://checkjs.dev/linter/rules/use-hook-at-top-level/) rule reported excessive diagnostics for nested hook calls.
 
 The rule now reports only the offending top-level call site, not sub-hooks of composite hooks.
 

@@ -1,0 +1,31 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "SyntaxKind and common rowan definitions for check_js_parser"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_js_syntax"
+repository.workspace = true
+version              = "0.5.7"
+
+[dependencies]
+check_aria          = { workspace = true }
+check_aria_metadata = { workspace = true }
+check_rowan         = { workspace = true, features = ["serde"] }
+check_string_case   = { workspace = true }
+camino              = { workspace = true }
+enumflags2          = { workspace = true }
+schemars            = { workspace = true, optional = true }
+serde               = { workspace = true, features = ["derive"] }
+
+[dev-dependencies]
+check_js_factory = { path = "../check_js_factory" }
+check_js_parser  = { path = "../check_js_parser" }
+
+[features]
+schema = ["schemars", "check_rowan/serde"]
+
+[lints]
+workspace = true

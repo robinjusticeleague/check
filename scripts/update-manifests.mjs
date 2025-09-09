@@ -4,9 +4,9 @@ import { fileURLToPath } from "node:url";
 import { format } from "node:util";
 
 const REPO_ROOT = resolve(fileURLToPath(import.meta.url), "../..");
-const PACKAGES_ROOT = resolve(REPO_ROOT, "packages/@biomejs");
-const BIOME_LIB_PATH = resolve(PACKAGES_ROOT, "biome");
-const MANIFEST_PATH = resolve(BIOME_LIB_PATH, "package.json");
+const PACKAGES_ROOT = resolve(REPO_ROOT, "packages/@checkjs");
+const CHECK_LIB_PATH = resolve(PACKAGES_ROOT, "check");
+const MANIFEST_PATH = resolve(CHECK_LIB_PATH, "package.json");
 
 const PLATFORMS = ["win32-%s", "darwin-%s", "linux-%s", "linux-%s-musl"];
 const ARCHITECTURES = ["x64", "arm64"];
@@ -34,7 +34,7 @@ function updateOptionalDependencies(platform, arch) {
 	const os = platform.split("-")[0];
 	const buildName = getName(platform, arch);
 	const packageRoot = resolve(PACKAGES_ROOT, buildName);
-	const packageName = `@biomejs/${buildName}`;
+	const packageName = `@checkjs/${buildName}`;
 
 	// Update the package.json manifest
 	const { version, license, repository, engines, homepage } = rootManifest;
@@ -71,9 +71,9 @@ function updateOptionalDependencies(platform, arch) {
 	const ext = os === "win32" ? ".exe" : "";
 	const binarySource = resolve(
 		REPO_ROOT,
-		`${getName(platform, arch, "biome")}${ext}`,
+		`${getName(platform, arch, "check")}${ext}`,
 	);
-	const binaryTarget = resolve(packageRoot, `biome${ext}`);
+	const binaryTarget = resolve(packageRoot, `check${ext}`);
 
 	if (fs.existsSync(binaryTarget)) {
 		console.log(`Copy binary ${binaryTarget}`);
@@ -84,7 +84,7 @@ function updateOptionalDependencies(platform, arch) {
 }
 
 function updateWasmPackage(target) {
-	const packageName = `@biomejs/wasm-${target}`;
+	const packageName = `@checkjs/wasm-${target}`;
 	const packageRoot = resolve(PACKAGES_ROOT, `wasm-${target}`);
 
 	const manifestPath = resolve(packageRoot, "package.json");

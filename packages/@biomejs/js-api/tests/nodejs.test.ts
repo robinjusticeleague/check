@@ -1,21 +1,21 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { Biome, type ProjectKey } from "../dist/nodejs";
+import { Check, type ProjectKey } from "../dist/nodejs";
 
-describe("Biome for Node.js", () => {
-	let biome: Biome;
+describe("Check for Node.js", () => {
+	let check: Check;
 	let projectKey: ProjectKey;
 	beforeEach(() => {
-		biome = new Biome();
-		const result = biome.openProject();
+		check = new Check();
+		const result = check.openProject();
 		projectKey = result.projectKey;
 	});
 
 	afterEach(() => {
-		biome.shutdown();
+		check.shutdown();
 	});
 
 	it("should format content", () => {
-		const result = biome.formatContent(projectKey, "let foo  = 'bar'", {
+		const result = check.formatContent(projectKey, "let foo  = 'bar'", {
 			filePath: "example.js",
 		});
 
@@ -24,7 +24,7 @@ describe("Biome for Node.js", () => {
 	});
 
 	it("should emit diagnostics", () => {
-		const result = biome.lintContent(projectKey, "a { font-color: red }", {
+		const result = check.lintContent(projectKey, "a { font-color: red }", {
 			filePath: "example.css",
 		});
 		expect(result.diagnostics).toHaveLength(1);

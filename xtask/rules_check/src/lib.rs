@@ -2,31 +2,31 @@
 //!
 //!
 use anyhow::{bail, ensure};
-use biome_analyze::{
+use check_analyze::{
     AnalysisFilter, AnalyzerOptions, ControlFlow, GroupCategory, Queryable, RegistryVisitor, Rule,
     RuleCategory, RuleFilter, RuleGroup, RuleMetadata,
 };
-use biome_configuration::Configuration;
-use biome_console::{Console, markup};
-use biome_css_parser::CssParserOptions;
-use biome_css_syntax::CssLanguage;
-use biome_deserialize::json::deserialize_from_json_ast;
-use biome_diagnostics::{DiagnosticExt, PrintDiagnostic, Severity};
-use biome_fs::{BiomePath, MemoryFileSystem};
-use biome_graphql_syntax::GraphqlLanguage;
-use biome_js_analyze::JsAnalyzerServices;
-use biome_js_parser::JsParserOptions;
-use biome_js_syntax::{EmbeddingKind, JsFileSource, JsLanguage, TextSize};
-use biome_json_factory::make;
-use biome_json_parser::{JsonParserOptions, parse_json};
-use biome_json_syntax::{AnyJsonValue, JsonLanguage, JsonObjectValue};
-use biome_module_graph::ModuleGraph;
-use biome_project_layout::ProjectLayout;
-use biome_rowan::AstNode;
-use biome_service::projects::{ProjectKey, Projects};
-use biome_service::settings::ServiceLanguage;
-use biome_service::workspace::DocumentFileSource;
-use biome_test_utils::get_added_paths;
+use check_configuration::Configuration;
+use check_console::{Console, markup};
+use check_css_parser::CssParserOptions;
+use check_css_syntax::CssLanguage;
+use check_deserialize::json::deserialize_from_json_ast;
+use check_diagnostics::{DiagnosticExt, PrintDiagnostic, Severity};
+use check_fs::{CheckPath, MemoryFileSystem};
+use check_graphql_syntax::GraphqlLanguage;
+use check_js_analyze::JsAnalyzerServices;
+use check_js_parser::JsParserOptions;
+use check_js_syntax::{EmbeddingKind, JsFileSource, JsLanguage, TextSize};
+use check_json_factory::make;
+use check_json_parser::{JsonParserOptions, parse_json};
+use check_json_syntax::{AnyJsonValue, JsonLanguage, JsonObjectValue};
+use check_module_graph::ModuleGraph;
+use check_project_layout::ProjectLayout;
+use check_rowan::AstNode;
+use check_service::projects::{ProjectKey, Projects};
+use check_service::settings::ServiceLanguage;
+use check_service::workspace::DocumentFileSource;
+use check_test_utils::get_added_paths;
 use camino::Utf8PathBuf;
 use pulldown_cmark::{CodeBlockKind, Event, HeadingLevel, Parser, Tag, TagEnd};
 use std::collections::{BTreeMap, HashMap};
@@ -133,10 +133,10 @@ pub fn check_rules() -> anyhow::Result<()> {
     }
 
     let mut visitor = LintRulesVisitor::default();
-    biome_js_analyze::visit_registry(&mut visitor);
-    biome_json_analyze::visit_registry(&mut visitor);
-    biome_css_analyze::visit_registry(&mut visitor);
-    biome_graphql_analyze::visit_registry(&mut visitor);
+    check_js_analyze::visit_registry(&mut visitor);
+    check_json_analyze::visit_registry(&mut visitor);
+    check_css_analyze::visit_registry(&mut visitor);
+    check_graphql_analyze::visit_registry(&mut visitor);
 
     let LintRulesVisitor { groups, errors } = visitor;
     if !errors.is_empty() {
@@ -187,7 +187,7 @@ enum OptionsParsingMode {
     /// This code block contains the options for a single rule only.
     RuleOptionsOnly,
 
-    /// This code block contains JSON that adheres to the full `biome.json` schema.
+    /// This code block contains JSON that adheres to the full `check.json` schema.
     FullConfiguration,
 }
 
@@ -256,7 +256,7 @@ struct DiagnosticWriter<'a> {
     test: &'a CodeBlockTest,
     code: &'a str,
     diagnostic_count: i32,
-    all_diagnostics: Vec<biome_diagnostics::Error>,
+    all_diagnostics: Vec<check_diagnostics::Error>,
     has_error: bool,
     subtract_offset: TextSize,
 }
@@ -275,7 +275,7 @@ impl<'a> DiagnosticWriter<'a> {
         }
     }
 
-    pub fn write_diagnostic(&mut self, diag: biome_diagnostics::Error) -> anyhow::Result<()> {
+    pub fn write_diagnostic(&mut self, diag: check_diagnostics::Error) -> anyhow::Result<()> {
         let group = self.group;
         let rule = self.rule;
         let code = self.code;
@@ -306,10 +306,10 @@ impl<'a> DiagnosticWriter<'a> {
 
     /// Prints all diagnostics to help the user.
     fn print_all_diagnostics(&mut self) {
-        let mut console = biome_console::EnvConsole::default();
+        let mut console = check_console::EnvConsole::default();
         for diag in self.all_diagnostics.iter() {
             console.println(
-                biome_console::LogLevel::Error,
+                check_console::LogLevel::Error,
                 markup! {
                     {PrintDiagnostic::verbose(diag)}
                 },
@@ -319,7 +319,7 @@ impl<'a> DiagnosticWriter<'a> {
 
     /// Adjusts the location of the diagnostic to account for synthetic nodes
     /// that arent't present in the source code but only in the AST.
-    fn adjust_span_offset(&self, diag: biome_diagnostics::Error) -> biome_diagnostics::Error {
+    fn adjust_span_offset(&self, diag: check_diagnostics::Error) -> check_diagnostics::Error {
         if self.subtract_offset != 0.into() {
             if let Some(span) = diag.location().span {
                 let new_span = span.checked_sub(self.subtract_offset);
@@ -342,7 +342,7 @@ fn create_analyzer_options<L>(
 where
     L: ServiceLanguage,
 {
-    let path = BiomePath::new(Utf8PathBuf::from(&file_path));
+    let path = CheckPath::new(Utf8PathBuf::from(&file_path));
     let file_source = &test.document_file_source();
     let suppression_reason = None;
 
@@ -410,21 +410,21 @@ fn assert_lint(
             // Temporary support for astro, svelte and vue code blocks
             let (code, file_source) = match file_source.as_embedding_kind() {
                 EmbeddingKind::Astro => (
-                    biome_service::file_handlers::AstroFileHandler::input(code),
+                    check_service::file_handlers::AstroFileHandler::input(code),
                     JsFileSource::ts(),
                 ),
                 EmbeddingKind::Svelte => (
-                    biome_service::file_handlers::SvelteFileHandler::input(code),
-                    biome_service::file_handlers::SvelteFileHandler::file_source(code),
+                    check_service::file_handlers::SvelteFileHandler::input(code),
+                    check_service::file_handlers::SvelteFileHandler::file_source(code),
                 ),
                 EmbeddingKind::Vue => (
-                    biome_service::file_handlers::VueFileHandler::input(code),
-                    biome_service::file_handlers::VueFileHandler::file_source(code),
+                    check_service::file_handlers::VueFileHandler::input(code),
+                    check_service::file_handlers::VueFileHandler::file_source(code),
                 ),
                 _ => (code, file_source),
             };
 
-            let parse = biome_js_parser::parse(code, file_source, JsParserOptions::default());
+            let parse = check_js_parser::parse(code, file_source, JsParserOptions::default());
 
             if parse.has_errors() {
                 for diag in parse.into_diagnostics() {
@@ -449,7 +449,7 @@ fn assert_lint(
 
                 let services = get_test_services(file_source, test_files);
 
-                biome_js_analyze::analyze(&root, filter, &options, &[], services, |signal| {
+                check_js_analyze::analyze(&root, filter, &options, &[], services, |signal| {
                     if let Some(mut diag) = signal.diagnostic() {
                         for action in signal.actions() {
                             if !action.is_suppression() {
@@ -472,7 +472,7 @@ fn assert_lint(
             }
         }
         DocumentFileSource::Json(file_source) => {
-            let parse = biome_json_parser::parse_json(code, JsonParserOptions::from(&file_source));
+            let parse = check_json_parser::parse_json(code, JsonParserOptions::from(&file_source));
 
             if parse.has_errors() {
                 for diag in parse.into_diagnostics() {
@@ -495,7 +495,7 @@ fn assert_lint(
                     test,
                 );
 
-                biome_json_analyze::analyze(&root, filter, &options, file_source, |signal| {
+                check_json_analyze::analyze(&root, filter, &options, file_source, |signal| {
                     if let Some(mut diag) = signal.diagnostic() {
                         for action in signal.actions() {
                             if !action.is_suppression() {
@@ -518,7 +518,7 @@ fn assert_lint(
             }
         }
         DocumentFileSource::Css(..) => {
-            let parse = biome_css_parser::parse_css(code, CssParserOptions::default());
+            let parse = check_css_parser::parse_css(code, CssParserOptions::default());
 
             if parse.has_errors() {
                 for diag in parse.into_diagnostics() {
@@ -541,7 +541,7 @@ fn assert_lint(
                     test,
                 );
 
-                biome_css_analyze::analyze(&root, filter, &options, &[], |signal| {
+                check_css_analyze::analyze(&root, filter, &options, &[], |signal| {
                     if let Some(mut diag) = signal.diagnostic() {
                         for action in signal.actions() {
                             if !action.is_suppression() {
@@ -564,7 +564,7 @@ fn assert_lint(
             }
         }
         DocumentFileSource::Graphql(..) => {
-            let parse = biome_graphql_parser::parse_graphql(code);
+            let parse = check_graphql_parser::parse_graphql(code);
 
             if parse.has_errors() {
                 for diag in parse.into_diagnostics() {
@@ -587,7 +587,7 @@ fn assert_lint(
                     test,
                 );
 
-                biome_graphql_analyze::analyze(&root, filter, &options, |signal| {
+                check_graphql_analyze::analyze(&root, filter, &options, |signal| {
                     if let Some(mut diag) = signal.diagnostic() {
                         for action in signal.actions() {
                             if !action.is_suppression() {
@@ -639,16 +639,16 @@ fn make_json_object_with_single_member<V: Into<AnyJsonValue>>(
     value: V,
 ) -> JsonObjectValue {
     make::json_object_value(
-        make::token(biome_json_syntax::JsonSyntaxKind::L_CURLY),
+        make::token(check_json_syntax::JsonSyntaxKind::L_CURLY),
         make::json_member_list(
             [make::json_member(
                 make::json_member_name(make::json_string_literal(name)),
-                make::token(biome_json_syntax::JsonSyntaxKind::COLON),
+                make::token(check_json_syntax::JsonSyntaxKind::COLON),
                 value.into(),
             )],
             [],
         ),
-        make::token(biome_json_syntax::JsonSyntaxKind::R_CURLY),
+        make::token(check_json_syntax::JsonSyntaxKind::R_CURLY),
     )
 }
 
@@ -685,7 +685,7 @@ fn parse_rule_options(
 
     match test.document_file_source() {
         DocumentFileSource::Json(file_source) => {
-            let parse = biome_json_parser::parse_json(code, JsonParserOptions::from(&file_source));
+            let parse = check_json_parser::parse_json(code, JsonParserOptions::from(&file_source));
 
             if parse.has_errors() {
                 for diag in parse.into_diagnostics() {
@@ -979,9 +979,9 @@ fn get_test_services(
 
     for (path, src) in files.iter() {
         let path_buf = Utf8PathBuf::from(path);
-        let biome_path = BiomePath::new(&path_buf);
-        if biome_path.is_manifest() {
-            match biome_path.file_name() {
+        let check_path = CheckPath::new(&path_buf);
+        if check_path.is_manifest() {
+            match check_path.file_name() {
                 Some("package.json") => {
                     let parsed = parse_json(src, JsonParserOptions::default());
                     layout.insert_serialized_node_manifest(
@@ -1001,10 +1001,10 @@ fn get_test_services(
                         &parsed.syntax().as_send().unwrap(),
                     );
                 }
-                _ => unimplemented!("Unhandled manifest: {biome_path}"),
+                _ => unimplemented!("Unhandled manifest: {check_path}"),
             }
         } else {
-            added_paths.push(biome_path);
+            added_paths.push(check_path);
         }
 
         fs.insert(path_buf, src.as_bytes().to_vec());

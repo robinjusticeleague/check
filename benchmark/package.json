@@ -1,10 +1,10 @@
 {
-  "name": "@biomejs/benchmark",
+  "name": "@checkjs/benchmark",
   "version": "1.0.0",
   "description": "",
   "private": true,
   "main": "run.js",
-  "author": "Biome Developers and Contributors",
+  "author": "Check Developers and Contributors",
   "license": "MIT OR Apache-2.0",
   "type": "module",
   "engines": {

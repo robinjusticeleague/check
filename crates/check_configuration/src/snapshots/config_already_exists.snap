@@ -1,0 +1,7 @@
+---
+source: crates/check_service/src/configuration/diagnostics.rs
+expression: content
+---
+check.json configuration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × It seems that a configuration file already exists
