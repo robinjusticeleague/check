@@ -117,1586 +117,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "check_analyze"
-version = "0.5.7"
-dependencies = [
- "check_console",
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_parser",
- "check_rowan",
- "check_suppression",
- "camino",
- "enumflags2",
- "indexmap",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "check_aria"
-version = "0.5.7"
-dependencies = [
- "check_aria_metadata",
-]
-
-[[package]]
-name = "check_aria_metadata"
-version = "0.5.7"
-dependencies = [
- "check_deserialize",
- "check_deserialize_macros",
- "check_string_case",
- "prettyplease",
- "proc-macro2",
- "quote",
- "serde",
- "serde_json",
- "syn 2.0.104",
-]
-
-[[package]]
-name = "check_cli"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "check_analyze",
- "check_configuration",
- "check_console",
- "check_css_analyze",
- "check_css_formatter",
- "check_css_syntax",
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_flags",
- "check_formatter",
- "check_fs",
- "check_glob",
- "check_graphql_analyze",
- "check_graphql_syntax",
- "check_grit_patterns",
- "check_html_formatter",
- "check_js_analyze",
- "check_js_formatter",
- "check_js_syntax",
- "check_json_analyze",
- "check_json_formatter",
- "check_json_parser",
- "check_json_syntax",
- "check_lsp",
- "check_migrate",
- "check_resolver",
- "check_rowan",
- "check_rule_options",
- "check_service",
- "check_text_edit",
- "bpaf",
- "camino",
- "crossbeam",
- "dashmap 6.1.0",
- "insta",
- "libc",
- "mimalloc",
- "path-absolutize",
- "quick-junit",
- "rayon",
- "regex",
- "rustc-hash 2.1.1",
- "serde",
- "serde_json",
- "smallvec",
- "terminal_size 0.4.3",
- "tikv-jemallocator",
- "tokio",
- "tracing",
- "tracing-appender",
- "tracing-subscriber",
- "tracing-tree",
-]
-
-[[package]]
-name = "check_configuration"
-version = "0.0.1"
-dependencies = [
- "check_analyze",
- "check_console",
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_flags",
- "check_formatter",
- "check_glob",
- "check_html_formatter",
- "check_html_syntax",
- "check_js_formatter",
- "check_json_formatter",
- "check_json_parser",
- "check_json_syntax",
- "check_resolver",
- "check_rowan",
- "check_rule_options",
- "bpaf",
- "camino",
- "codspeed-criterion-compat",
- "insta",
- "mimalloc",
- "regex",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
- "tests_macros",
- "tikv-jemallocator",
-]
-
-[[package]]
-name = "check_console"
-version = "0.5.7"
-dependencies = [
- "check_markup",
- "check_text_size",
- "schemars",
- "serde",
- "termcolor",
- "trybuild",
- "unicode-segmentation",
- "unicode-width",
-]
-
-[[package]]
-name = "check_control_flow"
-version = "0.5.7"
-dependencies = [
- "check_rowan",
- "rustc-hash 2.1.1",
-]
-
-[[package]]
-name = "check_css_analyze"
-version = "0.5.7"
-dependencies = [
- "check_analyze",
- "check_console",
- "check_css_factory",
- "check_css_parser",
- "check_css_semantic",
- "check_css_syntax",
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_fs",
- "check_plugin_loader",
- "check_rowan",
- "check_rule_options",
- "check_string_case",
- "check_suppression",
- "check_test_utils",
- "camino",
- "codspeed-criterion-compat",
- "insta",
- "mimalloc",
- "regex",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
- "tests_macros",
- "tikv-jemallocator",
-]
-
-[[package]]
-name = "check_css_factory"
-version = "0.5.7"
-dependencies = [
- "check_css_syntax",
- "check_rowan",
-]
-
-[[package]]
-name = "check_css_formatter"
-version = "0.5.7"
-dependencies = [
- "check_configuration",
- "check_css_parser",
- "check_css_syntax",
- "check_diagnostics",
- "check_formatter",
- "check_formatter_test",
- "check_fs",
- "check_parser",
- "check_rowan",
- "check_service",
- "check_string_case",
- "check_suppression",
- "check_test_utils",
- "camino",
- "codspeed-criterion-compat",
- "countme",
- "mimalloc",
- "serde",
- "serde_json",
- "tests_macros",
- "tikv-jemallocator",
-]
-
-[[package]]
-name = "check_css_parser"
-version = "0.5.7"
-dependencies = [
- "check_configuration",
- "check_console",
- "check_css_factory",
- "check_css_syntax",
- "check_deserialize",
- "check_diagnostics",
- "check_fs",
- "check_parser",
- "check_rowan",
- "check_service",
- "check_test_utils",
- "check_unicode_table",
- "camino",
- "codspeed-criterion-compat",
- "insta",
- "mimalloc",
- "quickcheck",
- "quickcheck_macros",
- "tests_macros",
- "tikv-jemallocator",
- "tracing",
-]
-
-[[package]]
-name = "check_css_semantic"
-version = "0.0.0"
-dependencies = [
- "check_css_parser",
- "check_css_syntax",
- "check_formatter",
- "check_rowan",
- "rustc-hash 2.1.1",
-]
-
-[[package]]
-name = "check_css_syntax"
-version = "0.5.7"
-dependencies = [
- "check_css_factory",
- "check_css_parser",
- "check_rowan",
- "check_string_case",
- "camino",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "check_deserialize"
-version = "0.6.0"
-dependencies = [
- "check_console",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_json_parser",
- "check_json_syntax",
- "check_rowan",
- "camino",
- "enumflags2",
- "indexmap",
- "serde",
- "serde_json",
- "smallvec",
-]
-
-[[package]]
-name = "check_deserialize_macros"
-version = "0.6.0"
-dependencies = [
- "check_string_case",
- "proc-macro-error2",
- "proc-macro2",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "check_diagnostics"
-version = "0.5.7"
-dependencies = [
- "backtrace",
- "check_console",
- "check_diagnostics_categories",
- "check_diagnostics_macros",
- "check_rowan",
- "check_text_edit",
- "check_text_size",
- "bpaf",
- "camino",
- "enumflags2",
- "insta",
- "schemars",
- "serde",
- "serde_json",
- "termcolor",
- "terminal_size 0.4.3",
- "trybuild",
- "unicode-width",
-]
-
-[[package]]
-name = "check_diagnostics_categories"
-version = "0.5.7"
-dependencies = [
- "quote",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "check_diagnostics_macros"
-version = "0.5.7"
-dependencies = [
- "proc-macro-error2",
- "proc-macro2",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "check_flags"
-version = "0.0.0"
-dependencies = [
- "check_console",
-]
-
-[[package]]
-name = "check_formatter"
-version = "0.5.7"
-dependencies = [
- "check_console",
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_js_parser",
- "check_js_syntax",
- "check_rowan",
- "check_string_case",
- "camino",
- "cfg-if",
- "countme",
- "drop_bomb",
- "indexmap",
- "insta",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
- "tracing",
- "unicode-width",
-]
-
-[[package]]
-name = "check_formatter_test"
-version = "0.0.0"
-dependencies = [
- "check_configuration",
- "check_console",
- "check_deserialize",
- "check_diagnostics",
- "check_formatter",
- "check_fs",
- "check_parser",
- "check_rowan",
- "check_service",
- "camino",
- "insta",
- "serde",
- "serde_json",
- "similar",
- "similar-asserts",
-]
-
-[[package]]
-name = "check_fs"
-version = "0.5.7"
-dependencies = [
- "check_diagnostics",
- "camino",
- "crossbeam",
- "directories",
- "enumflags2",
- "papaya",
- "parking_lot",
- "path-absolutize",
- "rayon",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
- "serde_json",
- "smallvec",
- "tracing",
-]
-
-[[package]]
-name = "check_glob"
-version = "0.1.0"
-dependencies = [
- "check_deserialize",
- "check_deserialize_macros",
- "check_text_size",
- "globset",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "check_graphql_analyze"
-version = "0.0.1"
-dependencies = [
- "check_analyze",
- "check_console",
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_graphql_factory",
- "check_graphql_parser",
- "check_graphql_syntax",
- "check_rowan",
- "check_rule_options",
- "check_string_case",
- "check_suppression",
- "check_test_utils",
- "camino",
- "insta",
- "schemars",
- "serde",
- "tests_macros",
-]
-
-[[package]]
-name = "check_graphql_factory"
-version = "0.1.0"
-dependencies = [
- "check_graphql_syntax",
- "check_rowan",
-]
-
-[[package]]
-name = "check_graphql_formatter"
-version = "0.1.0"
-dependencies = [
- "check_configuration",
- "check_diagnostics",
- "check_formatter",
- "check_formatter_test",
- "check_fs",
- "check_graphql_parser",
- "check_graphql_syntax",
- "check_parser",
- "check_rowan",
- "check_service",
- "check_suppression",
- "check_test_utils",
- "camino",
- "codspeed-criterion-compat",
- "countme",
- "mimalloc",
- "serde",
- "serde_json",
- "tests_macros",
- "tikv-jemallocator",
-]
-
-[[package]]
-name = "check_graphql_parser"
-version = "0.1.0"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_graphql_factory",
- "check_graphql_syntax",
- "check_parser",
- "check_rowan",
- "check_test_utils",
- "check_unicode_table",
- "codspeed-criterion-compat",
- "insta",
- "mimalloc",
- "quickcheck",
- "quickcheck_macros",
- "tests_macros",
- "tikv-jemallocator",
- "tracing",
- "unicode-bom",
-]
-
-[[package]]
-name = "check_graphql_semantic"
-version = "0.0.0"
-dependencies = [
- "check_graphql_parser",
- "check_graphql_syntax",
- "check_rowan",
- "rustc-hash 2.1.1",
-]
-
-[[package]]
-name = "check_graphql_syntax"
-version = "0.1.0"
-dependencies = [
- "check_rowan",
- "check_string_case",
- "camino",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "check_grit_factory"
-version = "0.5.7"
-dependencies = [
- "check_grit_syntax",
- "check_rowan",
-]
-
-[[package]]
-name = "check_grit_formatter"
-version = "0.0.0"
-dependencies = [
- "check_configuration",
- "check_formatter",
- "check_formatter_test",
- "check_fs",
- "check_grit_factory",
- "check_grit_parser",
- "check_grit_syntax",
- "check_parser",
- "check_rowan",
- "check_service",
- "camino",
- "serde",
- "serde_json",
- "tests_macros",
-]
-
-[[package]]
-name = "check_grit_parser"
-version = "0.1.0"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_grit_factory",
- "check_grit_syntax",
- "check_parser",
- "check_rowan",
- "check_test_utils",
- "insta",
- "quickcheck",
- "quickcheck_macros",
- "schemars",
- "serde",
- "serde_json",
- "smallvec",
- "tests_macros",
- "tracing",
- "unicode-bom",
-]
-
-[[package]]
-name = "check_grit_patterns"
-version = "0.0.1"
-dependencies = [
- "check_analyze",
- "check_console",
- "check_css_parser",
- "check_css_syntax",
- "check_diagnostics",
- "check_grit_parser",
- "check_grit_syntax",
- "check_js_parser",
- "check_js_syntax",
- "check_parser",
- "check_rowan",
- "check_string_case",
- "check_test_utils",
- "camino",
- "grit-pattern-matcher",
- "grit-util",
- "insta",
- "path-absolutize",
- "rand",
- "regex",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
- "serde_json",
- "tests_macros",
-]
-
-[[package]]
-name = "check_grit_syntax"
-version = "0.5.7"
-dependencies = [
- "check_rowan",
- "check_string_case",
- "camino",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "check_html_factory"
-version = "0.5.7"
-dependencies = [
- "check_html_syntax",
- "check_rowan",
-]
-
-[[package]]
-name = "check_html_formatter"
-version = "0.0.0"
-dependencies = [
- "check_configuration",
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics_categories",
- "check_formatter",
- "check_formatter_test",
- "check_fs",
- "check_html_parser",
- "check_html_syntax",
- "check_parser",
- "check_rowan",
- "check_service",
- "check_string_case",
- "check_suppression",
- "check_test_utils",
- "camino",
- "codspeed-criterion-compat",
- "countme",
- "mimalloc",
- "schemars",
- "serde",
- "tests_macros",
- "tikv-jemallocator",
-]
-
-[[package]]
-name = "check_html_parser"
-version = "0.0.1"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_html_factory",
- "check_html_syntax",
- "check_parser",
- "check_rowan",
- "check_test_utils",
- "check_unicode_table",
- "camino",
- "codspeed-criterion-compat",
- "insta",
- "mimalloc",
- "quickcheck",
- "quickcheck_macros",
- "tests_macros",
- "tikv-jemallocator",
- "tracing",
-]
-
-[[package]]
-name = "check_html_syntax"
-version = "0.5.7"
-dependencies = [
- "check_rowan",
- "check_string_case",
- "camino",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "check_js_analyze"
-version = "0.5.7"
-dependencies = [
- "check_analyze",
- "check_aria",
- "check_aria_metadata",
- "check_console",
- "check_control_flow",
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_fs",
- "check_glob",
- "check_js_factory",
- "check_js_parser",
- "check_js_semantic",
- "check_js_syntax",
- "check_js_type_info",
- "check_jsdoc_comment",
- "check_module_graph",
- "check_package",
- "check_plugin_loader",
- "check_project_layout",
- "check_resolver",
- "check_rowan",
- "check_rule_options",
- "check_service",
- "check_string_case",
- "check_suppression",
- "check_test_utils",
- "check_unicode_table",
- "bitvec",
- "camino",
- "codspeed-criterion-compat",
- "enumflags2",
- "globset",
- "insta",
- "mimalloc",
- "regex",
- "roaring",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
- "smallvec",
- "tests_macros",
- "tikv-jemallocator",
-]
-
-[[package]]
-name = "check_js_factory"
-version = "0.5.7"
-dependencies = [
- "check_js_syntax",
- "check_rowan",
-]
-
-[[package]]
-name = "check_js_formatter"
-version = "0.5.7"
-dependencies = [
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics_categories",
- "check_formatter",
- "check_formatter_test",
- "check_fs",
- "check_js_factory",
- "check_js_parser",
- "check_js_syntax",
- "check_parser",
- "check_rowan",
- "check_service",
- "check_string_case",
- "check_suppression",
- "check_test_utils",
- "check_text_size",
- "check_unicode_table",
- "camino",
- "codspeed-criterion-compat",
- "countme",
- "mimalloc",
- "quickcheck",
- "schemars",
- "serde",
- "serde_json",
- "smallvec",
- "tests_macros",
- "tikv-jemallocator",
- "unicode-width",
-]
-
-[[package]]
-name = "check_js_parser"
-version = "0.5.7"
-dependencies = [
- "check_configuration",
- "check_console",
- "check_deserialize",
- "check_diagnostics",
- "check_fs",
- "check_js_factory",
- "check_js_syntax",
- "check_parser",
- "check_rowan",
- "check_service",
- "check_test_utils",
- "check_unicode_table",
- "camino",
- "codspeed-criterion-compat",
- "drop_bomb",
- "enumflags2",
- "indexmap",
- "insta",
- "mimalloc",
- "quickcheck",
- "quickcheck_macros",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
- "serde_json",
- "smallvec",
- "tests_macros",
- "tikv-jemallocator",
- "tracing",
-]
-
-[[package]]
-name = "check_js_runtime"
-version = "0.0.1"
-dependencies = [
- "check_analyze",
- "check_diagnostics",
- "check_resolver",
- "check_text_size",
- "boa_engine",
- "camino",
- "rustc-hash 2.1.1",
-]
-
-[[package]]
-name = "check_js_semantic"
-version = "0.5.7"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_formatter",
- "check_js_parser",
- "check_js_syntax",
- "check_rowan",
- "rust-lapper",
- "rustc-hash 2.1.1",
- "smallvec",
-]
-
-[[package]]
-name = "check_js_syntax"
-version = "0.5.7"
-dependencies = [
- "check_aria",
- "check_aria_metadata",
- "check_js_factory",
- "check_js_parser",
- "check_rowan",
- "check_string_case",
- "camino",
- "enumflags2",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "check_js_transform"
-version = "0.5.7"
-dependencies = [
- "check_analyze",
- "check_diagnostics",
- "check_js_factory",
- "check_js_formatter",
- "check_js_parser",
- "check_js_syntax",
- "check_rowan",
- "check_test_utils",
- "camino",
- "insta",
- "tests_macros",
-]
-
-[[package]]
-name = "check_js_type_info"
-version = "0.0.1"
-dependencies = [
- "check_formatter",
- "check_js_formatter",
- "check_js_parser",
- "check_js_syntax",
- "check_js_type_info_macros",
- "check_resolver",
- "check_rowan",
- "check_test_utils",
- "camino",
- "hashbrown 0.15.5",
- "insta",
- "rustc-hash 2.1.1",
-]
-
-[[package]]
-name = "check_js_type_info_macros"
-version = "0.0.1"
-dependencies = [
- "proc-macro-error2",
- "proc-macro2",
- "quote",
- "syn 1.0.109",
-]
-
-[[package]]
-name = "check_jsdoc_comment"
-version = "0.0.1"
-dependencies = [
- "check_formatter",
- "check_js_syntax",
- "check_js_type_info",
- "check_rowan",
-]
-
-[[package]]
-name = "check_json_analyze"
-version = "0.5.7"
-dependencies = [
- "check_analyze",
- "check_console",
- "check_diagnostics",
- "check_json_factory",
- "check_json_parser",
- "check_json_syntax",
- "check_rowan",
- "check_rule_options",
- "check_string_case",
- "check_suppression",
- "check_test_utils",
- "camino",
- "codspeed-criterion-compat",
- "insta",
- "mimalloc",
- "rustc-hash 2.1.1",
- "tests_macros",
- "tikv-jemallocator",
-]
-
-[[package]]
-name = "check_json_factory"
-version = "0.5.7"
-dependencies = [
- "check_json_syntax",
- "check_rowan",
-]
-
-[[package]]
-name = "check_json_formatter"
-version = "0.5.7"
-dependencies = [
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_formatter",
- "check_formatter_test",
- "check_fs",
- "check_json_parser",
- "check_json_syntax",
- "check_parser",
- "check_rowan",
- "check_service",
- "check_suppression",
- "check_test_utils",
- "camino",
- "codspeed-criterion-compat",
- "countme",
- "mimalloc",
- "schemars",
- "serde",
- "serde_json",
- "tests_macros",
- "tikv-jemallocator",
-]
-
-[[package]]
-name = "check_json_parser"
-version = "0.5.7"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_json_factory",
- "check_json_syntax",
- "check_parser",
- "check_rowan",
- "check_test_utils",
- "check_unicode_table",
- "codspeed-criterion-compat",
- "insta",
- "mimalloc",
- "quickcheck",
- "quickcheck_macros",
- "tests_macros",
- "tikv-jemallocator",
- "tracing",
- "unicode-bom",
-]
-
-[[package]]
-name = "check_json_syntax"
-version = "0.5.7"
-dependencies = [
- "check_rowan",
- "check_string_case",
- "camino",
- "dirs",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "check_json_value"
-version = "0.1.0"
-dependencies = [
- "check_deserialize",
- "check_deserialize_macros",
- "check_json_parser",
- "check_json_syntax",
- "check_rowan",
- "indexmap",
- "rustc-hash 2.1.1",
- "static_assertions",
-]
-
-[[package]]
-name = "check_line_index"
-version = "0.1.0"
-dependencies = [
- "check_text_size",
- "rustc-hash 2.1.1",
-]
-
-[[package]]
-name = "check_lsp"
-version = "0.0.0"
-dependencies = [
- "anyhow",
- "check_analyze",
- "check_configuration",
- "check_console",
- "check_deserialize",
- "check_diagnostics",
- "check_fs",
- "check_line_index",
- "check_lsp_converters",
- "check_resolver",
- "check_rowan",
- "check_service",
- "check_text_edit",
- "camino",
- "crossbeam",
- "futures",
- "papaya",
- "rustc-hash 2.1.1",
- "serde",
- "serde_json",
- "tokio",
- "tower",
- "tower-lsp-server",
- "tracing",
-]
-
-[[package]]
-name = "check_lsp_converters"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "check_line_index",
- "check_text_size",
- "rustc-hash 2.1.1",
- "tower",
- "tower-lsp-server",
-]
-
-[[package]]
-name = "check_markdown_factory"
-version = "0.0.1"
-dependencies = [
- "check_markdown_syntax",
- "check_rowan",
-]
-
-[[package]]
-name = "check_markdown_parser"
-version = "0.0.1"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_markdown_factory",
- "check_markdown_syntax",
- "check_parser",
- "check_rowan",
- "check_test_utils",
- "check_unicode_table",
- "insta",
- "quickcheck",
- "quickcheck_macros",
- "tests_macros",
- "tracing",
- "unicode-bom",
-]
-
-[[package]]
-name = "check_markdown_syntax"
-version = "0.0.1"
-dependencies = [
- "check_rowan",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "check_markup"
-version = "0.5.7"
-dependencies = [
- "proc-macro-error2",
- "proc-macro2",
- "quote",
-]
-
-[[package]]
-name = "check_migrate"
-version = "0.0.0"
-dependencies = [
- "check_analyze",
- "check_configuration",
- "check_console",
- "check_diagnostics",
- "check_glob",
- "check_json_factory",
- "check_json_formatter",
- "check_json_parser",
- "check_json_syntax",
- "check_package",
- "check_rowan",
- "check_test_utils",
- "camino",
- "insta",
- "rustc-hash 2.1.1",
- "tests_macros",
-]
-
-[[package]]
-name = "check_module_graph"
-version = "0.0.1"
-dependencies = [
- "check_console",
- "check_deserialize",
- "check_diagnostics",
- "check_formatter",
- "check_fs",
- "check_js_formatter",
- "check_js_parser",
- "check_js_semantic",
- "check_js_syntax",
- "check_js_type_info",
- "check_jsdoc_comment",
- "check_json_parser",
- "check_json_value",
- "check_package",
- "check_project_layout",
- "check_resolver",
- "check_rowan",
- "check_test_utils",
- "camino",
- "cfg-if",
- "codspeed-divan-compat",
- "indexmap",
- "insta",
- "mimalloc",
- "once_cell",
- "papaya",
- "rust-lapper",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
- "serde_json",
- "static_assertions",
- "tikv-jemallocator",
- "walkdir",
-]
-
-[[package]]
-name = "check_package"
-version = "0.5.7"
-dependencies = [
- "check_console",
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_fs",
- "check_json_parser",
- "check_json_syntax",
- "check_json_value",
- "check_parser",
- "check_rowan",
- "check_text_size",
- "camino",
- "codspeed-divan-compat",
- "indexmap",
- "insta",
- "mimalloc",
- "rustc-hash 2.1.1",
- "serde",
- "static_assertions",
- "tests_macros",
- "tikv-jemallocator",
-]
-
-[[package]]
-name = "check_parser"
-version = "0.5.7"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_rowan",
- "check_unicode_table",
- "drop_bomb",
- "enumflags2",
- "unicode-bom",
-]
-
-[[package]]
-name = "check_plugin_loader"
-version = "0.0.1"
-dependencies = [
- "check_analyze",
- "check_configuration",
- "check_console",
- "check_css_syntax",
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_fs",
- "check_grit_patterns",
- "check_js_parser",
- "check_js_runtime",
- "check_js_syntax",
- "check_json_parser",
- "check_parser",
- "check_resolver",
- "check_rowan",
- "check_text_size",
- "boa_engine",
- "camino",
- "grit-pattern-matcher",
- "grit-util",
- "insta",
- "libc",
- "papaya",
- "rustc-hash 2.1.1",
- "serde",
- "windows",
-]
-
-[[package]]
-name = "check_project_layout"
-version = "0.0.1"
-dependencies = [
- "check_package",
- "check_parser",
- "check_rowan",
- "camino",
- "papaya",
- "rustc-hash 2.1.1",
-]
-
-[[package]]
-name = "check_resolver"
-version = "0.1.0"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_fs",
- "check_json_value",
- "check_package",
- "check_rowan",
- "camino",
-]
-
-[[package]]
-name = "check_rowan"
-version = "0.5.7"
-dependencies = [
- "check_text_edit",
- "check_text_size",
- "countme",
- "hashbrown 0.15.5",
- "iai",
- "quickcheck",
- "quickcheck_macros",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
- "serde_json",
-]
-
-[[package]]
-name = "check_rule_options"
-version = "0.0.1"
-dependencies = [
- "check_console",
- "check_deserialize",
- "check_deserialize_macros",
- "check_diagnostics",
- "check_glob",
- "check_js_syntax",
- "check_resolver",
- "check_rowan",
- "check_string_case",
- "camino",
- "enumflags2",
- "regex",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
- "smallvec",
-]
-
-[[package]]
-name = "check_service"
-version = "0.0.0"
-dependencies = [
- "append-only-vec",
- "check_analyze",
- "check_configuration",
- "check_console",
- "check_css_analyze",
- "check_css_formatter",
- "check_css_parser",
- "check_css_semantic",
- "check_css_syntax",
- "check_deserialize",
- "check_diagnostics",
- "check_formatter",
- "check_fs",
- "check_glob",
- "check_graphql_analyze",
- "check_graphql_formatter",
- "check_graphql_parser",
- "check_graphql_syntax",
- "check_grit_formatter",
- "check_grit_parser",
- "check_grit_patterns",
- "check_grit_syntax",
- "check_html_formatter",
- "check_html_parser",
- "check_html_syntax",
- "check_js_analyze",
- "check_js_factory",
- "check_js_formatter",
- "check_js_parser",
- "check_js_semantic",
- "check_js_syntax",
- "check_js_type_info",
- "check_json_analyze",
- "check_json_formatter",
- "check_json_parser",
- "check_json_syntax",
- "check_module_graph",
- "check_package",
- "check_parser",
- "check_plugin_loader",
- "check_project_layout",
- "check_resolver",
- "check_rowan",
- "check_string_case",
- "check_text_edit",
- "camino",
- "crossbeam",
- "enumflags2",
- "getrandom 0.2.15",
- "ignore",
- "insta",
- "notify",
- "papaya",
- "rayon",
- "regex",
- "rustc-hash 2.1.1",
- "schemars",
- "serde",
- "serde_json",
- "smallvec",
- "tokio",
- "tracing",
- "web-time",
-]
-
-[[package]]
-name = "check_string_case"
-version = "0.5.7"
-dependencies = [
- "check_rowan",
-]
-
-[[package]]
-name = "check_suppression"
-version = "0.5.7"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_rowan",
-]
-
-[[package]]
-name = "check_syntax_codegen"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "check_string_case",
- "check_ungrammar",
- "proc-macro2",
- "quote",
-]
-
-[[package]]
-name = "check_tailwind_factory"
-version = "0.0.1"
-dependencies = [
- "check_rowan",
- "check_tailwind_syntax",
-]
-
-[[package]]
-name = "check_tailwind_parser"
-version = "0.0.1"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_parser",
- "check_rowan",
- "check_tailwind_factory",
- "check_tailwind_syntax",
- "check_test_utils",
- "check_unicode_table",
- "camino",
- "insta",
- "mimalloc",
- "quickcheck",
- "quickcheck_macros",
- "tests_macros",
- "tracing",
-]
-
-[[package]]
-name = "check_tailwind_syntax"
-version = "0.0.1"
-dependencies = [
- "check_rowan",
- "schemars",
- "serde",
-]
-
-[[package]]
-name = "check_test_utils"
-version = "0.0.0"
-dependencies = [
- "ansi_rgb",
- "check_analyze",
- "check_configuration",
- "check_console",
- "check_deserialize",
- "check_diagnostics",
- "check_formatter",
- "check_fs",
- "check_js_parser",
- "check_js_type_info",
- "check_json_parser",
- "check_module_graph",
- "check_package",
- "check_project_layout",
- "check_rowan",
- "check_service",
- "check_string_case",
- "camino",
- "countme",
- "json_comments",
- "serde_json",
- "similar",
- "ureq",
- "url",
-]
-
-[[package]]
-name = "check_text_edit"
-version = "0.5.7"
-dependencies = [
- "check_text_size",
- "schemars",
- "serde",
- "similar",
-]
-
-[[package]]
-name = "check_text_size"
-version = "0.5.7"
-dependencies = [
- "schemars",
- "serde",
- "serde_test",
- "static_assertions",
-]
-
-[[package]]
-name = "check_ungrammar"
-version = "0.3.1"
-
-[[package]]
-name = "check_unicode_table"
-version = "0.5.7"
-
-[[package]]
-name = "check_wasm"
-version = "1.9.4"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_fs",
- "check_js_factory",
- "check_js_formatter",
- "check_rowan",
- "check_service",
- "camino",
- "console_error_panic_hook",
- "js-sys",
- "quote",
- "schemars",
- "serde",
- "serde-wasm-bindgen",
- "wasm-bindgen",
-]
-
-[[package]]
-name = "check_yaml_factory"
-version = "0.0.1"
-dependencies = [
- "check_rowan",
- "check_yaml_syntax",
-]
-
-[[package]]
-name = "check_yaml_parser"
-version = "0.0.1"
-dependencies = [
- "check_console",
- "check_diagnostics",
- "check_parser",
- "check_rowan",
- "check_test_utils",
- "check_unicode_table",
- "check_yaml_factory",
- "check_yaml_syntax",
- "insta",
- "quickcheck",
- "quickcheck_macros",
- "tests_macros",
- "tracing",
-]
-
-[[package]]
-name = "check_yaml_syntax"
-version = "0.0.1"
-dependencies = [
- "check_rowan",
- "check_string_case",
- "camino",
- "schemars",
- "serde",
-]
-
-[[package]]
 name = "bitflags"
 version = "1.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1971,6 +391,1586 @@ name = "cfg_aliases"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "613afe47fcd5fac7ccf1db93babcb082c5994d996f20b8b159f2ad1658eb5724"
+
+[[package]]
+name = "check_analyze"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_parser",
+ "check_rowan",
+ "check_suppression",
+ "enumflags2",
+ "indexmap",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "check_aria"
+version = "0.5.7"
+dependencies = [
+ "check_aria_metadata",
+]
+
+[[package]]
+name = "check_aria_metadata"
+version = "0.5.7"
+dependencies = [
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_string_case",
+ "prettyplease",
+ "proc-macro2",
+ "quote",
+ "serde",
+ "serde_json",
+ "syn 2.0.104",
+]
+
+[[package]]
+name = "check_cli"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "bpaf",
+ "camino",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_css_analyze",
+ "check_css_formatter",
+ "check_css_syntax",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_flags",
+ "check_formatter",
+ "check_fs",
+ "check_glob",
+ "check_graphql_analyze",
+ "check_graphql_syntax",
+ "check_grit_patterns",
+ "check_html_formatter",
+ "check_js_analyze",
+ "check_js_formatter",
+ "check_js_syntax",
+ "check_json_analyze",
+ "check_json_formatter",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_lsp",
+ "check_migrate",
+ "check_resolver",
+ "check_rowan",
+ "check_rule_options",
+ "check_service",
+ "check_text_edit",
+ "crossbeam",
+ "dashmap 6.1.0",
+ "insta",
+ "libc",
+ "mimalloc",
+ "path-absolutize",
+ "quick-junit",
+ "rayon",
+ "regex",
+ "rustc-hash 2.1.1",
+ "serde",
+ "serde_json",
+ "smallvec",
+ "terminal_size 0.4.3",
+ "tikv-jemallocator",
+ "tokio",
+ "tracing",
+ "tracing-appender",
+ "tracing-subscriber",
+ "tracing-tree",
+]
+
+[[package]]
+name = "check_configuration"
+version = "0.0.1"
+dependencies = [
+ "bpaf",
+ "camino",
+ "check_analyze",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_flags",
+ "check_formatter",
+ "check_glob",
+ "check_html_formatter",
+ "check_html_syntax",
+ "check_js_formatter",
+ "check_json_formatter",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_resolver",
+ "check_rowan",
+ "check_rule_options",
+ "codspeed-criterion-compat",
+ "insta",
+ "mimalloc",
+ "regex",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+ "tests_macros",
+ "tikv-jemallocator",
+]
+
+[[package]]
+name = "check_console"
+version = "0.5.7"
+dependencies = [
+ "check_markup",
+ "check_text_size",
+ "schemars",
+ "serde",
+ "termcolor",
+ "trybuild",
+ "unicode-segmentation",
+ "unicode-width",
+]
+
+[[package]]
+name = "check_control_flow"
+version = "0.5.7"
+dependencies = [
+ "check_rowan",
+ "rustc-hash 2.1.1",
+]
+
+[[package]]
+name = "check_css_analyze"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_analyze",
+ "check_console",
+ "check_css_factory",
+ "check_css_parser",
+ "check_css_semantic",
+ "check_css_syntax",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_fs",
+ "check_plugin_loader",
+ "check_rowan",
+ "check_rule_options",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
+ "codspeed-criterion-compat",
+ "insta",
+ "mimalloc",
+ "regex",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+ "tests_macros",
+ "tikv-jemallocator",
+]
+
+[[package]]
+name = "check_css_factory"
+version = "0.5.7"
+dependencies = [
+ "check_css_syntax",
+ "check_rowan",
+]
+
+[[package]]
+name = "check_css_formatter"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_configuration",
+ "check_css_parser",
+ "check_css_syntax",
+ "check_diagnostics",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
+ "codspeed-criterion-compat",
+ "countme",
+ "mimalloc",
+ "serde",
+ "serde_json",
+ "tests_macros",
+ "tikv-jemallocator",
+]
+
+[[package]]
+name = "check_css_parser"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_configuration",
+ "check_console",
+ "check_css_factory",
+ "check_css_syntax",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_fs",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_test_utils",
+ "check_unicode_table",
+ "codspeed-criterion-compat",
+ "insta",
+ "mimalloc",
+ "quickcheck",
+ "quickcheck_macros",
+ "tests_macros",
+ "tikv-jemallocator",
+ "tracing",
+]
+
+[[package]]
+name = "check_css_semantic"
+version = "0.0.0"
+dependencies = [
+ "check_css_parser",
+ "check_css_syntax",
+ "check_formatter",
+ "check_rowan",
+ "rustc-hash 2.1.1",
+]
+
+[[package]]
+name = "check_css_syntax"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_css_factory",
+ "check_css_parser",
+ "check_rowan",
+ "check_string_case",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "check_deserialize"
+version = "0.6.0"
+dependencies = [
+ "camino",
+ "check_console",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_rowan",
+ "enumflags2",
+ "indexmap",
+ "serde",
+ "serde_json",
+ "smallvec",
+]
+
+[[package]]
+name = "check_deserialize_macros"
+version = "0.6.0"
+dependencies = [
+ "check_string_case",
+ "proc-macro-error2",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "check_diagnostics"
+version = "0.5.7"
+dependencies = [
+ "backtrace",
+ "bpaf",
+ "camino",
+ "check_console",
+ "check_diagnostics_categories",
+ "check_diagnostics_macros",
+ "check_rowan",
+ "check_text_edit",
+ "check_text_size",
+ "enumflags2",
+ "insta",
+ "schemars",
+ "serde",
+ "serde_json",
+ "termcolor",
+ "terminal_size 0.4.3",
+ "trybuild",
+ "unicode-width",
+]
+
+[[package]]
+name = "check_diagnostics_categories"
+version = "0.5.7"
+dependencies = [
+ "quote",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "check_diagnostics_macros"
+version = "0.5.7"
+dependencies = [
+ "proc-macro-error2",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "check_flags"
+version = "0.0.0"
+dependencies = [
+ "check_console",
+]
+
+[[package]]
+name = "check_formatter"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "cfg-if",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_rowan",
+ "check_string_case",
+ "countme",
+ "drop_bomb",
+ "indexmap",
+ "insta",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+ "tracing",
+ "unicode-width",
+]
+
+[[package]]
+name = "check_formatter_test"
+version = "0.0.0"
+dependencies = [
+ "camino",
+ "check_configuration",
+ "check_console",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_formatter",
+ "check_fs",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "insta",
+ "serde",
+ "serde_json",
+ "similar",
+ "similar-asserts",
+]
+
+[[package]]
+name = "check_fs"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_diagnostics",
+ "crossbeam",
+ "directories",
+ "enumflags2",
+ "papaya",
+ "parking_lot",
+ "path-absolutize",
+ "rayon",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+ "serde_json",
+ "smallvec",
+ "tracing",
+]
+
+[[package]]
+name = "check_glob"
+version = "0.1.0"
+dependencies = [
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_text_size",
+ "globset",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "check_graphql_analyze"
+version = "0.0.1"
+dependencies = [
+ "camino",
+ "check_analyze",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_graphql_factory",
+ "check_graphql_parser",
+ "check_graphql_syntax",
+ "check_rowan",
+ "check_rule_options",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
+ "insta",
+ "schemars",
+ "serde",
+ "tests_macros",
+]
+
+[[package]]
+name = "check_graphql_factory"
+version = "0.1.0"
+dependencies = [
+ "check_graphql_syntax",
+ "check_rowan",
+]
+
+[[package]]
+name = "check_graphql_formatter"
+version = "0.1.0"
+dependencies = [
+ "camino",
+ "check_configuration",
+ "check_diagnostics",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_graphql_parser",
+ "check_graphql_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_suppression",
+ "check_test_utils",
+ "codspeed-criterion-compat",
+ "countme",
+ "mimalloc",
+ "serde",
+ "serde_json",
+ "tests_macros",
+ "tikv-jemallocator",
+]
+
+[[package]]
+name = "check_graphql_parser"
+version = "0.1.0"
+dependencies = [
+ "check_console",
+ "check_diagnostics",
+ "check_graphql_factory",
+ "check_graphql_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
+ "check_unicode_table",
+ "codspeed-criterion-compat",
+ "insta",
+ "mimalloc",
+ "quickcheck",
+ "quickcheck_macros",
+ "tests_macros",
+ "tikv-jemallocator",
+ "tracing",
+ "unicode-bom",
+]
+
+[[package]]
+name = "check_graphql_semantic"
+version = "0.0.0"
+dependencies = [
+ "check_graphql_parser",
+ "check_graphql_syntax",
+ "check_rowan",
+ "rustc-hash 2.1.1",
+]
+
+[[package]]
+name = "check_graphql_syntax"
+version = "0.1.0"
+dependencies = [
+ "camino",
+ "check_rowan",
+ "check_string_case",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "check_grit_factory"
+version = "0.5.7"
+dependencies = [
+ "check_grit_syntax",
+ "check_rowan",
+]
+
+[[package]]
+name = "check_grit_formatter"
+version = "0.0.0"
+dependencies = [
+ "camino",
+ "check_configuration",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_grit_factory",
+ "check_grit_parser",
+ "check_grit_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "serde",
+ "serde_json",
+ "tests_macros",
+]
+
+[[package]]
+name = "check_grit_parser"
+version = "0.1.0"
+dependencies = [
+ "check_console",
+ "check_diagnostics",
+ "check_grit_factory",
+ "check_grit_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
+ "insta",
+ "quickcheck",
+ "quickcheck_macros",
+ "schemars",
+ "serde",
+ "serde_json",
+ "smallvec",
+ "tests_macros",
+ "tracing",
+ "unicode-bom",
+]
+
+[[package]]
+name = "check_grit_patterns"
+version = "0.0.1"
+dependencies = [
+ "camino",
+ "check_analyze",
+ "check_console",
+ "check_css_parser",
+ "check_css_syntax",
+ "check_diagnostics",
+ "check_grit_parser",
+ "check_grit_syntax",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_string_case",
+ "check_test_utils",
+ "grit-pattern-matcher",
+ "grit-util",
+ "insta",
+ "path-absolutize",
+ "rand",
+ "regex",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+ "serde_json",
+ "tests_macros",
+]
+
+[[package]]
+name = "check_grit_syntax"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_rowan",
+ "check_string_case",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "check_html_factory"
+version = "0.5.7"
+dependencies = [
+ "check_html_syntax",
+ "check_rowan",
+]
+
+[[package]]
+name = "check_html_formatter"
+version = "0.0.0"
+dependencies = [
+ "camino",
+ "check_configuration",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics_categories",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_html_parser",
+ "check_html_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
+ "codspeed-criterion-compat",
+ "countme",
+ "mimalloc",
+ "schemars",
+ "serde",
+ "tests_macros",
+ "tikv-jemallocator",
+]
+
+[[package]]
+name = "check_html_parser"
+version = "0.0.1"
+dependencies = [
+ "camino",
+ "check_console",
+ "check_diagnostics",
+ "check_html_factory",
+ "check_html_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
+ "check_unicode_table",
+ "codspeed-criterion-compat",
+ "insta",
+ "mimalloc",
+ "quickcheck",
+ "quickcheck_macros",
+ "tests_macros",
+ "tikv-jemallocator",
+ "tracing",
+]
+
+[[package]]
+name = "check_html_syntax"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_rowan",
+ "check_string_case",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "check_js_analyze"
+version = "0.5.7"
+dependencies = [
+ "bitvec",
+ "camino",
+ "check_analyze",
+ "check_aria",
+ "check_aria_metadata",
+ "check_console",
+ "check_control_flow",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_fs",
+ "check_glob",
+ "check_js_factory",
+ "check_js_parser",
+ "check_js_semantic",
+ "check_js_syntax",
+ "check_js_type_info",
+ "check_jsdoc_comment",
+ "check_module_graph",
+ "check_package",
+ "check_plugin_loader",
+ "check_project_layout",
+ "check_resolver",
+ "check_rowan",
+ "check_rule_options",
+ "check_service",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
+ "check_unicode_table",
+ "codspeed-criterion-compat",
+ "enumflags2",
+ "globset",
+ "insta",
+ "mimalloc",
+ "regex",
+ "roaring",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+ "smallvec",
+ "tests_macros",
+ "tikv-jemallocator",
+]
+
+[[package]]
+name = "check_js_factory"
+version = "0.5.7"
+dependencies = [
+ "check_js_syntax",
+ "check_rowan",
+]
+
+[[package]]
+name = "check_js_formatter"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics_categories",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_js_factory",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
+ "check_text_size",
+ "check_unicode_table",
+ "codspeed-criterion-compat",
+ "countme",
+ "mimalloc",
+ "quickcheck",
+ "schemars",
+ "serde",
+ "serde_json",
+ "smallvec",
+ "tests_macros",
+ "tikv-jemallocator",
+ "unicode-width",
+]
+
+[[package]]
+name = "check_js_parser"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_configuration",
+ "check_console",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_fs",
+ "check_js_factory",
+ "check_js_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_test_utils",
+ "check_unicode_table",
+ "codspeed-criterion-compat",
+ "drop_bomb",
+ "enumflags2",
+ "indexmap",
+ "insta",
+ "mimalloc",
+ "quickcheck",
+ "quickcheck_macros",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+ "serde_json",
+ "smallvec",
+ "tests_macros",
+ "tikv-jemallocator",
+ "tracing",
+]
+
+[[package]]
+name = "check_js_runtime"
+version = "0.0.1"
+dependencies = [
+ "boa_engine",
+ "camino",
+ "check_analyze",
+ "check_diagnostics",
+ "check_resolver",
+ "check_text_size",
+ "rustc-hash 2.1.1",
+]
+
+[[package]]
+name = "check_js_semantic"
+version = "0.5.7"
+dependencies = [
+ "check_console",
+ "check_diagnostics",
+ "check_formatter",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_rowan",
+ "rust-lapper",
+ "rustc-hash 2.1.1",
+ "smallvec",
+]
+
+[[package]]
+name = "check_js_syntax"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_aria",
+ "check_aria_metadata",
+ "check_js_factory",
+ "check_js_parser",
+ "check_rowan",
+ "check_string_case",
+ "enumflags2",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "check_js_transform"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_analyze",
+ "check_diagnostics",
+ "check_js_factory",
+ "check_js_formatter",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_rowan",
+ "check_test_utils",
+ "insta",
+ "tests_macros",
+]
+
+[[package]]
+name = "check_js_type_info"
+version = "0.0.1"
+dependencies = [
+ "camino",
+ "check_formatter",
+ "check_js_formatter",
+ "check_js_parser",
+ "check_js_syntax",
+ "check_js_type_info_macros",
+ "check_resolver",
+ "check_rowan",
+ "check_test_utils",
+ "hashbrown 0.15.5",
+ "insta",
+ "rustc-hash 2.1.1",
+]
+
+[[package]]
+name = "check_js_type_info_macros"
+version = "0.0.1"
+dependencies = [
+ "proc-macro-error2",
+ "proc-macro2",
+ "quote",
+ "syn 1.0.109",
+]
+
+[[package]]
+name = "check_jsdoc_comment"
+version = "0.0.1"
+dependencies = [
+ "check_formatter",
+ "check_js_syntax",
+ "check_js_type_info",
+ "check_rowan",
+]
+
+[[package]]
+name = "check_json_analyze"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_analyze",
+ "check_console",
+ "check_diagnostics",
+ "check_json_factory",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_rowan",
+ "check_rule_options",
+ "check_string_case",
+ "check_suppression",
+ "check_test_utils",
+ "codspeed-criterion-compat",
+ "insta",
+ "mimalloc",
+ "rustc-hash 2.1.1",
+ "tests_macros",
+ "tikv-jemallocator",
+]
+
+[[package]]
+name = "check_json_factory"
+version = "0.5.7"
+dependencies = [
+ "check_json_syntax",
+ "check_rowan",
+]
+
+[[package]]
+name = "check_json_formatter"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_formatter",
+ "check_formatter_test",
+ "check_fs",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_service",
+ "check_suppression",
+ "check_test_utils",
+ "codspeed-criterion-compat",
+ "countme",
+ "mimalloc",
+ "schemars",
+ "serde",
+ "serde_json",
+ "tests_macros",
+ "tikv-jemallocator",
+]
+
+[[package]]
+name = "check_json_parser"
+version = "0.5.7"
+dependencies = [
+ "check_console",
+ "check_diagnostics",
+ "check_json_factory",
+ "check_json_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
+ "check_unicode_table",
+ "codspeed-criterion-compat",
+ "insta",
+ "mimalloc",
+ "quickcheck",
+ "quickcheck_macros",
+ "tests_macros",
+ "tikv-jemallocator",
+ "tracing",
+ "unicode-bom",
+]
+
+[[package]]
+name = "check_json_syntax"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_rowan",
+ "check_string_case",
+ "dirs",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "check_json_value"
+version = "0.1.0"
+dependencies = [
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_rowan",
+ "indexmap",
+ "rustc-hash 2.1.1",
+ "static_assertions",
+]
+
+[[package]]
+name = "check_line_index"
+version = "0.1.0"
+dependencies = [
+ "check_text_size",
+ "rustc-hash 2.1.1",
+]
+
+[[package]]
+name = "check_lsp"
+version = "0.0.0"
+dependencies = [
+ "anyhow",
+ "camino",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_fs",
+ "check_line_index",
+ "check_lsp_converters",
+ "check_resolver",
+ "check_rowan",
+ "check_service",
+ "check_text_edit",
+ "crossbeam",
+ "futures",
+ "papaya",
+ "rustc-hash 2.1.1",
+ "serde",
+ "serde_json",
+ "tokio",
+ "tower",
+ "tower-lsp-server",
+ "tracing",
+]
+
+[[package]]
+name = "check_lsp_converters"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "check_line_index",
+ "check_text_size",
+ "rustc-hash 2.1.1",
+ "tower",
+ "tower-lsp-server",
+]
+
+[[package]]
+name = "check_markdown_factory"
+version = "0.0.1"
+dependencies = [
+ "check_markdown_syntax",
+ "check_rowan",
+]
+
+[[package]]
+name = "check_markdown_parser"
+version = "0.0.1"
+dependencies = [
+ "check_console",
+ "check_diagnostics",
+ "check_markdown_factory",
+ "check_markdown_syntax",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
+ "check_unicode_table",
+ "insta",
+ "quickcheck",
+ "quickcheck_macros",
+ "tests_macros",
+ "tracing",
+ "unicode-bom",
+]
+
+[[package]]
+name = "check_markdown_syntax"
+version = "0.0.1"
+dependencies = [
+ "check_rowan",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "check_markup"
+version = "0.5.7"
+dependencies = [
+ "proc-macro-error2",
+ "proc-macro2",
+ "quote",
+]
+
+[[package]]
+name = "check_migrate"
+version = "0.0.0"
+dependencies = [
+ "camino",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_diagnostics",
+ "check_glob",
+ "check_json_factory",
+ "check_json_formatter",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_package",
+ "check_rowan",
+ "check_test_utils",
+ "insta",
+ "rustc-hash 2.1.1",
+ "tests_macros",
+]
+
+[[package]]
+name = "check_module_graph"
+version = "0.0.1"
+dependencies = [
+ "camino",
+ "cfg-if",
+ "check_console",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_formatter",
+ "check_fs",
+ "check_js_formatter",
+ "check_js_parser",
+ "check_js_semantic",
+ "check_js_syntax",
+ "check_js_type_info",
+ "check_jsdoc_comment",
+ "check_json_parser",
+ "check_json_value",
+ "check_package",
+ "check_project_layout",
+ "check_resolver",
+ "check_rowan",
+ "check_test_utils",
+ "codspeed-divan-compat",
+ "indexmap",
+ "insta",
+ "mimalloc",
+ "once_cell",
+ "papaya",
+ "rust-lapper",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+ "serde_json",
+ "static_assertions",
+ "tikv-jemallocator",
+ "walkdir",
+]
+
+[[package]]
+name = "check_package"
+version = "0.5.7"
+dependencies = [
+ "camino",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_fs",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_json_value",
+ "check_parser",
+ "check_rowan",
+ "check_text_size",
+ "codspeed-divan-compat",
+ "indexmap",
+ "insta",
+ "mimalloc",
+ "rustc-hash 2.1.1",
+ "serde",
+ "static_assertions",
+ "tests_macros",
+ "tikv-jemallocator",
+]
+
+[[package]]
+name = "check_parser"
+version = "0.5.7"
+dependencies = [
+ "check_console",
+ "check_diagnostics",
+ "check_rowan",
+ "check_unicode_table",
+ "drop_bomb",
+ "enumflags2",
+ "unicode-bom",
+]
+
+[[package]]
+name = "check_plugin_loader"
+version = "0.0.1"
+dependencies = [
+ "boa_engine",
+ "camino",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_css_syntax",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_fs",
+ "check_grit_patterns",
+ "check_js_parser",
+ "check_js_runtime",
+ "check_js_syntax",
+ "check_json_parser",
+ "check_parser",
+ "check_resolver",
+ "check_rowan",
+ "check_text_size",
+ "grit-pattern-matcher",
+ "grit-util",
+ "insta",
+ "libc",
+ "papaya",
+ "rustc-hash 2.1.1",
+ "serde",
+ "windows",
+]
+
+[[package]]
+name = "check_project_layout"
+version = "0.0.1"
+dependencies = [
+ "camino",
+ "check_package",
+ "check_parser",
+ "check_rowan",
+ "papaya",
+ "rustc-hash 2.1.1",
+]
+
+[[package]]
+name = "check_resolver"
+version = "0.1.0"
+dependencies = [
+ "camino",
+ "check_console",
+ "check_diagnostics",
+ "check_fs",
+ "check_json_value",
+ "check_package",
+ "check_rowan",
+]
+
+[[package]]
+name = "check_rowan"
+version = "0.5.7"
+dependencies = [
+ "check_text_edit",
+ "check_text_size",
+ "countme",
+ "hashbrown 0.15.5",
+ "iai",
+ "quickcheck",
+ "quickcheck_macros",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "check_rule_options"
+version = "0.0.1"
+dependencies = [
+ "camino",
+ "check_console",
+ "check_deserialize",
+ "check_deserialize_macros",
+ "check_diagnostics",
+ "check_glob",
+ "check_js_syntax",
+ "check_resolver",
+ "check_rowan",
+ "check_string_case",
+ "enumflags2",
+ "regex",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+ "smallvec",
+]
+
+[[package]]
+name = "check_service"
+version = "0.0.0"
+dependencies = [
+ "append-only-vec",
+ "camino",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_css_analyze",
+ "check_css_formatter",
+ "check_css_parser",
+ "check_css_semantic",
+ "check_css_syntax",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_formatter",
+ "check_fs",
+ "check_glob",
+ "check_graphql_analyze",
+ "check_graphql_formatter",
+ "check_graphql_parser",
+ "check_graphql_syntax",
+ "check_grit_formatter",
+ "check_grit_parser",
+ "check_grit_patterns",
+ "check_grit_syntax",
+ "check_html_formatter",
+ "check_html_parser",
+ "check_html_syntax",
+ "check_js_analyze",
+ "check_js_factory",
+ "check_js_formatter",
+ "check_js_parser",
+ "check_js_semantic",
+ "check_js_syntax",
+ "check_js_type_info",
+ "check_json_analyze",
+ "check_json_formatter",
+ "check_json_parser",
+ "check_json_syntax",
+ "check_module_graph",
+ "check_package",
+ "check_parser",
+ "check_plugin_loader",
+ "check_project_layout",
+ "check_resolver",
+ "check_rowan",
+ "check_string_case",
+ "check_text_edit",
+ "crossbeam",
+ "enumflags2",
+ "getrandom 0.2.15",
+ "ignore",
+ "insta",
+ "notify",
+ "papaya",
+ "rayon",
+ "regex",
+ "rustc-hash 2.1.1",
+ "schemars",
+ "serde",
+ "serde_json",
+ "smallvec",
+ "tokio",
+ "tracing",
+ "web-time",
+]
+
+[[package]]
+name = "check_string_case"
+version = "0.5.7"
+dependencies = [
+ "check_rowan",
+]
+
+[[package]]
+name = "check_suppression"
+version = "0.5.7"
+dependencies = [
+ "check_console",
+ "check_diagnostics",
+ "check_rowan",
+]
+
+[[package]]
+name = "check_syntax_codegen"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "check_string_case",
+ "check_ungrammar",
+ "proc-macro2",
+ "quote",
+]
+
+[[package]]
+name = "check_tailwind_factory"
+version = "0.0.1"
+dependencies = [
+ "check_rowan",
+ "check_tailwind_syntax",
+]
+
+[[package]]
+name = "check_tailwind_parser"
+version = "0.0.1"
+dependencies = [
+ "camino",
+ "check_console",
+ "check_diagnostics",
+ "check_parser",
+ "check_rowan",
+ "check_tailwind_factory",
+ "check_tailwind_syntax",
+ "check_test_utils",
+ "check_unicode_table",
+ "insta",
+ "mimalloc",
+ "quickcheck",
+ "quickcheck_macros",
+ "tests_macros",
+ "tracing",
+]
+
+[[package]]
+name = "check_tailwind_syntax"
+version = "0.0.1"
+dependencies = [
+ "check_rowan",
+ "schemars",
+ "serde",
+]
+
+[[package]]
+name = "check_test_utils"
+version = "0.0.0"
+dependencies = [
+ "ansi_rgb",
+ "camino",
+ "check_analyze",
+ "check_configuration",
+ "check_console",
+ "check_deserialize",
+ "check_diagnostics",
+ "check_formatter",
+ "check_fs",
+ "check_js_parser",
+ "check_js_type_info",
+ "check_json_parser",
+ "check_module_graph",
+ "check_package",
+ "check_project_layout",
+ "check_rowan",
+ "check_service",
+ "check_string_case",
+ "countme",
+ "json_comments",
+ "serde_json",
+ "similar",
+ "ureq",
+ "url",
+]
+
+[[package]]
+name = "check_text_edit"
+version = "0.5.7"
+dependencies = [
+ "check_text_size",
+ "schemars",
+ "serde",
+ "similar",
+]
+
+[[package]]
+name = "check_text_size"
+version = "0.5.7"
+dependencies = [
+ "schemars",
+ "serde",
+ "serde_test",
+ "static_assertions",
+]
+
+[[package]]
+name = "check_ungrammar"
+version = "0.3.1"
+
+[[package]]
+name = "check_unicode_table"
+version = "0.5.7"
+
+[[package]]
+name = "check_wasm"
+version = "1.9.4"
+dependencies = [
+ "camino",
+ "check_console",
+ "check_diagnostics",
+ "check_fs",
+ "check_js_factory",
+ "check_js_formatter",
+ "check_rowan",
+ "check_service",
+ "console_error_panic_hook",
+ "js-sys",
+ "quote",
+ "schemars",
+ "serde",
+ "serde-wasm-bindgen",
+ "wasm-bindgen",
+]
+
+[[package]]
+name = "check_yaml_factory"
+version = "0.0.1"
+dependencies = [
+ "check_rowan",
+ "check_yaml_syntax",
+]
+
+[[package]]
+name = "check_yaml_parser"
+version = "0.0.1"
+dependencies = [
+ "check_console",
+ "check_diagnostics",
+ "check_parser",
+ "check_rowan",
+ "check_test_utils",
+ "check_unicode_table",
+ "check_yaml_factory",
+ "check_yaml_syntax",
+ "insta",
+ "quickcheck",
+ "quickcheck_macros",
+ "tests_macros",
+ "tracing",
+]
+
+[[package]]
+name = "check_yaml_syntax"
+version = "0.0.1"
+dependencies = [
+ "camino",
+ "check_rowan",
+ "check_string_case",
+ "schemars",
+ "serde",
+]
 
 [[package]]
 name = "chrono"
@@ -4285,8 +4285,8 @@ dependencies = [
 name = "tests_macros"
 version = "0.0.0"
 dependencies = [
- "check_string_case",
  "case",
+ "check_string_case",
  "globwalk",
  "proc-macro-error2",
  "proc-macro2",
