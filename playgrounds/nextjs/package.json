@@ -7,7 +7,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "check": "bun run biome check --write",
-    "lint": "biome check",
+    "lint": "biome link --write",
     "format": "biome format --write"
   },
   "dependencies": {

@@ -7,6 +7,9 @@ bunx create-next-app@latest nextjs
 bunx --bun shadcn@latest init
 bunx --bun shadcn@latest add
 ```
+https://github.com/robinjusticeleague/biome/tree/dev
+
+I want to create dx-check software from this biome - want to make it 10 times faster than current biome so please tell me how to do this as oxc is faster than biome - so what to do??
 
 <div align="center">
   <picture>
