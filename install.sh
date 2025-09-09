@@ -7,11 +7,9 @@
 #   ./install_check.sh          (for a fast, unoptimized debug build)
 #   ./install_check.sh release  (for a slow, optimized release build)
 
-# Exit immediately if a command exits with a non-zero status.
-set -e
+set -e  # Exit immediately if a command exits with a non-zero status.
 
 # --- Speed-up Configuration ---
-# Attempt to use the 'lld' linker for faster link times, a common bottleneck.
 if command -v lld &> /dev/null; then
     echo "⚡ Found 'lld' linker. Configuring for faster builds."
     export RUSTFLAGS="-C linker=clang -C link-arg=-fuse-ld=lld"
@@ -20,13 +18,10 @@ else
 fi
 
 # --- Configuration ---
-# The directory where your 'check-cli' crate is located.
 PROJECT_DIR="crates/check_cli"
-BINARY_NAME="check"
+BINARY_NAME="check"  # This is the actual binary name Cargo produces
 
 # --- Script Logic ---
-
-# Determine build mode. Default is 'dev' for speed.
 BUILD_MODE="debug"
 if [[ "$1" == "release" ]]; then
   BUILD_MODE="release"
@@ -37,7 +32,6 @@ echo "🚀 Starting installation for '$BINARY_NAME' (Mode: $BUILD_MODE)..."
 # 1. Check if the project directory exists
 if [ ! -d "$PROJECT_DIR" ]; then
   echo "❌ Error: Project directory not found at './${PROJECT_DIR}'"
-  echo "Please make sure you are in the correct root directory and the path is correct."
   exit 1
 fi
 
@@ -45,13 +39,13 @@ fi
 echo "➡️  Changing directory to '$PROJECT_DIR'..."
 cd "$PROJECT_DIR"
 
-# 3. Build and install based on the mode
+# 3. Build and install
 if [[ "$BUILD_MODE" == "release" ]]; then
   echo "🛠️  Building in release mode (slower compile, fast runtime)..."
   cargo build --release
-  
-  SOURCE_BINARY="target/release/check_cli"
-  echo "🔍 Verifying that the binary was built successfully..."
+
+  SOURCE_BINARY="../../target/release/$BINARY_NAME"
+  echo "🔍 Verifying that the binary ('$SOURCE_BINARY') was built successfully..."
   if [ -f "$SOURCE_BINARY" ]; then
     echo "📥 Copying release binary to /usr/local/bin/ with sudo..."
     sudo cp "$SOURCE_BINARY" "/usr/local/bin/$BINARY_NAME"
@@ -63,8 +57,7 @@ else
   echo "🛠️  Building in debug mode (faster compile, slow runtime)..."
   cargo build
 
-  # Updated to match actual crate name
-  SOURCE_BINARY="target/debug/check_cli"
+  SOURCE_BINARY="../../target/debug/$BINARY_NAME"
   echo "🔍 Verifying that the binary ('$SOURCE_BINARY') was built successfully..."
   if [ -f "$SOURCE_BINARY" ]; then
     echo "📥 Copying debug binary to /usr/local/bin/ with sudo..."
