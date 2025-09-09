@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "biome": "bun run biome biome --write",
+    "do": "bun run biome biome --write",
     "lint": "biome link --write",
     "format": "biome format --write"
   },
