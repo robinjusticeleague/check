@@ -2,6 +2,10 @@
 
 ```bash
 find . -type d \( -name "tests" -o -name "benches" \) -exec rm -rf {} +
+npm install -g npm@11.6.0 bun
+bunx create-next-app@latest nextjs
+bunx --bun shadcn@latest init
+bunx --bun shadcn@latest add
 ```
 
 <div align="center">
