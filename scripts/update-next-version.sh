@@ -4,7 +4,7 @@ set -euo pipefail
 # Script: update_next_version.sh
 # Purpose:
 #   - Search for occurrences of: version: "next"
-#     in Rust source files under: crates/biome_*_analyze
+#     in Rust source files under: crates/check_*_analyze
 #   - Optionally replace "next" with a provided new string (using sed).
 #
 # Requirements:
@@ -29,12 +29,12 @@ set -euo pipefail
 #   1 usage / argument errors
 
 PATTERN='version:[[:space:]]*"next"'
-SEARCH_ROOT='crates/biome_*_analyze'
+SEARCH_ROOT='crates/check_*_analyze'
 
 print_help() {
   cat <<'EOF'
 Search (and optionally replace) occurrences of: version: "next"
-within: crates/biome_*_analyze/**/*.rs
+within: crates/check_*_analyze/**/*.rs
 
 Usage:
   update_next_version.sh               # list matches

@@ -1,0 +1,84 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+## `node_modules/@shared/linter/check.jsonc`
+
+```json
+{ "linter": { "enabled": false } }
+```
+
+## `check.json`
+
+```json
+{ "extends": ["@shared/format", "@shared/linter/check"] }
+```
+
+## `node_modules/@shared/format/check.json`
+
+```json
+{ "javascript": { "formatter": { "quoteStyle": "single" } } }
+```
+
+## `node_modules/@shared/format/package.json`
+
+```json
+{
+    "name": "@shared/format",
+    "exports": {
+        ".": {
+            "check": "./check.json"
+        }
+    }
+}
+```
+
+## `node_modules/@shared/linter/package.json`
+
+```json
+{
+    "name": "@shared/linter",
+    "exports": {
+        "./check": {
+            "default": "./check.jsonc"
+        }
+    }
+}
+```
+
+## `test.js`
+
+```js
+debugger; console.log("string"); 
+```
+
+# Termination Message
+
+```block
+check ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Some errors were emitted while running checks.
+  
+
+
+```
+
+# Emitted Messages
+
+```block
+test.js format ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Formatter would have printed the following content:
+  
+    1   │ - debugger;·console.log("string");·
+      1 │ + debugger;
+      2 │ + console.log('string');
+      3 │ + 
+  
+
+```
+
+```block
+Checked 1 file in <TIME>. No fixes applied.
+Found 1 error.
+```

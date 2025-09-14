@@ -1,0 +1,9 @@
+---
+source: crates/check_js_analyze/tests/spec_tests.rs
+expression: component.svg.svelte.ts
+---
+# Input
+```ts
+/* should not generate diagnostics */
+
+```

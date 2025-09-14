@@ -58,7 +58,7 @@ impl Iterator for AllFiles {
 }
 
 fn transform_file_name(input: &str) -> String {
-    let mut result = biome_string_case::Case::Snake.convert(input);
+    let mut result = check_string_case::Case::Snake.convert(input);
 
     let is_keyword = matches!(
         result.as_str(),

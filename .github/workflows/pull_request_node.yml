@@ -6,7 +6,7 @@ on:
       - main
     paths: # Only run when changes are made to Rust crates or Node.js packages
       - "crates/**"
-      - "packages/@biomejs/**"
+      - "packages/@checkjs/**"
       - "Cargo.toml"
       - "Cargo.lock"
       - "package.json"
@@ -38,7 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build main binary
-        run: cargo build -p biome_cli --release
+        run: cargo build -p check_cli --release
       - name: Install Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
@@ -63,14 +63,14 @@ jobs:
         # breaks something, we'll discover it later, possibly when creating a
         # prerelease.
         run: |
-          pnpm --filter @biomejs/backend-jsonrpc i
-          pnpm --filter @biomejs/backend-jsonrpc run build
-          pnpm --filter @biomejs/js-api run build:wasm-bundler-dev
-          pnpm --filter @biomejs/js-api run build:wasm-node-dev
-          pnpm --filter @biomejs/js-api run build:wasm-web-dev
-          pnpm --filter @biomejs/js-api i
-          pnpm --filter @biomejs/js-api run build
+          pnpm --filter @checkjs/backend-jsonrpc i
+          pnpm --filter @checkjs/backend-jsonrpc run build
+          pnpm --filter @checkjs/js-api run build:wasm-bundler-dev
+          pnpm --filter @checkjs/js-api run build:wasm-node-dev
+          pnpm --filter @checkjs/js-api run build:wasm-web-dev
+          pnpm --filter @checkjs/js-api i
+          pnpm --filter @checkjs/js-api run build
       - name: Run JS tests
         run: |
-          pnpm --filter @biomejs/backend-jsonrpc run test:ci
-          pnpm --filter @biomejs/js-api run test:ci
+          pnpm --filter @checkjs/backend-jsonrpc run test:ci
+          pnpm --filter @checkjs/js-api run test:ci

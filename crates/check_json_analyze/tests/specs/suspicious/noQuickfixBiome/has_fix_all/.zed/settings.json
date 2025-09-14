@@ -1,0 +1,7 @@
+{
+  "editor.code_action_on_format": {
+    "quickfix.check": true,
+    "source.organizeImports.check": true,
+    "source.fixAll.check": true
+  }
+}

@@ -1,0 +1,59 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Workspace package handler"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_package"
+publish              = true
+repository.workspace = true
+version              = "0.5.7"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+check_console            = { workspace = true }
+check_deserialize        = { workspace = true, features = ["camino", "indexmap"] }
+check_deserialize_macros = { workspace = true }
+check_diagnostics        = { workspace = true }
+check_fs                 = { workspace = true }
+check_json_parser        = { workspace = true }
+check_json_syntax        = { workspace = true }
+check_json_value         = { workspace = true }
+check_parser             = { workspace = true }
+check_rowan              = { workspace = true }
+check_text_size          = { workspace = true }
+camino                   = { workspace = true }
+indexmap                 = { workspace = true }
+rustc-hash               = { workspace = true }
+serde                    = { workspace = true }
+static_assertions        = { workspace = true }
+
+[dev-dependencies]
+divan        = { package = "codspeed-divan-compat", version = "*" }
+insta        = { workspace = true }
+tests_macros = { path = "../tests_macros" }
+
+[target.'cfg(target_os = "windows")'.dev-dependencies]
+mimalloc = { workspace = true }
+
+[target.'cfg(all(target_family="unix", not(all(target_arch = "aarch64", target_env = "musl"))))'.dev-dependencies]
+tikv-jemallocator = { workspace = true }
+
+[lints]
+workspace = true
+
+[[bench]]
+harness = false
+name    = "package_json"
+
+
+[[bench]]
+harness = false
+name    = "tsconfig_json"
+
+[[bench]]
+harness = false
+name    = "semver"

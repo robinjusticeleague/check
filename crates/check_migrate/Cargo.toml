@@ -1,0 +1,38 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Utilities for the `check migrate` command"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_migrate"
+publish              = false
+repository.workspace = true
+version              = "0.0.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+check_analyze       = { workspace = true }
+check_configuration = { workspace = true }
+check_console       = { workspace = true }
+check_diagnostics   = { workspace = true }
+check_glob          = { workspace = true }
+check_json_factory  = { workspace = true }
+check_json_syntax   = { workspace = true }
+check_package       = { workspace = true }
+check_rowan         = { workspace = true }
+camino              = { workspace = true }
+rustc-hash          = { workspace = true }
+
+[dev-dependencies]
+check_json_factory   = { path = "../check_json_factory" }
+check_json_formatter = { path = "../check_json_formatter" }
+check_json_parser    = { path = "../check_json_parser" }
+check_test_utils     = { path = "../check_test_utils" }
+insta                = { workspace = true, features = ["glob"] }
+tests_macros         = { path = "../tests_macros" }
+
+[lints]
+workspace = true

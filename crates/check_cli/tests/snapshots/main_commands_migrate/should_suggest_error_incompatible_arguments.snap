@@ -1,0 +1,20 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+## `check.json`
+
+```json
+{ "linter": { "enabled": true } }
+```
+
+# Termination Message
+
+```block
+flags/invalid ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Incompatible arguments --write and --fix. These arguments do the same thing, but --fix is deprecated. Prefer to use --write.
+  
+
+
+```

@@ -5,7 +5,7 @@
 
 # Default values
 VERSION=""
-CHANGELOG_FILE="packages/@biomejs/biome/CHANGELOG.md"
+CHANGELOG_FILE="packages/@checkjs/check/CHANGELOG.md"
 
 # Parse arguments
 if [ $# -eq 0 ]; then

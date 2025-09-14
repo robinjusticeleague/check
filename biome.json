@@ -1,10 +1,10 @@
 {
-  "$schema": "./packages/@biomejs/biome/configuration_schema.json",
+  "$schema": "./packages/@checkjs/check/configuration_schema.json",
   "assist": {
     "enabled": true,
     "includes": [
       "**",
-      "!./packages/@biomejs/biome/configuration_schema.json"
+      "!./packages/@checkjs/check/configuration_schema.json"
     ],
     "actions": {
       "source": {
@@ -21,14 +21,14 @@
   "files": {
     "includes": [
       "**/packages/aria-data/*.js",
-      "**/packages/@biomejs/**",
+      "**/packages/@checkjs/**",
       "**/packages/tailwindcss-config-analyzer/**",
       "**/benchmark/**",
       "plugins/*.js",
       "scripts/**",
       "!**/crates",
       "!**/dist",
-      "!**/packages/@biomejs/backend-jsonrpc/src/workspace.ts",
+      "!**/packages/@checkjs/backend-jsonrpc/src/workspace.ts",
       "!**/__snapshots__",
       "!**/undefined",
       "!**/benchmark/target",

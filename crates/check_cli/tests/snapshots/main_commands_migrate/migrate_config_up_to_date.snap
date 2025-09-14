@@ -1,0 +1,35 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+## `check.json`
+
+```json
+{ "linter": { "enabled": true } }
+```
+
+# Emitted Messages
+
+```block
+check.json migrate ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i Configuration file can be updated.
+  
+    1 │ {·"root":·false,"linter":·{·"enabled":·true·}·}
+      │    ++++++++++++++                              
+
+```
+
+```block
+configuration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i Migration results:
+  
+  - check.json: configuration needs migration.
+  
+  i Use --write to apply the changes.
+  
+  $ check migrate --write
+  
+
+```

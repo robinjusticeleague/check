@@ -1,10 +1,10 @@
-export type BiomePath = string;
+export type CheckPath = string;
 export type ProjectKey = number;
 
 interface UpdateSettingsParams<Configuration> {
 	configuration: Configuration;
 	projectKey: ProjectKey;
-	workspaceDirectory?: BiomePath;
+	workspaceDirectory?: CheckPath;
 }
 
 type TextRange = [TextSize, TextSize];
@@ -13,7 +13,7 @@ type TextSize = number;
 
 interface OpenProjectParams {
 	openUninitialized: boolean;
-	path: BiomePath;
+	path: CheckPath;
 }
 export interface OpenProjectResult {
 	/**
@@ -23,24 +23,24 @@ export interface OpenProjectResult {
 }
 interface OpenFileParams {
 	content: FileContent;
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 type FileContent = { content: string; type: "fromClient"; version: number };
 
 interface CloseFileParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 
 interface GetFormatterIRParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 
 interface PullDiagnosticsParams {
 	categories: RuleCategories;
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 	/**
 	 * When `false` the diagnostics, don't have code frames of the code actions
@@ -56,19 +56,19 @@ interface PullDiagnosticsResult<Diagnostic> {
 }
 
 interface FormatFileParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 }
 
 interface FormatRangeParams {
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 	range: TextRange;
 }
 
 interface FixFileParams {
 	fixFileMode: FixFileMode;
-	path: BiomePath;
+	path: CheckPath;
 	projectKey: ProjectKey;
 	ruleCategories: RuleCategories;
 	shouldFormat: boolean;
@@ -99,9 +99,9 @@ export interface Workspace<Configuration, Diagnostic> {
 	pullDiagnostics(
 		params: PullDiagnosticsParams,
 	): PullDiagnosticsResult<Diagnostic>;
-	// biome-ignore lint: code generation is broken
+	// check-ignore lint: code generation is broken
 	formatRange(params: FormatRangeParams): any;
-	// biome-ignore lint: code generation is broken
+	// check-ignore lint: code generation is broken
 	formatFile(params: FormatFileParams): any;
 	getFormatterIr(params: GetFormatterIRParams): string;
 	fixFile(params: FixFileParams): FixFileResult;

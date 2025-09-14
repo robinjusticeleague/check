@@ -1,0 +1,53 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_html_formatter"
+repository.workspace = true
+version              = "0.0.0"
+
+[dependencies]
+check_deserialize            = { workspace = true }
+check_deserialize_macros     = { workspace = true }
+check_diagnostics_categories = { workspace = true }
+check_formatter              = { workspace = true }
+check_html_syntax            = { workspace = true }
+check_rowan                  = { workspace = true }
+check_string_case            = { workspace = true }
+check_suppression            = { workspace = true }
+schemars                     = { workspace = true, optional = true }
+serde                        = { workspace = true, optional = true }
+
+[dev-dependencies]
+check_configuration  = { workspace = true }
+check_formatter      = { workspace = true, features = ["countme"] }
+check_formatter_test = { workspace = true }
+check_fs             = { workspace = true }
+check_html_parser    = { workspace = true }
+check_parser         = { workspace = true }
+check_service        = { workspace = true }
+check_test_utils     = { path = "../check_test_utils" }
+camino               = { workspace = true }
+countme              = { workspace = true, features = ["enable"] }
+criterion            = { package = "codspeed-criterion-compat", version = "=3.0.3" }
+tests_macros         = { workspace = true }
+
+[target.'cfg(target_os = "windows")'.dev-dependencies]
+mimalloc = { workspace = true }
+
+[target.'cfg(all(target_family="unix", not(all(target_arch = "aarch64", target_env = "musl"))))'.dev-dependencies]
+tikv-jemallocator = { workspace = true }
+
+[features]
+schema = ["dep:schemars", "serde"]
+serde  = ["dep:serde", "check_rowan/serde"]
+
+[lints]
+workspace = true
+
+[[bench]]
+harness = false
+name    = "html_formatter"

@@ -1,0 +1,31 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+## `check.json`
+
+```json
+{
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "useSortedKeys": "on"
+      }
+    }
+  },
+  "formatter": { "enabled": false }
+}
+```
+
+## `file.json`
+
+```json
+{ "foo": "bar","lorem": "ipsum", "zod": true }
+```
+
+# Emitted Messages
+
+```block
+Checked 1 file in <TIME>. Fixed 1 file.
+```

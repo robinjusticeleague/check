@@ -1,0 +1,15 @@
+{
+	"$schema": "../../../../../../packages/@checkjs/check/configuration_schema.json",
+	"linter": {
+		"rules": {
+			"style": {
+				"useReadonlyClassProperties": {
+					"level": "error",
+					"options": {
+						"checkAllProperties": true
+					}
+				}
+			}
+		}
+	}
+}

@@ -7,14 +7,14 @@ version = "0.0.0"
 [dependencies]
 ascii_table        = "4.0.7"
 backtrace          = "0.3.75"
-biome_console      = { workspace = true }
-biome_diagnostics  = { workspace = true }
-biome_js_parser    = { workspace = true }
-biome_js_semantic  = { workspace = true }
-biome_js_syntax    = { workspace = true }
-biome_parser       = { workspace = true }
-biome_rowan        = { workspace = true }
-biome_string_case  = { workspace = true }
+check_console      = { workspace = true }
+check_diagnostics  = { workspace = true }
+check_js_parser    = { workspace = true }
+check_js_semantic  = { workspace = true }
+check_js_syntax    = { workspace = true }
+check_parser       = { workspace = true }
+check_rowan        = { workspace = true }
+check_string_case  = { workspace = true }
 camino             = { workspace = true }
 colored            = "3.0.0"
 indicatif          = { version = "0.18.0", features = ["improved_unicode"] }

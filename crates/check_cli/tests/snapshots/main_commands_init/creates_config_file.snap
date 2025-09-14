@@ -1,0 +1,76 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+## `check.json`
+
+```json
+{
+  "$schema": "https://checkjs.dev/schemas/0.0.0/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": false
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "tab"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  }
+}
+```
+
+# Emitted Messages
+
+```block
+
+Welcome to Check! Let's get you started...
+
+Files created 
+
+  - check.json
+    Your project configuration. See https://checkjs.dev/reference/configuration
+
+Next Steps 
+
+  1. Setup an editor extension
+     Get live errors as you type and format when you save.
+     Learn more at https://checkjs.dev/guides/editors/first-party-extensions/
+
+  2. Try a command
+     check check  checks formatting, import sorting, and lint rules.
+     check --help displays the available commands.
+
+  3. Migrate from ESLint and Prettier
+     check migrate eslint   migrates your ESLint configuration to Check.
+     check migrate prettier migrates your Prettier configuration to Check.
+
+  4. Read the documentation
+     Find guides and documentation at https://checkjs.dev/guides/getting-started/
+
+  5. Get involved with the community
+     Ask questions and contribute on GitHub: https://github.com/checkjs/check
+     Seek for help on Discord: https://checkjs.dev/chat
+
+```

@@ -1,0 +1,18 @@
+---
+source: crates/check_js_analyze/tests/spec_tests.rs
+expression: validVariableAndExport.ts
+---
+# Input
+```ts
+/* should not generate diagnostics */
+const a = "";
+
+interface a {
+	foo: string;
+}
+
+export { a };
+
+```
+
+

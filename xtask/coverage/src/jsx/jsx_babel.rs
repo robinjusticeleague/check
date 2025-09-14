@@ -3,9 +3,9 @@ use crate::{
     check_file_encoding,
     runner::{TestCase, TestCaseFiles, TestRunOutcome, TestSuite},
 };
-use biome_js_parser::{JsParserOptions, parse};
-use biome_js_syntax::{JsFileSource, ModuleKind};
-use biome_rowan::SyntaxKind;
+use check_js_parser::{JsParserOptions, parse};
+use check_js_syntax::{JsFileSource, ModuleKind};
+use check_rowan::SyntaxKind;
 use std::io;
 use std::path::Path;
 use std::process::Command;

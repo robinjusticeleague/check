@@ -1,0 +1,59 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Check's JSON formatter"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_json_formatter"
+repository.workspace = true
+version              = "0.5.7"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+check_deserialize        = { workspace = true }
+check_deserialize_macros = { workspace = true }
+check_diagnostics        = { workspace = true }
+check_formatter          = { workspace = true }
+check_json_syntax        = { workspace = true }
+check_rowan              = { workspace = true }
+check_suppression        = { workspace = true }
+camino                   = { workspace = true }
+schemars                 = { workspace = true, optional = true }
+serde                    = { workspace = true, features = ["derive"], optional = true }
+
+[dev-dependencies]
+check_formatter      = { workspace = true, features = ["countme"] }
+check_formatter_test = { path = "../check_formatter_test" }
+check_fs             = { path = "../check_fs" }
+check_json_parser    = { path = "../check_json_parser" }
+check_parser         = { path = "../check_parser" }
+check_service        = { path = "../check_service" }
+check_test_utils     = { path = "../check_test_utils" }
+countme              = { workspace = true, features = ["enable"] }
+criterion            = { package = "codspeed-criterion-compat", version = "=3.0.3" }
+serde_json           = { workspace = true }
+tests_macros         = { path = "../tests_macros" }
+
+[target.'cfg(target_os = "windows")'.dev-dependencies]
+mimalloc = { workspace = true }
+
+[target.'cfg(all(target_family="unix", not(all(target_arch = "aarch64", target_env = "musl"))))'.dev-dependencies]
+tikv-jemallocator = { workspace = true }
+
+# cargo-workspaces metadata
+[package.metadata.workspaces]
+independent = true
+
+[features]
+schema = ["dep:schemars", "serde"]
+serde  = ["dep:serde"]
+
+[lints]
+workspace = true
+
+[[bench]]
+harness = false
+name    = "json_formatter"

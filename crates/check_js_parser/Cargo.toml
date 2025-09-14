@@ -1,0 +1,65 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Check's JavaScript parser"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_js_parser"
+repository.workspace = true
+version              = "0.5.7"
+
+[dependencies]
+check_console       = { workspace = true }
+check_diagnostics   = { workspace = true }
+check_js_factory    = { workspace = true }
+check_js_syntax     = { workspace = true }
+check_parser        = { workspace = true }
+check_rowan         = { workspace = true }
+check_unicode_table = { workspace = true }
+drop_bomb           = "0.1.5"
+enumflags2          = { workspace = true }
+indexmap            = { workspace = true }
+rustc-hash          = { workspace = true }
+schemars            = { workspace = true, optional = true }
+serde               = { workspace = true, features = ["derive"], optional = true }
+serde_json          = { workspace = true }
+smallvec            = { workspace = true }
+tracing             = { workspace = true }
+
+[dev-dependencies]
+check_configuration = { workspace = true }
+check_deserialize   = { workspace = true }
+check_fs            = { workspace = true }
+check_service       = { workspace = true }
+check_test_utils    = { workspace = true }
+camino              = { workspace = true }
+criterion           = { package = "codspeed-criterion-compat", version = "=3.0.3" }
+insta               = { workspace = true }
+quickcheck          = { workspace = true }
+quickcheck_macros   = { workspace = true }
+tests_macros        = { path = "../tests_macros" }
+
+[target.'cfg(target_os = "windows")'.dev-dependencies]
+mimalloc = { workspace = true }
+
+[target.'cfg(all(target_family="unix", not(all(target_arch = "aarch64", target_env = "musl"))))'.dev-dependencies]
+tikv-jemallocator = { workspace = true }
+
+
+[features]
+schema = ["dep:schemars", "serde"]
+serde  = ["dep:serde", "check_js_syntax/schema"]
+tests  = []
+
+# cargo-workspaces metadata
+[package.metadata.workspaces]
+independent = true
+
+[lints]
+workspace = true
+
+[[bench]]
+harness = false
+name    = "js_parser"

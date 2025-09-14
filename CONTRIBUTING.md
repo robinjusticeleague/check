@@ -45,10 +45,10 @@ We can use help in a bunch of areas and any help is greatly appreciated!
 
 ## Asking questions, making proposals
 
-If you have any questions, proposals, or feedback, open a [GitHub discussion](https://github.com/biomejs/biome/discussions).
+If you have any questions, proposals, or feedback, open a [GitHub discussion](https://github.com/checkjs/check/discussions).
 Make sure your comment adds value: [don't post a comment just to get attention](https://jacobtomlinson.dev/posts/2022/dont-be-that-open-source-user-dont-be-me/).
 
-Our [Discord server](https://biomejs.dev/chat) is open for help and more ad-hoc discussion.
+Our [Discord server](https://checkjs.dev/chat) is open for help and more ad-hoc discussion.
 All activity on the Discord is still moderated and will be strictly enforced under the project's [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 Remember that we are doing this project on our own time.
@@ -56,11 +56,11 @@ We are humans: we like support, and we expect kindness :)
 
 ## Reporting bugs
 
-Our [GitHub issues](https://github.com/biomejs/biome/issues/) serve as a place for submitting bugs.
+Our [GitHub issues](https://github.com/checkjs/check/issues/) serve as a place for submitting bugs.
 Make sure that the bugs is not reported yet and is not fixed in the main branch.
-You can test on the main branch, thanks to the [playground](https://biomejs.dev/playground/).
+You can test on the main branch, thanks to the [playground](https://checkjs.dev/playground/).
 
-Alternatively, you can use our official [CodeSandbox template](https://codesandbox.io/p/sandbox/biome-starter-cbs-rky6zq).
+Alternatively, you can use our official [CodeSandbox template](https://codesandbox.io/p/sandbox/check-starter-cbs-rky6zq).
 
 ## Getting Started
 
@@ -73,15 +73,15 @@ Building this project requires a `stable` Rust toolchain, which can be installed
 Clone the repository and navigate to the `tools` directory:
 
 ```bash
-git clone https://github.com/biomejs/biome
-cd biome
+git clone https://github.com/checkjs/check
+cd check
 ```
 
-You can use cargo to run Biome CLI in development mode:
+You can use cargo to run Check CLI in development mode:
 
 ```bash
-# This is like running "biome --help"
-cargo biome-cli-dev --help
+# This is like running "check --help"
+cargo check-cli-dev --help
 ```
 
 #### Install the required tools
@@ -106,20 +106,20 @@ This command will install:
 - `cargo-binstall`, to install binary extensions for `cargo`.
 - `cargo-insta`, a `cargo` extension to manage snapshot testing inside the repository.
 - `taplo-cli`, a small tool for formatting TOML files.
-- `wasm-pack` and `wasm-tools` for managing the WASM build of Biome.
+- `wasm-pack` and `wasm-tools` for managing the WASM build of Check.
 
 You'll also need to have `pnpm` installed on your machine, and run `pnpm install` from the root of the repository. `pnpm` is needed to [create changesets](#create-a-changeset)
 
-And you're good to go hack with Biome and Rust! 🚀
+And you're good to go hack with Check and Rust! 🚀
 
 ### GitHub Codespaces
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?machine=premiumLinux&repo=671654508&ref=main&skip_quickstart=true)
 
-This Codespace comes pre-configured with the required tools and dependencies to work on the Biome project.
+This Codespace comes pre-configured with the required tools and dependencies to work on the Check project.
 
 > [!NOTE]
-> A basic Codespace (32gb of disk space) might run out of disk space when building biome or running the full test suite.
+> A basic Codespace (32gb of disk space) might run out of disk space when building check or running the full test suite.
 > The pre-configured Codespace is therefore based on the premium image with 64gb of disk space.
 
 ## Testing
@@ -139,21 +139,21 @@ cargo t
 If you run `cargo t` from the root, it will run **all** tests of the whole repository. If you're inside a crate folder, `cargo` will run **tests of that crate**:
 
 ```shell
-cd crates/biome_cli
+cd crates/check_cli
 
-# it will run only the tests of the `biome_cli` crate
+# it will run only the tests of the `check_cli` crate
 cargo t
 ```
 
 You can run **a single test** with cargo by passing the test name after the `test` command:
 
 ```shell
-cd crates/biome_js_formatter
+cd crates/check_js_formatter
 
 cargo t quick_test
 ```
 
-This will run the `quick_test` test inside the `biome_js_formatter` crate. You should see an output similar to this:
+This will run the `quick_test` test inside the `check_js_formatter` crate. You should see an output similar to this:
 
 ```shell
 running 1 test
@@ -171,7 +171,7 @@ just test
 If you want to test the tests for a single crate:
 
 ```shell
-just test-crate biome_cli
+just test-crate check_cli
 ```
 
 Rust has a concept of **doctest**. A doc test is a doc comment that runs some code. Usually, it looks something like this:
@@ -231,17 +231,17 @@ Additionally, you can use this binary when you need to debug issues related to L
 From the root of the repository, run the following command:
 
 ```shell
-cargo build --bin biome
+cargo build --bin check
 ```
-`cargo` will create a binary called `biome` in the `target/debug/` directory.
+`cargo` will create a binary called `check` in the `target/debug/` directory.
 
-If you're debugging a CLI reproduction, copy the `biome` binary inside the root of the reproduction, and change any script that uses the npm package to use the binary instead:
+If you're debugging a CLI reproduction, copy the `check` binary inside the root of the reproduction, and change any script that uses the npm package to use the binary instead:
 
 ```diff
 {
   "scripts": {
--    "lint": "biome lint",
-+    "lint": "./biome lint"
+-    "lint": "check lint",
++    "lint": "./check lint"
   }
 }
 ```
@@ -250,18 +250,18 @@ If you're debugging an LSP reproduction, make sure that the client allows to use
 
 ```json
 {
-  "biome.lsp.bin": "/Users/john/www/biome/target/debug/biome"
+  "check.lsp.bin": "/Users/john/www/check/target/debug/check"
 }
 ```
 
 ## Production binaries
 
-_Usually_, the easiest way to create a production build is to use the `--release` flag, **however** Biome requires an environment variable called `BIOME_VERSION` to generate different code at compile time.
+_Usually_, the easiest way to create a production build is to use the `--release` flag, **however** Check requires an environment variable called `CHECK_VERSION` to generate different code at compile time.
 
-When you provide a `BIOME_VERSION` that is _different_ from `0.0.0`, the build will turn off all the nursery rules that are recommended. The value of `BIOME_VERSION` doesn't matter, as long as it's different from `0.0.0`. This means that you'll have to provide a command similar to this:
+When you provide a `CHECK_VERSION` that is _different_ from `0.0.0`, the build will turn off all the nursery rules that are recommended. The value of `CHECK_VERSION` doesn't matter, as long as it's different from `0.0.0`. This means that you'll have to provide a command similar to this:
 
 ```shell
-BIOME_VERSION=0.0.1 cargo build --bin biome --release
+CHECK_VERSION=0.0.1 cargo build --bin check --release
 ```
 
 ## Checks
@@ -284,22 +284,22 @@ things you would need to run and check:
 If you happen to create a new _crate_ inside the workspace, use the command `just new-crate`, e.g.:
 
 ```shell
-cargo new crates/biome_new_crate --lib
+cargo new crates/check_new_crate --lib
 ```
 
-Where `biome_new_crate` is going to be the name of the new crate. The `--lib` option tells `cargo` to create the crate as library, so you will probably see a `src/lib.rs` file.
+Where `check_new_crate` is going to be the name of the new crate. The `--lib` option tells `cargo` to create the crate as library, so you will probably see a `src/lib.rs` file.
 
 ### Analyzers and lint rules
 
-To know the technical details of how our analyzer works, how to create a rule and how to write tests, please check our [internal page](https://github.com/biomejs/biome/blob/main/crates/biome_analyze/CONTRIBUTING.md)
+To know the technical details of how our analyzer works, how to create a rule and how to write tests, please check our [internal page](https://github.com/checkjs/check/blob/main/crates/check_analyze/CONTRIBUTING.md)
 
 ### Parser
 
-To know the technical details of how our parser works and how to write test, please check our [internal page](https://github.com/biomejs/biome/blob/main/crates/biome_parser/CONTRIBUTING.md)
+To know the technical details of how our parser works and how to write test, please check our [internal page](https://github.com/checkjs/check/blob/main/crates/check_parser/CONTRIBUTING.md)
 
 ### Formatter
 
-To know the technical details of how our formatter works and how to write test, please check our [internal page](https://github.com/biomejs/biome/blob/main/crates/biome_formatter/CONTRIBUTING.md)
+To know the technical details of how our formatter works and how to write test, please check our [internal page](https://github.com/checkjs/check/blob/main/crates/check_formatter/CONTRIBUTING.md)
 
 
 ## Crate dependencies
@@ -310,7 +310,7 @@ Internal crates are loaded with `workspace = true` for each crate. About `dev-de
 
 ## Node.js development
 
-The npm module `packages/@biomejs/biome` contains Biome's Node.js API that supports different backends:
+The npm module `packages/@checkjs/check` contains Check's Node.js API that supports different backends:
 
 - `wasm-nodejs` (WebAssembly)
 - `backend-jsonrpc` (Connection to the daemon)
@@ -319,20 +319,20 @@ For testing and developing, you need to build these packages, following the step
 
 1. install pnpm via [corepack](https://nodejs.org/api/corepack.html) by running `corepack enable`;
 2. install [wasm-pack](https://rustwasm.github.io/wasm-pack/installer/) globally;
-3. run `pnpm --filter "@biomejs/backend-jsonrpc" build`;
-4. run the `pnpm --filter "@biomejs/js-api" build:wasm-dev` and `pnpm --filter "@biomejs/js-api" build` commands;
-5. run `pnpm i --filter "@biomejs/js-api" --frozen-lockfile` to link the WebAssembly bindings and the JSON-RPC bindings
+3. run `pnpm --filter "@checkjs/backend-jsonrpc" build`;
+4. run the `pnpm --filter "@checkjs/js-api" build:wasm-dev` and `pnpm --filter "@checkjs/js-api" build` commands;
+5. run `pnpm i --filter "@checkjs/js-api" --frozen-lockfile` to link the WebAssembly bindings and the JSON-RPC bindings
 
 The tests are run against the compiled files, which means that you need to run the
 `build` script after you implemented features/bug fixes.
 
 ### Translations
 
-For more information on how to help with translation, please see the [translation contribution guidelines for our docs](https://github.com/biomejs/website/blob/main/TRANSLATIONS.md).
+For more information on how to help with translation, please see the [translation contribution guidelines for our docs](https://github.com/checkjs/website/blob/main/TRANSLATIONS.md).
 
 ## Commit messages
 
-Internally, the Biome team adheres as closely as possible to the [conventional commit specification](https://www.conventionalcommits.org/en/v1.0.0-beta.2/).
+Internally, the Check team adheres as closely as possible to the [conventional commit specification](https://www.conventionalcommits.org/en/v1.0.0-beta.2/).
 The following this convention encourages commit best-practices and facilitates commit-powered features like changelog generation.
 
 The following commit prefixes are supported:
@@ -374,11 +374,11 @@ When creating a PR, follow the following instructions:
 
 ### Changelog
 
-This repository uses [changesets](https://github.com/changesets/changesets) to automate the releases of Biome's binaries, the JavaScript libraries and the creation of the `CHANGELOG.md` for each library.
+This repository uses [changesets](https://github.com/changesets/changesets) to automate the releases of Check's binaries, the JavaScript libraries and the creation of the `CHANGELOG.md` for each library.
 
 #### Create a changeset
 
-If the PR you're about to open is a bugfix/feature visible to users of the Biome toolchain or of the published Biome crates, you are encouraged to provide a **changeset** . To *create* a changeset, use the following command (*don't create it manually*):
+If the PR you're about to open is a bugfix/feature visible to users of the Check toolchain or of the published Check crates, you are encouraged to provide a **changeset** . To *create* a changeset, use the following command (*don't create it manually*):
 
 ```shell
 just new-changeset
@@ -394,13 +394,13 @@ If you want to add headers, use `####` or `#####`. Other kind of headers will me
 
 #### Choose the correct packages
 
-In the vast majority of cases, you want to choose the `@biomejs/biome` package, which represents the main package.
+In the vast majority of cases, you want to choose the `@checkjs/check` package, which represents the main package.
 
 The frontmatter of the changeset will look like this:
 
 ```markdown
 ---
-"@biomejs/biome": patch
+"@checkjs/check": patch
 ---
 
 Description here...
@@ -408,7 +408,7 @@ Description here...
 
 #### Choose the correct type of change
 
-We are very strict about `major` changes in the `@biomejs/biome` package. To better understand type of your change *for this package*, please refer to our [versioning page](https://biomejs.dev/internals/versioning/). Generally:
+We are very strict about `major` changes in the `@checkjs/check` package. To better understand type of your change *for this package*, please refer to our [versioning page](https://checkjs.dev/internals/versioning/). Generally:
 - `patch`: any sort of change that fixes a bug.
 - `minor`: new features available to the users.
 - `major`: a change that breaks a user API.
@@ -422,10 +422,10 @@ The description of the changeset should follow the these guidelines:
 - Our changesets should be about _user-facing_ changes. Internal changes don't
   need changesets.
 - Use the past tense when describing what you did, e.g. "Added new feature", "Fixed edge case".
-- Use the present tense when describing Biome behavior, e.g. "Biome now supports ...".
-- If you fixed a bug, please start with a link to the issue, e.g. "Fixed [#4444](https://github.com/biomejs/biome/issues/4444): ...".
-- If you reference a rule, please add the link to the rule on the website, e.g. "Added the rule [`useAwesomeThing`](https://biomejs.dev/linter/rules/use-awesome-thing/)" (even if the website isn't updated yet, the URL is pretty predictable...).
-- Similarly, if you reference an assist, please add the link to the assist on the website, e.g. "Added the assist [`awesomeAction`](https://biomejs.dev/assist/actions/awesome-action/)".
+- Use the present tense when describing Check behavior, e.g. "Check now supports ...".
+- If you fixed a bug, please start with a link to the issue, e.g. "Fixed [#4444](https://github.com/checkjs/check/issues/4444): ...".
+- If you reference a rule, please add the link to the rule on the website, e.g. "Added the rule [`useAwesomeThing`](https://checkjs.dev/linter/rules/use-awesome-thing/)" (even if the website isn't updated yet, the URL is pretty predictable...).
+- Similarly, if you reference an assist, please add the link to the assist on the website, e.g. "Added the assist [`awesomeAction`](https://checkjs.dev/assist/actions/awesome-action/)".
 - Whenever applicable, add a code block to show your new changes. For example, for a new rule you should show an invalid case, while for the formatter you should show how the new formatting changes, and so on.
 - End every sentence with a full stop (`.`).
 
@@ -435,7 +435,7 @@ If in doubt, take a look at existing or past changesets.
 
 If your PR involves new features, or changes to existing features, documentation must be updated as well. For rules, assists, and their options, this is done using inline [rustdoc](https://doc.rust-lang.org/rustdoc/how-to-write-documentation.html) documentation.
 
-When other documentation updates are required, such as new formatter options, a PR should be created against the `next` branch of [our website](https://github.com/biomejs/website/). When doing so, please link the documentation PR from the PR that introduces the feature.
+When other documentation updates are required, such as new formatter options, a PR should be created against the `next` branch of [our website](https://github.com/checkjs/website/). When doing so, please link the documentation PR from the PR that introduces the feature.
 
 ### Versioning
 
@@ -456,11 +456,11 @@ Even minor versions are dedicated to official releases, e.g. `*.6.*`.
 
 Before starting release:
 
-1. [ ] Make sure that all issues/PRs for the milestone are done: https://github.com/biomejs/biome/milestones
+1. [ ] Make sure that all issues/PRs for the milestone are done: https://github.com/checkjs/check/milestones
 
 1. [ ] Replace all `version: "next"` with the new version number in the metadata of the rules. This should be automated , but you can use `scripts/update-next-version.sh` if you need to do it manually.
 
-When releasing a new **minor** or **major** version of a Biome, follow these steps:
+When releasing a new **minor** or **major** version of a Check, follow these steps:
 
 1. [ ] Create a PR from `next` to `main`. Make sure that code conflicts are fixed and the new features have relative docs PR.
 
@@ -482,11 +482,11 @@ When releasing a new **minor** or **major** version of a Biome, follow these ste
 
 ## Resources
 
-We have several resources explaining about Biome. They will help you understand the project and codebase.
+We have several resources explaining about Check. They will help you understand the project and codebase.
 
-- [Rust Dublin October 2023 - Biome - YouTube](https://youtu.be/stxiUYmHn0s?si=C9cMsc93nNrZa-r1)
+- [Rust Dublin October 2023 - Check - YouTube](https://youtu.be/stxiUYmHn0s?si=C9cMsc93nNrZa-r1)
 - [Rome, a Modern Toolchain! by Emanuele Stoppa - GitNation](https://portal.gitnation.org/contents/rome-a-modern-toolchain)
-- [How to create a lint rule in Biome](https://www.youtube.com/watch?v=zfzMO3nW_Wo&t=343s)
+- [How to create a lint rule in Check](https://www.youtube.com/watch?v=zfzMO3nW_Wo&t=343s)
 
 ## Current Members
 

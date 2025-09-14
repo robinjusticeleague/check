@@ -1,0 +1,10 @@
+---
+source: crates/check_js_analyze/tests/spec_tests.rs
+expression: issue548.js
+snapshot_kind: text
+---
+# Input
+```js
+// See https://github.com/checkjs/check/issues/548
+a[c] = b[0];
+```

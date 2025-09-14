@@ -1,0 +1,11 @@
+{
+  "$schema": "../../../../../../../../packages/@checkjs/check/configuration_schema.json",
+  "formatter": {
+    "bracketSpacing": false
+  },
+  "graphql": {
+    "formatter": {
+      "bracketSpacing": true
+    }
+  }
+}

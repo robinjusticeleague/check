@@ -1,22 +1,22 @@
 {
-  "name": "@biomejs/js-api",
+  "name": "@checkjs/js-api",
   "version": "3.0.0",
-  "description": "JavaScript APIs for the Biome package",
+  "description": "JavaScript APIs for the Check package",
   "scripts": {
     "tsc": "tsc --noEmit",
-    "format": "cargo biome-cli-dev format --write .",
-    "ci": "cargo biome-cli-dev ci ./src && tsc --noEmit",
-    "check": "pnpm biome:check && tsc --noEmit",
-    "biome:check": "cargo biome-cli-dev check .",
-    "check:apply": "cargo biome-cli-dev check --apply-unsafe .",
+    "format": "cargo check-cli-dev format --write .",
+    "ci": "cargo check-cli-dev ci ./src && tsc --noEmit",
+    "check": "pnpm check:check && tsc --noEmit",
+    "check:check": "cargo check-cli-dev check .",
+    "check:apply": "cargo check-cli-dev check --apply-unsafe .",
     "build:wasm-dev": "pnpm run \"/^build:wasm-.+-dev$/\"",
     "build:wasm": "pnpm run \"/^build:wasm-.+(?<!dev)$/\"",
-    "build:wasm-bundler-dev": "wasm-pack build --out-dir ../../packages/@biomejs/wasm-bundler --target bundler --dev --scope biomejs ../../../crates/biome_wasm",
-    "build:wasm-bundler": "wasm-pack build --out-dir ../../packages/@biomejs/wasm-bundler --target bundler --release --scope biomejs ../../../crates/biome_wasm",
-    "build:wasm-node-dev": "wasm-pack build --out-dir ../../packages/@biomejs/wasm-nodejs --target nodejs --dev --scope biomejs ../../../crates/biome_wasm",
-    "build:wasm-node": "wasm-pack build --out-dir ../../packages/@biomejs/wasm-nodejs --target nodejs --release --scope biomejs ../../../crates/biome_wasm",
-    "build:wasm-web-dev": "wasm-pack build --out-dir ../../packages/@biomejs/wasm-web --target web --dev --scope biomejs ../../../crates/biome_wasm",
-    "build:wasm-web": "wasm-pack build --out-dir ../../packages/@biomejs/wasm-web --target web --release --scope biomejs ../../../crates/biome_wasm",
+    "build:wasm-bundler-dev": "wasm-pack build --out-dir ../../packages/@checkjs/wasm-bundler --target bundler --dev --scope checkjs ../../../crates/check_wasm",
+    "build:wasm-bundler": "wasm-pack build --out-dir ../../packages/@checkjs/wasm-bundler --target bundler --release --scope checkjs ../../../crates/check_wasm",
+    "build:wasm-node-dev": "wasm-pack build --out-dir ../../packages/@checkjs/wasm-nodejs --target nodejs --dev --scope checkjs ../../../crates/check_wasm",
+    "build:wasm-node": "wasm-pack build --out-dir ../../packages/@checkjs/wasm-nodejs --target nodejs --release --scope checkjs ../../../crates/check_wasm",
+    "build:wasm-web-dev": "wasm-pack build --out-dir ../../packages/@checkjs/wasm-web --target web --dev --scope checkjs ../../../crates/check_wasm",
+    "build:wasm-web": "wasm-pack build --out-dir ../../packages/@checkjs/wasm-web --target web --release --scope checkjs ../../../crates/check_wasm",
     "test": "vitest",
     "test:ci": "vitest run",
     "build": "tsc"
@@ -53,38 +53,38 @@
     "JavaScript",
     "bindings",
     "APIs",
-    "biome"
+    "check"
   ],
   "license": "MIT OR Apache-2.0",
-  "homepage": "https://biomejs.dev",
+  "homepage": "https://checkjs.dev",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/biomejs/biome.git",
-    "directory": "packages/@biomejs/js-api"
+    "url": "git+https://github.com/checkjs/check.git",
+    "directory": "packages/@checkjs/js-api"
   },
-  "author": "Biome Developers and Contributors",
-  "bugs": "https://github.com/biomejs/biome/issues",
+  "author": "Check Developers and Contributors",
+  "bugs": "https://github.com/checkjs/check/issues",
   "devDependencies": {
-    "@biomejs/wasm-bundler": "workspace:*",
-    "@biomejs/wasm-nodejs": "workspace:*",
-    "@biomejs/wasm-web": "workspace:*",
+    "@checkjs/wasm-bundler": "workspace:*",
+    "@checkjs/wasm-nodejs": "workspace:*",
+    "@checkjs/wasm-web": "workspace:*",
     "typescript": "5.9.2",
     "vite": "7.1.5",
     "vitest": "3.2.4"
   },
   "peerDependencies": {
-    "@biomejs/wasm-bundler": "^2.2.4",
-    "@biomejs/wasm-nodejs": "^2.2.4",
-    "@biomejs/wasm-web": "^2.2.4"
+    "@checkjs/wasm-bundler": "^2.2.4",
+    "@checkjs/wasm-nodejs": "^2.2.4",
+    "@checkjs/wasm-web": "^2.2.4"
   },
   "peerDependenciesMeta": {
-    "@biomejs/wasm-bundler": {
+    "@checkjs/wasm-bundler": {
       "optional": true
     },
-    "@biomejs/wasm-nodejs": {
+    "@checkjs/wasm-nodejs": {
       "optional": true
     },
-    "@biomejs/wasm-web": {
+    "@checkjs/wasm-web": {
       "optional": true
     }
   },

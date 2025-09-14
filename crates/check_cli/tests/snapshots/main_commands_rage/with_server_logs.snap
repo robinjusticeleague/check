@@ -1,0 +1,79 @@
+---
+source: crates/check_cli/tests/commands/rage.rs
+expression: content
+---
+# Emitted Messages
+
+```block
+CLI:
+  Version:                      0.0.0
+  Color support:                **PLACEHOLDER**
+
+Platform:
+  CPU Architecture:             **PLACEHOLDER**
+  OS:                           **PLACEHOLDER**
+
+Environment:
+  CHECK_LOG_PATH:               **PLACEHOLDER**
+  CHECK_LOG_PREFIX_NAME:        unset
+  CHECK_CONFIG_PATH:            unset
+  CHECK_THREADS:                unset
+  NO_COLOR:                     **PLACEHOLDER**
+  TERM:                         **PLACEHOLDER**
+  JS_RUNTIME_VERSION:           unset
+  JS_RUNTIME_NAME:              unset
+  NODE_PACKAGE_MANAGER:         unset
+
+Check Configuration:
+  Status:                       Not set
+  Path:                         unset
+
+Server:
+  Version:                      0.0.0
+  Name:                         check_lsp
+  CPU Architecture:             **PLACEHOLDER**
+  OS:                           **PLACEHOLDER**
+
+Workspace:
+  Open Documents:               0
+```
+
+```block
+
+Check Server Log:
+
+! Please review the content of the log file before sharing it publicly as it may contain sensitive information:
+  * Path names that may reveal your name, a project name, or the name of your employer.
+  * Source code
+
+
+┐check_cli::commands::daemon::Running Server{pid=195434}
+├─2547ms INFO check_lsp::server Starting Check Language Server...
+├─15333ms INFO check_lsp::server Starting Check Language Server...
+├─15347ms INFO check_lsp::server Attempting to load the configuration from 'check.json' file
+├─15347ms INFO check_service::configuration Attempting to load the configuration file at path "/home/micha/git/ant-design/check.json"
+├─15347ms ERROR check_service::configuration Could not find the file configuration at "/home/micha/git/ant-design/check.json"
+├─15347ms ERROR check_service::configuration Reason: Os { code: 2, kind: NotFound, message: "No such file or directory" }
+├─┐check_js_parser::parse::parse{file_id=FileId(0)}
+├─┘
+├─┐check_js_parser::parse::parse{file_id=FileId(1)}
+├─┘
+├─16108ms INFO check_lsp::server Starting Check Language Server...
+├─41801ms INFO check_lsp::server Starting Check Language Server...
+├─41802ms INFO check_lsp::server Sending shutdown signal
+INFO check_cli::commands::daemon Received shutdown signal
+├─41802ms ERROR tower_lsp::transport failed to encode message: failed to encode response: Broken pipe (os error 32)
+┘
+┐check_cli::commands::daemon::Running Server{pid=197796}
+├─2822ms INFO check_lsp::server Starting Check Language Server...
+├─7550ms INFO check_lsp::server Starting Check Language Server...
+├─7551ms INFO check_lsp::server Attempting to load the configuration from 'check.json' file
+├─7551ms INFO check_service::configuration Attempting to load the configuration file at path "/home/micha/git/ant-design/check.json"
+├─7551ms ERROR check_service::configuration Could not find the file configuration at "/home/micha/git/ant-design/check.json"
+├─7551ms ERROR check_service::configuration Reason: Os { code: 2, kind: NotFound, message: "No such file or directory" }
+├─┐check_js_parser::parse::parse{file_id=FileId(0)}
+├─┘
+├─┐check_js_parser::parse::parse{file_id=FileId(1)}
+├─┘
+├─7897ms INFO check_lsp::server Starting Check Language Server...
+```

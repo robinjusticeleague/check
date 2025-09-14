@@ -5,11 +5,11 @@ on:
     branches:
       - main
     paths:
-      - 'crates/biome_js_syntax/**'
-      - 'crates/biome_js_factory/**'
-      - 'crates/biome_js_semantic/**'
-      - 'crates/biome_js_parser/**'
-      - 'crates/biome_rowan/**'
+      - 'crates/check_js_syntax/**'
+      - 'crates/check_js_factory/**'
+      - 'crates/check_js_semantic/**'
+      - 'crates/check_js_parser/**'
+      - 'crates/check_rowan/**'
       - 'xtask/**'
 
 env:

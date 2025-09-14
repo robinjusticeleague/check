@@ -1,0 +1,39 @@
+---
+source: crates/check_cli/tests/commands/rage.rs
+expression: content
+---
+# Emitted Messages
+
+```block
+CLI:
+  Version:                      0.0.0
+  Color support:                **PLACEHOLDER**
+
+Platform:
+  CPU Architecture:             **PLACEHOLDER**
+  OS:                           **PLACEHOLDER**
+
+Environment:
+  CHECK_LOG_PATH:               **PLACEHOLDER**
+  CHECK_LOG_PREFIX_NAME:        unset
+  CHECK_CONFIG_PATH:            unset
+  CHECK_THREADS:                unset
+  NO_COLOR:                     **PLACEHOLDER**
+  TERM:                         **PLACEHOLDER**
+  JS_RUNTIME_VERSION:           unset
+  JS_RUNTIME_NAME:              unset
+  NODE_PACKAGE_MANAGER:         unset
+
+Check Configuration:
+  Status:                       Not set
+  Path:                         unset
+
+Server:
+  Version:                      0.0.0
+  Name:                         check_lsp
+  CPU Architecture:             **PLACEHOLDER**
+  OS:                           **PLACEHOLDER**
+
+Workspace:
+  Open Documents:               0
+```

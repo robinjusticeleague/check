@@ -1,0 +1,46 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Check's language server protocol"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_lsp"
+publish              = false
+repository.workspace = true
+version              = "0.0.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow               = { workspace = true }
+check_analyze        = { workspace = true }
+check_configuration  = { workspace = true }
+check_console        = { workspace = true }
+check_deserialize    = { workspace = true }
+check_diagnostics    = { workspace = true }
+check_fs             = { workspace = true }
+check_line_index     = { workspace = true }
+check_lsp_converters = { workspace = true }
+check_resolver       = { workspace = true }
+check_rowan          = { workspace = true }
+check_service        = { workspace = true }
+check_text_edit      = { workspace = true }
+camino               = { workspace = true }
+crossbeam            = { workspace = true }
+futures              = "0.3.31"
+papaya               = { workspace = true }
+rustc-hash           = { workspace = true }
+serde                = { workspace = true, features = ["derive"] }
+serde_json           = { workspace = true }
+tokio                = { workspace = true, features = ["rt", "io-std"] }
+tower-lsp-server     = { workspace = true }
+tracing              = { workspace = true, features = ["attributes"] }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["rt", "rt-multi-thread", "macros"] }
+tower = { workspace = true, features = ["timeout"] }
+
+[lints]
+workspace = true

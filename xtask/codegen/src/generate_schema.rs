@@ -1,6 +1,6 @@
-use biome_configuration::Configuration;
-use biome_json_formatter::context::JsonFormatOptions;
-use biome_json_parser::{JsonParserOptions, parse_json};
+use check_configuration::Configuration;
+use check_json_formatter::context::JsonFormatOptions;
+use check_json_parser::{JsonParserOptions, parse_json};
 use schemars::schema::{RootSchema, Schema, SchemaObject};
 use schemars::schema_for;
 use serde_json::to_string;
@@ -8,14 +8,14 @@ use xtask::{Mode, Result, project_root};
 use xtask_codegen::update;
 
 pub(crate) fn generate_configuration_schema(mode: Mode) -> Result<()> {
-    let schema_path_npm = project_root().join("packages/@biomejs/biome/configuration_schema.json");
+    let schema_path_npm = project_root().join("packages/@checkjs/check/configuration_schema.json");
 
     let schema = rename_partial_references_in_schema(schema_for!(Configuration));
 
     let json_schema = to_string(&schema)?;
     let parsed = parse_json(&json_schema, JsonParserOptions::default());
     let formatted =
-        biome_json_formatter::format_node(JsonFormatOptions::default(), &parsed.syntax())
+        check_json_formatter::format_node(JsonFormatOptions::default(), &parsed.syntax())
             .unwrap()
             .print()
             .unwrap();

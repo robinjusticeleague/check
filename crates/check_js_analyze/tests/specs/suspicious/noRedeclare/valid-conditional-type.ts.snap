@@ -1,0 +1,10 @@
+---
+source: crates/check_js_analyze/tests/spec_tests.rs
+expression: valid-conditional-type.ts
+---
+# Input
+```ts
+/* should not generate diagnostics */
+// Issue https://github.com/checkjs/check/issues/2659
+type Test<T> = T extends Array<infer U> ? true : false
+```

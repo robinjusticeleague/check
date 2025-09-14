@@ -2,10 +2,10 @@ use crate::check_file_encoding;
 use crate::runner::{
     TestCase, TestCaseFiles, TestRunOutcome, TestSuite, create_bogus_node_in_tree_diagnostic,
 };
-use biome_js_parser::JsParserOptions;
-use biome_js_syntax::{JsFileSource, ModuleKind};
-use biome_rowan::{AstNode, SyntaxKind};
-use biome_string_case::StrOnlyExtension;
+use check_js_parser::JsParserOptions;
+use check_js_syntax::{JsFileSource, ModuleKind};
+use check_rowan::{AstNode, SyntaxKind};
+use check_string_case::StrOnlyExtension;
 use camino::Utf8Path;
 use regex::Regex;
 use std::borrow::Cow;

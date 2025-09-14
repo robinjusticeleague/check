@@ -1,0 +1,15 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+# Input messages
+
+```block
+function f() {return{}}
+```
+
+# Emitted Messages
+
+```block
+function f() {return{}}
+```

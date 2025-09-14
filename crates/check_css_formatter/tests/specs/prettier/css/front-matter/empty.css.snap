@@ -1,0 +1,38 @@
+---
+source: crates/check_formatter_test/src/snapshot_builder.rs
+info: css/front-matter/empty.css
+snapshot_kind: text
+---
+# Input
+
+```css
+---
+---
+/* comment */
+.something
+{}
+
+```
+
+
+# Prettier differences
+
+```diff
+--- Prettier
++++ Check
+@@ -1,6 +1,2 @@
+----
+----
+-
+-/* comment */
+-.something {
++--- --- /* comment */ .something {
+ }
+```
+
+# Output
+
+```css
+--- --- /* comment */ .something {
+}
+```

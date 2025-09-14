@@ -1,0 +1,18 @@
+[package]
+authors.workspace    = true
+description          = "Utilities to create Tailwind AST for check_tailwind_factory"
+documentation        = "https://docs.rs/check_tailwind_factory"
+edition.workspace    = true
+license.workspace    = true
+name                 = "check_tailwind_factory"
+repository.workspace = true
+version              = "0.0.1"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+check_rowan           = { workspace = true }
+check_tailwind_syntax = { workspace = true }
+
+[lints]
+workspace = true

@@ -13,8 +13,8 @@
       "WebFetch(domain:eslint.org)"
     ],
     "deny": [
-      "Bash(cargo biome-cli-dev:*)",
-      "Bash(cargo biome-cli:*)"
+      "Bash(cargo check-cli-dev:*)",
+      "Bash(cargo check-cli:*)"
     ]
   }
 }

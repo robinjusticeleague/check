@@ -14,7 +14,7 @@ version              = "0.0.0"
 proc-macro = true
 
 [dependencies]
-biome_string_case = { workspace = true }
+check_string_case = { workspace = true }
 case              = "1.0.0"
 globwalk          = "0.9.1"
 proc-macro-error2 = { workspace = true }

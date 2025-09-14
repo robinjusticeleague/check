@@ -1,0 +1,324 @@
+---
+source: crates/check_js_analyze/tests/spec_tests.rs
+expression: suppressions.ts
+---
+# Input
+```ts
+///! lint/suspicious/noDoubleEquals
+///! lint/suspicious/noConsole
+///! lint/style/useArrayLiterals
+
+/* check-ignore lint: ... */
+console.log(1 == 0)
+
+/* check-ignore lint/suspicious/noConsole: ... */
+console.log(1 == 0)
+
+/* check-ignore lint/suspicious/noConsole: ... */
+/* check-ignore lint/suspicious/noDoubleEquals: ... */
+console.log(1 == 0)
+
+/* check-ignore lint/suspicious/noConsole: ... */
+/* check-ignore lint/suspicious/noDoubleEquals: ... */
+console.log(1 == Array())
+
+/* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */
+console.log(1 == 0)
+/* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */
+console.log(1 == Array())
+
+/* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */ console.log(1 == 0)
+
+/* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */ console.log(1 == Array())
+
+if (1) {
+    /* check-ignore lint/suspicious/noConsole: ... */
+    console.log(1 == 0)
+    /* check-ignore lint/suspicious/noDoubleEquals: ... */
+}
+
+if (1) {
+    /* check-ignore lint/suspicious/noConsole: ... */
+    console.log(1 == Array())
+    /* check-ignore lint/suspicious/noDoubleEquals: ... */
+}
+
+```
+
+# Diagnostics
+```
+suppressions.ts:9:15 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Using == may be unsafe if you are relying on type coercion.
+  
+     8 │ /* check-ignore lint/suspicious/noConsole: ... */
+   > 9 │ console.log(1 == 0)
+       │               ^^
+    10 │ 
+    11 │ /* check-ignore lint/suspicious/noConsole: ... */
+  
+  i == is only allowed when comparing against null.
+  
+  i Safe fix: Suppress rule lint/suspicious/noDoubleEquals for this line.
+  
+     7  7 │   
+     8  8 │   /* check-ignore lint/suspicious/noConsole: ... */
+        9 │ + //·check-ignore·lint/suspicious/noDoubleEquals:·<explanation>
+     9 10 │   console.log(1 == 0)
+    10 11 │   
+  
+  i Safe fix: Suppress rule lint/suspicious/noDoubleEquals for the whole file.
+  
+     1  1 │   ///! lint/suspicious/noDoubleEquals
+     2    │ - ///!·lint/suspicious/noConsole
+        2 │ + /**·check-ignore-all·lint/suspicious/noDoubleEquals:·<explanation>·*/
+        3 │ + ///!·lint/suspicious/noConsole
+     3  4 │   ///! lint/style/useArrayLiterals
+     4  5 │   
+  
+
+```
+
+```
+suppressions.ts:30:19 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Using == may be unsafe if you are relying on type coercion.
+  
+    28 │ if (1) {
+    29 │     /* check-ignore lint/suspicious/noConsole: ... */
+  > 30 │     console.log(1 == 0)
+       │                   ^^
+    31 │     /* check-ignore lint/suspicious/noDoubleEquals: ... */
+    32 │ }
+  
+  i == is only allowed when comparing against null.
+  
+  i Safe fix: Suppress rule lint/suspicious/noDoubleEquals for this line.
+  
+    28 28 │   if (1) {
+    29 29 │       /* check-ignore lint/suspicious/noConsole: ... */
+    30    │ - ····console.log(1·==·0)
+       30 │ + ····//·check-ignore·lint/suspicious/noDoubleEquals:·<explanation>
+       31 │ + ········console.log(1·==·0)
+    31 32 │       /* check-ignore lint/suspicious/noDoubleEquals: ... */
+    32 33 │   }
+  
+  i Safe fix: Suppress rule lint/suspicious/noDoubleEquals for the whole file.
+  
+     1  1 │   ///! lint/suspicious/noDoubleEquals
+     2    │ - ///!·lint/suspicious/noConsole
+        2 │ + /**·check-ignore-all·lint/suspicious/noDoubleEquals:·<explanation>·*/
+        3 │ + ///!·lint/suspicious/noConsole
+     3  4 │   ///! lint/style/useArrayLiterals
+     4  5 │   
+  
+
+```
+
+```
+suppressions.ts:36:19 lint/suspicious/noDoubleEquals  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Using == may be unsafe if you are relying on type coercion.
+  
+    34 │ if (1) {
+    35 │     /* check-ignore lint/suspicious/noConsole: ... */
+  > 36 │     console.log(1 == Array())
+       │                   ^^
+    37 │     /* check-ignore lint/suspicious/noDoubleEquals: ... */
+    38 │ }
+  
+  i == is only allowed when comparing against null.
+  
+  i Safe fix: Suppress rule lint/suspicious/noDoubleEquals for this line.
+  
+    34 34 │   if (1) {
+    35 35 │       /* check-ignore lint/suspicious/noConsole: ... */
+    36    │ - ····console.log(1·==·Array())
+       36 │ + ····//·check-ignore·lint/suspicious/noDoubleEquals:·<explanation>
+       37 │ + ········console.log(1·==·Array())
+    37 38 │       /* check-ignore lint/suspicious/noDoubleEquals: ... */
+    38 39 │   }
+  
+  i Safe fix: Suppress rule lint/suspicious/noDoubleEquals for the whole file.
+  
+     1  1 │   ///! lint/suspicious/noDoubleEquals
+     2    │ - ///!·lint/suspicious/noConsole
+        2 │ + /**·check-ignore-all·lint/suspicious/noDoubleEquals:·<explanation>·*/
+        3 │ + ///!·lint/suspicious/noConsole
+     3  4 │   ///! lint/style/useArrayLiterals
+     4  5 │   
+  
+
+```
+
+```
+suppressions.ts:17:18 lint/style/useArrayLiterals  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i Use an array literal instead of the Array constructor.
+  
+    15 │ /* check-ignore lint/suspicious/noConsole: ... */
+    16 │ /* check-ignore lint/suspicious/noDoubleEquals: ... */
+  > 17 │ console.log(1 == Array())
+       │                  ^^^^^^^
+    18 │ 
+    19 │ /* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */
+  
+  i The Array constructor is misleading because it can be used to preallocate an array of a given length or to create an array with a given list of elements.
+  
+  i Safe fix: Suppress rule lint/style/useArrayLiterals for this line.
+  
+    15 15 │   /* check-ignore lint/suspicious/noConsole: ... */
+    16 16 │   /* check-ignore lint/suspicious/noDoubleEquals: ... */
+       17 │ + //·check-ignore·lint/style/useArrayLiterals:·<explanation>
+    17 18 │   console.log(1 == Array())
+    18 19 │   
+  
+  i Safe fix: Suppress rule lint/style/useArrayLiterals for the whole file.
+  
+     1  1 │   ///! lint/suspicious/noDoubleEquals
+     2    │ - ///!·lint/suspicious/noConsole
+        2 │ + /**·check-ignore-all·lint/style/useArrayLiterals:·<explanation>·*/
+        3 │ + ///!·lint/suspicious/noConsole
+     3  4 │   ///! lint/style/useArrayLiterals
+     4  5 │   
+  
+
+```
+
+```
+suppressions.ts:22:18 lint/style/useArrayLiterals  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i Use an array literal instead of the Array constructor.
+  
+    20 │ console.log(1 == 0)
+    21 │ /* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */
+  > 22 │ console.log(1 == Array())
+       │                  ^^^^^^^
+    23 │ 
+    24 │ /* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */ console.log(1 == 0)
+  
+  i The Array constructor is misleading because it can be used to preallocate an array of a given length or to create an array with a given list of elements.
+  
+  i Safe fix: Suppress rule lint/style/useArrayLiterals for this line.
+  
+    20 20 │   console.log(1 == 0)
+    21 21 │   /* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */
+    22    │ - console.log(1·==·Array())
+       22 │ + //·check-ignore·lint/style/useArrayLiterals:·<explanation>
+       23 │ + ·console.log(1·==·Array())
+    23 24 │   
+    24 25 │   /* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */ console.log(1 == 0)
+  
+  i Safe fix: Suppress rule lint/style/useArrayLiterals for the whole file.
+  
+     1  1 │   ///! lint/suspicious/noDoubleEquals
+     2    │ - ///!·lint/suspicious/noConsole
+        2 │ + /**·check-ignore-all·lint/style/useArrayLiterals:·<explanation>·*/
+        3 │ + ///!·lint/suspicious/noConsole
+     3  4 │   ///! lint/style/useArrayLiterals
+     4  5 │   
+  
+
+```
+
+```
+suppressions.ts:26:123 lint/style/useArrayLiterals  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i Use an array literal instead of the Array constructor.
+  
+    24 │ /* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */ console.log(1 == 0)
+    25 │ 
+  > 26 │ /* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */ console.log(1 == Array())
+       │                                                                                                                           ^^^^^^^
+    27 │ 
+    28 │ if (1) {
+  
+  i The Array constructor is misleading because it can be used to preallocate an array of a given length or to create an array with a given list of elements.
+  
+  i Safe fix: Suppress rule lint/style/useArrayLiterals for this line.
+  
+    24 24 │   /* check-ignore lint/suspicious/noConsole: ... */ /* check-ignore lint/suspicious/noDoubleEquals: ... */ console.log(1 == 0)
+    25 25 │   
+    26    │ - /*·check-ignore·lint/suspicious/noConsole:·...·*/·/*·check-ignore·lint/suspicious/noDoubleEquals:·...·*/·console.log(1·==·Array())
+       26 │ + /*·check-ignore·lint/suspicious/noConsole:·...·*/·/*·check-ignore·lint/suspicious/noDoubleEquals:·...·*/·//·check-ignore·lint/style/useArrayLiterals:·<explanation>
+       27 │ + ··console.log(1·==·Array())
+    27 28 │   
+    28 29 │   if (1) {
+  
+  i Safe fix: Suppress rule lint/style/useArrayLiterals for the whole file.
+  
+     1  1 │   ///! lint/suspicious/noDoubleEquals
+     2    │ - ///!·lint/suspicious/noConsole
+        2 │ + /**·check-ignore-all·lint/style/useArrayLiterals:·<explanation>·*/
+        3 │ + ///!·lint/suspicious/noConsole
+     3  4 │   ///! lint/style/useArrayLiterals
+     4  5 │   
+  
+
+```
+
+```
+suppressions.ts:36:22 lint/style/useArrayLiterals  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i Use an array literal instead of the Array constructor.
+  
+    34 │ if (1) {
+    35 │     /* check-ignore lint/suspicious/noConsole: ... */
+  > 36 │     console.log(1 == Array())
+       │                      ^^^^^^^
+    37 │     /* check-ignore lint/suspicious/noDoubleEquals: ... */
+    38 │ }
+  
+  i The Array constructor is misleading because it can be used to preallocate an array of a given length or to create an array with a given list of elements.
+  
+  i Safe fix: Suppress rule lint/style/useArrayLiterals for this line.
+  
+    34 34 │   if (1) {
+    35 35 │       /* check-ignore lint/suspicious/noConsole: ... */
+    36    │ - ····console.log(1·==·Array())
+       36 │ + ····//·check-ignore·lint/style/useArrayLiterals:·<explanation>
+       37 │ + ········console.log(1·==·Array())
+    37 38 │       /* check-ignore lint/suspicious/noDoubleEquals: ... */
+    38 39 │   }
+  
+  i Safe fix: Suppress rule lint/style/useArrayLiterals for the whole file.
+  
+     1  1 │   ///! lint/suspicious/noDoubleEquals
+     2    │ - ///!·lint/suspicious/noConsole
+        2 │ + /**·check-ignore-all·lint/style/useArrayLiterals:·<explanation>·*/
+        3 │ + ///!·lint/suspicious/noConsole
+     3  4 │   ///! lint/style/useArrayLiterals
+     4  5 │   
+  
+
+```
+
+```
+suppressions.ts:31:5 suppressions/unused ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Suppression comment has no effect. Remove the suppression or make sure you are suppressing the correct rule.
+  
+    29 │     /* check-ignore lint/suspicious/noConsole: ... */
+    30 │     console.log(1 == 0)
+  > 31 │     /* check-ignore lint/suspicious/noDoubleEquals: ... */
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    32 │ }
+    33 │ 
+  
+
+```
+
+```
+suppressions.ts:37:5 suppressions/unused ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Suppression comment has no effect. Remove the suppression or make sure you are suppressing the correct rule.
+  
+    35 │     /* check-ignore lint/suspicious/noConsole: ... */
+    36 │     console.log(1 == Array())
+  > 37 │     /* check-ignore lint/suspicious/noDoubleEquals: ... */
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    38 │ }
+    39 │ 
+  
+
+```

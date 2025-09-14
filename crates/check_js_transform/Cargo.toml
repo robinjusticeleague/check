@@ -1,0 +1,33 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Check's JavaScript transpiler"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_js_transform"
+repository.workspace = true
+version              = "0.5.7"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+check_analyze     = { workspace = true }
+check_diagnostics = { workspace = true }
+check_js_factory  = { workspace = true }
+check_js_syntax   = { workspace = true }
+check_rowan       = { workspace = true }
+
+
+[dev-dependencies]
+check_analyze      = { path = "../check_analyze" }
+check_js_formatter = { path = "../check_js_formatter" }
+check_js_parser    = { path = "../check_js_parser" }
+check_test_utils   = { path = "../check_test_utils" }
+camino             = { workspace = true }
+insta              = { workspace = true }
+tests_macros       = { path = "../tests_macros" }
+
+[lints]
+workspace = true

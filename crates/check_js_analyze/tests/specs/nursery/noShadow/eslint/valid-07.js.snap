@@ -1,0 +1,10 @@
+---
+source: crates/check_js_analyze/tests/spec_tests.rs
+expression: valid-07.js
+---
+# Input
+```js
+/* should not generate diagnostics */
+(function() { var A = class A {}; })()
+
+```

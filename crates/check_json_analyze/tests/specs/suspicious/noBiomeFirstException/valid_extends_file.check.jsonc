@@ -1,0 +1,9 @@
+// should not generate diagnostics
+{
+	"extends": ["valid_extends.check.jsonc"],
+	"files": {
+		"includes": [
+			"!**/dist"
+		]
+	}
+}

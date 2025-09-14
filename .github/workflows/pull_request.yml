@@ -99,8 +99,8 @@ jobs:
           cache-base: main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build Biome debug binary
-        run: cargo build --bin biome
+      - name: Build Check debug binary
+        run: cargo build --bin check
       - name: Run tests
         run: |
           cd e2e-tests

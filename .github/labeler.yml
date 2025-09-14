@@ -3,50 +3,50 @@
 A-Cli:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_cli/**
-    - crates/biome_fs/**
-    - crates/biome_console/**
+    - crates/check_cli/**
+    - crates/check_fs/**
+    - crates/check_console/**
 
 A-Core:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_deserializer/**
-    - crates/biome_fs/**
-    - crates/biome_rowan/**
-    - crates/biome_text_edit/**
-    - crates/biome_text_size/**
-    - crates/biome_suppression/**
-    - crates/biome_markup/**
+    - crates/check_deserializer/**
+    - crates/check_fs/**
+    - crates/check_rowan/**
+    - crates/check_text_edit/**
+    - crates/check_text_size/**
+    - crates/check_suppression/**
+    - crates/check_markup/**
 
 A-Project:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_service/**
-    - crates/biome_configuration/**
-    - crates/biome_module_graph/**
-    - crates/biome_package/**
-    - crates/biome_plugin_loader/**
-    - crates/biome_project_layout/**
+    - crates/check_service/**
+    - crates/check_configuration/**
+    - crates/check_module_graph/**
+    - crates/check_package/**
+    - crates/check_plugin_loader/**
+    - crates/check_project_layout/**
 
 A-Linter:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_analyze/**
-    - crates/biome_*_analyze/**
+    - crates/check_analyze/**
+    - crates/check_*_analyze/**
 
 A-Parser:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_parser/**
-    - crates/biome_*_parser/**
-    - crates/biome_*_syntax/**
+    - crates/check_parser/**
+    - crates/check_*_parser/**
+    - crates/check_*_syntax/**
 
 A-Formatter:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_formatter/**
-    - crates/biome_formatter_test/**
-    - crates/biome_*_formatter/**
+    - crates/check_formatter/**
+    - crates/check_formatter_test/**
+    - crates/check_*_formatter/**
 
 A-Editors:
 - changed-files:
@@ -56,30 +56,30 @@ A-Editors:
 A-Diagnostic:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_diagnostics/**
-    - crates/biome_diagnostics_categories/**
-    - crates/biome_diagnostics_macros/**
+    - crates/check_diagnostics/**
+    - crates/check_diagnostics_categories/**
+    - crates/check_diagnostics_macros/**
 
 A-Resolver:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_resolver/**
+    - crates/check_resolver/**
 
 A-Tooling:
 - changed-files:
   - any-glob-to-any-file:
     - xtask/**
-    - crates/biome_ungrammar/**
+    - crates/check_ungrammar/**
 
 A-Type-Inference:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_*_type_info/**
+    - crates/check_*_type_info/**
 
 A-LSP:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_lsp/**
+    - crates/check_lsp/**
 
 A-Changelog:
 - changed-files:
@@ -89,24 +89,24 @@ A-Changelog:
 L-Javascript:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_js_*/**
+    - crates/check_js_*/**
 
 L-Json:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_json_*/**
+    - crates/check_json_*/**
 
 L-CSS:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_css_*/**
+    - crates/check_css_*/**
 
 L-HTML:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_html_*/**
+    - crates/check_html_*/**
 
 L-Grit:
 - changed-files:
   - any-glob-to-any-file:
-    - crates/biome_grit_*/**
+    - crates/check_grit_*/**

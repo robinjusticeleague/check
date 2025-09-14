@@ -1,0 +1,93 @@
+---
+source: crates/check_formatter_test/src/snapshot_builder.rs
+info: js/module/statement/return_verbatim_argument.js
+---
+# Input
+
+```js
+// https://github.com/rome/tools/issues/3735
+
+function supported1(){
+	return (
+		// check-ignore format: Work around https://github.com/rome/tools/issues/3734
+		// check-ignore lint/style/useOptionalChain: Optional chaining creates more complicated ES2019 code
+		a && b
+	);
+}
+
+function supported2(){
+	return !(
+		// check-ignore format: Work around https://github.com/rome/tools/issues/3734
+		// check-ignore lint/style/useOptionalChain: Optional chaining creates more complicated ES2019 code
+		a && b
+	);
+}
+
+function supported3(){
+	return (
+		// check-ignore format: test
+		aVeryLongLogicalExpression &&
+		thatBreaksOverMultipleLines
+	);
+}
+
+```
+
+
+=============================
+
+# Outputs
+
+## Output 1
+
+-----
+Indent style: Tab
+Indent width: 2
+Line ending: LF
+Line width: 80
+Quote style: Double Quotes
+JSX quote style: Double Quotes
+Quote properties: As needed
+Trailing commas: All
+Semicolons: Always
+Arrow parentheses: Always
+Bracket spacing: true
+Bracket same line: false
+Attribute Position: Auto
+Expand lists: Auto
+Operator linebreak: After
+-----
+
+```js
+// https://github.com/rome/tools/issues/3735
+
+function supported1() {
+	return (
+		// check-ignore format: Work around https://github.com/rome/tools/issues/3734
+		// check-ignore lint/style/useOptionalChain: Optional chaining creates more complicated ES2019 code
+		a && b
+	);
+}
+
+function supported2() {
+	return !(
+		// check-ignore format: Work around https://github.com/rome/tools/issues/3734
+		// check-ignore lint/style/useOptionalChain: Optional chaining creates more complicated ES2019 code
+		a && b
+	);
+}
+
+function supported3() {
+	return (
+		// check-ignore format: test
+		aVeryLongLogicalExpression &&
+		thatBreaksOverMultipleLines
+	);
+}
+```
+
+# Lines exceeding max width of 80 characters
+```
+    6: 		// check-ignore lint/style/useOptionalChain: Optional chaining creates more complicated ES2019 code
+   14: 		// check-ignore lint/style/useOptionalChain: Optional chaining creates more complicated ES2019 code
+```

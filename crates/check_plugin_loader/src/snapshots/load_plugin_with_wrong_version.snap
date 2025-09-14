@@ -1,0 +1,10 @@
+---
+source: crates/check_plugin_loader/src/lib.rs
+expression: content
+---
+plugin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Cannot load plugin manifest /my-plugin/check-manifest.jsonc
+    
+    Caused by:
+      version must be 1

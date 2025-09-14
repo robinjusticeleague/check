@@ -1,11 +1,11 @@
-use biome_analyze::{
+use check_analyze::{
     FixKind, GroupCategory, Queryable, RegistryVisitor, Rule, RuleCategory, RuleGroup, RuleMetadata,
 };
-use biome_css_syntax::CssLanguage;
-use biome_graphql_syntax::GraphqlLanguage;
-use biome_js_syntax::JsLanguage;
-use biome_json_syntax::JsonLanguage;
-use biome_string_case::Case;
+use check_css_syntax::CssLanguage;
+use check_graphql_syntax::GraphqlLanguage;
+use check_js_syntax::JsLanguage;
+use check_json_syntax::JsonLanguage;
+use check_string_case::Case;
 use proc_macro2::{Ident, Literal, Span, TokenStream};
 use pulldown_cmark::{Event, Parser, Tag, TagEnd};
 use quote::{format_ident, quote};
@@ -182,14 +182,14 @@ pub(crate) fn generate_rule_options(mode: Mode) -> Result<()> {
     let lib_root = rule_options_root.join("lib.rs");
     let mut lint_visitor = LintRulesVisitor::default();
     let mut assist_visitor = AssistActionsVisitor::default();
-    biome_js_analyze::visit_registry(&mut lint_visitor);
-    biome_js_analyze::visit_registry(&mut assist_visitor);
-    biome_json_analyze::visit_registry(&mut lint_visitor);
-    biome_json_analyze::visit_registry(&mut assist_visitor);
-    biome_css_analyze::visit_registry(&mut lint_visitor);
-    biome_css_analyze::visit_registry(&mut assist_visitor);
-    biome_graphql_analyze::visit_registry(&mut lint_visitor);
-    biome_graphql_analyze::visit_registry(&mut assist_visitor);
+    check_js_analyze::visit_registry(&mut lint_visitor);
+    check_js_analyze::visit_registry(&mut assist_visitor);
+    check_json_analyze::visit_registry(&mut lint_visitor);
+    check_json_analyze::visit_registry(&mut assist_visitor);
+    check_css_analyze::visit_registry(&mut lint_visitor);
+    check_css_analyze::visit_registry(&mut assist_visitor);
+    check_graphql_analyze::visit_registry(&mut lint_visitor);
+    check_graphql_analyze::visit_registry(&mut assist_visitor);
 
     let mut rule_names = BTreeSet::default();
     let mut lib_exports = vec![quote! {
@@ -233,20 +233,20 @@ pub(crate) fn generate_rule_options(mode: Mode) -> Result<()> {
 }
 
 pub(crate) fn generate_rules_configuration(mode: Mode) -> Result<()> {
-    let linter_config_root = project_root().join("crates/biome_configuration/src/analyzer/linter");
-    let assist_config_root = project_root().join("crates/biome_configuration/src/analyzer/assist");
-    let push_rules_directory = project_root().join("crates/biome_configuration/src/generated");
+    let linter_config_root = project_root().join("crates/check_configuration/src/analyzer/linter");
+    let assist_config_root = project_root().join("crates/check_configuration/src/analyzer/assist");
+    let push_rules_directory = project_root().join("crates/check_configuration/src/generated");
 
     let mut lint_visitor = LintRulesVisitor::default();
     let mut assist_visitor = AssistActionsVisitor::default();
-    biome_js_analyze::visit_registry(&mut lint_visitor);
-    biome_js_analyze::visit_registry(&mut assist_visitor);
-    biome_json_analyze::visit_registry(&mut lint_visitor);
-    biome_json_analyze::visit_registry(&mut assist_visitor);
-    biome_css_analyze::visit_registry(&mut lint_visitor);
-    biome_css_analyze::visit_registry(&mut assist_visitor);
-    biome_graphql_analyze::visit_registry(&mut lint_visitor);
-    biome_graphql_analyze::visit_registry(&mut assist_visitor);
+    check_js_analyze::visit_registry(&mut lint_visitor);
+    check_js_analyze::visit_registry(&mut assist_visitor);
+    check_json_analyze::visit_registry(&mut lint_visitor);
+    check_json_analyze::visit_registry(&mut assist_visitor);
+    check_css_analyze::visit_registry(&mut lint_visitor);
+    check_css_analyze::visit_registry(&mut assist_visitor);
+    check_graphql_analyze::visit_registry(&mut lint_visitor);
+    check_graphql_analyze::visit_registry(&mut assist_visitor);
 
     // let LintRulesVisitor { groups } = lint_visitor;
 
@@ -292,7 +292,7 @@ fn generate_for_groups(
         let group_ident = quote::format_ident!("{}", group_name);
 
         let global_recommended = if group_name == "nursery" {
-            quote! { !self.is_recommended_false() && biome_flags::is_unstable() }
+            quote! { !self.is_recommended_false() && check_flags::is_unstable() }
         } else {
             quote! { !self.is_recommended_false() }
         };
@@ -339,8 +339,8 @@ fn generate_for_groups(
 
     let severity_fn = if kind == RuleCategory::Action {
         quote! {
-            /// Given a category coming from [Diagnostic](biome_diagnostics::Diagnostic), this function returns
-            /// the [Severity](biome_diagnostics::Severity) associated to the rule, if the configuration changed it.
+            /// Given a category coming from [Diagnostic](check_diagnostics::Diagnostic), this function returns
+            /// the [Severity](check_diagnostics::Severity) associated to the rule, if the configuration changed it.
             /// If the severity is off or not set, then the function returns the default severity of the rule:
             /// [Severity::Error] for recommended rules and [Severity::Warning] for other rules.
             ///
@@ -370,8 +370,8 @@ fn generate_for_groups(
     } else {
         quote! {
 
-            /// Given a category coming from [Diagnostic](biome_diagnostics::Diagnostic), this function returns
-            /// the [Severity](biome_diagnostics::Severity) associated to the rule, if the configuration changed it.
+            /// Given a category coming from [Diagnostic](check_diagnostics::Diagnostic), this function returns
+            /// the [Severity](check_diagnostics::Severity) associated to the rule, if the configuration changed it.
             /// If the severity is off or not set, then the function returns the default severity of the rule:
             /// [Severity::Error] for recommended rules and [Severity::Warning] for other rules.
             ///
@@ -408,20 +408,20 @@ fn generate_for_groups(
     let use_rule_configuration = if kind == RuleCategory::Action {
         quote! {
             use crate::analyzer::{RuleAssistConfiguration, RuleAssistPlainConfiguration};
-            use biome_analyze::{options::RuleOptions, RuleFilter};
+            use check_analyze::{options::RuleOptions, RuleFilter};
         }
     } else {
         quote! {
             use crate::analyzer::{GroupPlainConfiguration, RuleConfiguration, RulePlainConfiguration, RuleFixConfiguration, SeverityOrGroup, RuleGroupExt};
-            use biome_analyze::{options::RuleOptions, RuleFilter};
+            use check_analyze::{options::RuleOptions, RuleFilter};
         }
     };
 
     let groups = if kind == RuleCategory::Action {
         quote! {
             #use_rule_configuration
-            use biome_deserialize_macros::{Deserializable, Merge};
-            use biome_diagnostics::{Category, Severity};
+            use check_deserialize_macros::{Deserializable, Merge};
+            use check_diagnostics::{Category, Severity};
             use rustc_hash::FxHashSet;
             use serde::{Deserialize, Serialize};
             #[cfg(feature = "schema")]
@@ -492,7 +492,7 @@ fn generate_for_groups(
             #[cfg_attr(feature = "schema", derive(JsonSchema))]
             #[serde(rename_all = "camelCase", deny_unknown_fields)]
             pub struct Actions {
-                /// It enables the assist actions recommended by Biome. `true` by default.
+                /// It enables the assist actions recommended by Check. `true` by default.
                 #[serde(skip_serializing_if = "Option::is_none")]
                 pub recommended: Option<bool>,
 
@@ -504,7 +504,7 @@ fn generate_for_groups(
             }
 
             impl Actions {
-                /// Checks if the code coming from [biome_diagnostics::Diagnostic] corresponds to a rule.
+                /// Checks if the code coming from [check_diagnostics::Diagnostic] corresponds to a rule.
                 /// Usually the code is built like {group}/{rule_name}
                 pub fn has_rule(
                     group: RuleGroup,
@@ -559,8 +559,8 @@ fn generate_for_groups(
     } else {
         quote! {
             #use_rule_configuration
-            use biome_deserialize_macros::{Deserializable, Merge};
-            use biome_diagnostics::{Category, Severity};
+            use check_deserialize_macros::{Deserializable, Merge};
+            use check_diagnostics::{Category, Severity};
             use rustc_hash::FxHashSet;
             use serde::{Deserialize, Serialize};
             #[cfg(feature = "schema")]
@@ -631,7 +631,7 @@ fn generate_for_groups(
             #[cfg_attr(feature = "schema", derive(JsonSchema))]
             #[serde(rename_all = "camelCase", deny_unknown_fields)]
             pub struct Rules {
-                /// It enables the lint rules recommended by Biome. `true` by default.
+                /// It enables the lint rules recommended by Check. `true` by default.
                 #[serde(skip_serializing_if = "Option::is_none")]
                 pub recommended: Option<bool>,
 
@@ -643,7 +643,7 @@ fn generate_for_groups(
             }
 
             impl Rules {
-                /// Checks if the code coming from [biome_diagnostics::Diagnostic] corresponds to a rule.
+                /// Checks if the code coming from [check_diagnostics::Diagnostic] corresponds to a rule.
                 /// Usually the code is built like {group}/{rule_name}
                 pub fn has_rule(
                     group: RuleGroup,
@@ -713,7 +713,7 @@ fn generate_for_groups(
         RuleCategory::Lint => {
             quote! {
                 use crate::analyzer::linter::*;
-                use biome_analyze::{AnalyzerRules, MetadataRegistry};
+                use check_analyze::{AnalyzerRules, MetadataRegistry};
 
                 pub fn push_to_analyzer_rules(
                     rules: &Rules,
@@ -737,7 +737,7 @@ fn generate_for_groups(
         RuleCategory::Action => {
             quote! {
                 use crate::analyzer::assist::*;
-                use biome_analyze::{AnalyzerRules, MetadataRegistry};
+                use check_analyze::{AnalyzerRules, MetadataRegistry};
 
                 pub fn push_to_analyzer_assist(
                     rules: &Actions,
@@ -870,7 +870,7 @@ fn generate_group_struct(
              #rule
         });
         let rule_option_type = quote! {
-            biome_rule_options::#rule_base_name::#rule_name
+            check_rule_options::#rule_base_name::#rule_name
         };
 
         let rule_option = quote! { Option<#rule_config_type<#rule_option_type>> };

@@ -1,0 +1,11 @@
+{
+  "$schema": "../../../../../../packages/@checkjs/check/configuration_schema.json",
+  "json": {
+    "parser": {
+      "allowTrailingCommas": true
+    },
+    "formatter": {
+      "trailingCommas": "all"
+    }
+  }
+}

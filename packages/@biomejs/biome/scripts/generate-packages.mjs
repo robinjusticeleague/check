@@ -18,7 +18,7 @@ function copyBinaryToNativePackage(platform, arch) {
 	const os = platform.split("-")[0];
 	const buildName = getName(platform, arch);
 	const packageRoot = resolve(PACKAGES_ROOT, buildName);
-	const packageName = `@biomejs/${buildName}`;
+	const packageName = `@checkjs/${buildName}`;
 
 	// Update the package.json manifest
 	const { version, license, repository, engines, homepage } = rootManifest;
@@ -52,9 +52,9 @@ function copyBinaryToNativePackage(platform, arch) {
 	const ext = os === "win32" ? ".exe" : "";
 	const binarySource = resolve(
 		REPO_ROOT,
-		`${getName(platform, arch, "biome")}${ext}`,
+		`${getName(platform, arch, "check")}${ext}`,
 	);
-	const binaryTarget = resolve(packageRoot, `biome${ext}`);
+	const binaryTarget = resolve(packageRoot, `check${ext}`);
 
 	if (!fs.existsSync(binarySource)) {
 		console.error(
@@ -96,7 +96,7 @@ function updateVersionInJsPackage(packageName) {
 function updateVersionInDependencies(dependencies, version) {
 	if (dependencies) {
 		for (const dependency of Object.keys(dependencies)) {
-			if (dependency.startsWith("@biomejs/")) {
+			if (dependency.startsWith("@checkjs/")) {
 				dependencies[dependency] = version;
 			}
 		}
@@ -104,12 +104,12 @@ function updateVersionInDependencies(dependencies, version) {
 }
 
 /**
- * The wasm-pack binary changes the package name and version to use the ones coming from `biome_wasm/Cargo.toml`.
- * This function updates name and version of the `package.json` to match the ones of `@biomejs/biome`
+ * The wasm-pack binary changes the package name and version to use the ones coming from `check_wasm/Cargo.toml`.
+ * This function updates name and version of the `package.json` to match the ones of `@checkjs/check`
  * @param target
  */
 function updateWasmPackage(target) {
-	const packageName = `@biomejs/wasm-${target}`;
+	const packageName = `@checkjs/wasm-${target}`;
 	const packageRoot = resolve(PACKAGES_ROOT, `wasm-${target}`);
 
 	const manifestPath = resolve(packageRoot, "package.json");
@@ -126,7 +126,7 @@ function updateWasmPackage(target) {
 const PLATFORMS = ["win32-%s", "darwin-%s", "linux-%s", "linux-%s-musl"];
 const ARCHITECTURES = ["x64", "arm64"];
 const WASM_TARGETS = ["bundler", "nodejs", "web"];
-const JS_PACKAGES = ["backend-jsonrpc", "biome", "js-api"];
+const JS_PACKAGES = ["backend-jsonrpc", "check", "js-api"];
 
 for (const target of WASM_TARGETS) {
 	updateWasmPackage(target);

@@ -13,8 +13,8 @@
     "enabled": false
   },
   "assignees": [
-    "@biomejs/maintainers",
-    "@biomejs/core-contributors"
+    "@checkjs/maintainers",
+    "@checkjs/core-contributors"
   ],
   "packageRules": [
     {
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "groupName": "@biomejs packages",
+      "groupName": "@checkjs packages",
       "matchFileNames": [
         "packages/**"
       ],

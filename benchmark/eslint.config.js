@@ -8,7 +8,7 @@ export default [
       },
     },
     rules: {
-      // Biome complexity
+      // Check complexity
       "no-extra-boolean-cast": "error",
       "no-regex-spaces": "error",
       "no-useless-catch": "error",
@@ -21,7 +21,7 @@ export default [
       "dot-notation": "error",
       "prefer-regex-literals": "error",
 
-      // Biome correctness
+      // Check correctness
       "no-const-assign": "error",
       "no-constant-condition": "error",
       "no-constructor-return": "error",
@@ -50,10 +50,10 @@ export default [
       "for-direction": "error",
       "require-yield": "error",
 
-      // Biome security
+      // Check security
       "no-eval": "error",
 
-      // Biome style
+      // Check style
       "prefer-rest-params": "error",
       "no-sequences": "error",
       "no-param-reassign": "error",
@@ -66,7 +66,7 @@ export default [
       "one-var": "error",
       "prefer-template": "error",
 
-      // Biome suspicious
+      // Check suspicious
       "no-async-promise-executor": "error",
       "no-cond-assign": "error",
       "no-ex-assign": "error",

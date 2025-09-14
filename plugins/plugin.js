@@ -1,4 +1,4 @@
-import { registerDiagnostic } from "@biomejs/plugin-api";
+import { registerDiagnostic } from "@checkjs/plugin-api";
 
 /** @param {string} path */
 export default function useMyPlugin(path) {

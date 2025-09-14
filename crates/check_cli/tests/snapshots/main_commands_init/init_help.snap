@@ -1,0 +1,18 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: content
+---
+# Emitted Messages
+
+```block
+Bootstraps a new check project. Creates a configuration file with some defaults.
+
+Usage: init [--jsonc]
+
+Available options:
+        --jsonc  Tells Check to emit a `check.jsonc` file.
+    -h, --help   Prints help information
+
+```
+
+

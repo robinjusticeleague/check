@@ -1,0 +1,36 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+## `check.json`
+
+```json
+{
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  }
+}
+```
+
+# Termination Message
+
+```block
+configuration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Check exited because the configuration resulted in errors. Please fix them.
+  
+
+
+```
+
+# Emitted Messages
+
+```block
+<TEMP_DIR>/should_fail_when_ignore_file_is_absent internalError/fs ━━━━━━━━━━━━━━━━━━━━
+
+  × Check couldn't find an ignore file in the following folder: <TEMP_DIR>/should_fail_when_ignore_file_is_absent
+  
+
+```

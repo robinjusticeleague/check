@@ -1,5 +1,5 @@
 use anyhow::{Context, Ok, Result};
-use biome_string_case::Case;
+use check_string_case::Case;
 use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
 use std::{collections::BTreeMap, path::Path};
@@ -14,7 +14,7 @@ pub fn generate_analyzer() -> Result<()> {
 }
 
 fn generate_js_analyzer() -> Result<()> {
-    let base_path = project_root().join("crates/biome_js_analyze/src");
+    let base_path = project_root().join("crates/check_js_analyze/src");
     let mut analyzers = BTreeMap::new();
     generate_category("lint", &mut analyzers, &base_path)?;
     generate_category("assist", &mut analyzers, &base_path)?;
@@ -24,7 +24,7 @@ fn generate_js_analyzer() -> Result<()> {
 }
 
 fn generate_json_analyzer() -> Result<()> {
-    let base_path = project_root().join("crates/biome_json_analyze/src");
+    let base_path = project_root().join("crates/check_json_analyze/src");
     let mut analyzers = BTreeMap::new();
     generate_category("lint", &mut analyzers, &base_path)?;
     generate_category("assist", &mut analyzers, &base_path)?;
@@ -33,7 +33,7 @@ fn generate_json_analyzer() -> Result<()> {
 }
 
 fn generate_css_analyzer() -> Result<()> {
-    let base_path = project_root().join("crates/biome_css_analyze/src");
+    let base_path = project_root().join("crates/check_css_analyze/src");
     let mut analyzers = BTreeMap::new();
     generate_category("lint", &mut analyzers, &base_path)?;
     generate_category("assist", &mut analyzers, &base_path)?;
@@ -42,7 +42,7 @@ fn generate_css_analyzer() -> Result<()> {
 }
 
 fn generate_graphql_analyzer() -> Result<()> {
-    let base_path = project_root().join("crates/biome_graphql_analyze/src");
+    let base_path = project_root().join("crates/check_graphql_analyze/src");
     let mut analyzers = BTreeMap::new();
     generate_category("lint", &mut analyzers, &base_path)?;
 
@@ -111,7 +111,7 @@ fn generate_category(
     let (modules, paths): (Vec<_>, Vec<_>) = groups.into_values().unzip();
     let tokens = xtask::reformat(quote! {
         #( #modules )*
-        ::biome_analyze::declare_category! {
+        ::check_analyze::declare_category! {
             pub #category_name {
                 kind: #kind,
                 groups: [
@@ -165,19 +165,19 @@ fn generate_group(category: &'static str, group: &str, base_path: &Path) -> Resu
     let (import_macro, use_macro) = match category {
         "lint" => (
             quote!(
-                use biome_analyze::declare_lint_group
+                use check_analyze::declare_lint_group
             ),
             quote!(declare_lint_group),
         ),
         "assist" => (
             quote!(
-                use biome_analyze::declare_assist_group
+                use check_analyze::declare_assist_group
             ),
             quote!(declare_assist_group),
         ),
         "syntax" => (
             quote!(
-                use biome_analyze::declare_syntax_group
+                use check_analyze::declare_syntax_group
             ),
             quote!(declare_syntax_group),
         ),
@@ -207,13 +207,13 @@ fn generate_group(category: &'static str, group: &str, base_path: &Path) -> Resu
 }
 
 fn update_js_registry_builder(analyzers: BTreeMap<&'static str, TokenStream>) -> Result<()> {
-    let path = project_root().join("crates/biome_js_analyze/src/registry.rs");
+    let path = project_root().join("crates/check_js_analyze/src/registry.rs");
 
     let categories = analyzers.into_values();
 
     let tokens = xtask::reformat(quote! {
-        use biome_analyze::RegistryVisitor;
-        use biome_js_syntax::JsLanguage;
+        use check_analyze::RegistryVisitor;
+        use check_js_syntax::JsLanguage;
 
         pub fn visit_registry<V: RegistryVisitor<JsLanguage>>(registry: &mut V) {
             #( #categories )*
@@ -226,13 +226,13 @@ fn update_js_registry_builder(analyzers: BTreeMap<&'static str, TokenStream>) ->
 }
 
 fn update_json_registry_builder(analyzers: BTreeMap<&'static str, TokenStream>) -> Result<()> {
-    let path = project_root().join("crates/biome_json_analyze/src/registry.rs");
+    let path = project_root().join("crates/check_json_analyze/src/registry.rs");
 
     let categories = analyzers.into_values();
 
     let tokens = xtask::reformat(quote! {
-        use biome_analyze::RegistryVisitor;
-        use biome_json_syntax::JsonLanguage;
+        use check_analyze::RegistryVisitor;
+        use check_json_syntax::JsonLanguage;
 
         pub fn visit_registry<V: RegistryVisitor<JsonLanguage>>(registry: &mut V) {
             #( #categories )*
@@ -246,13 +246,13 @@ fn update_json_registry_builder(analyzers: BTreeMap<&'static str, TokenStream>) 
 }
 
 fn update_css_registry_builder(analyzers: BTreeMap<&'static str, TokenStream>) -> Result<()> {
-    let path = project_root().join("crates/biome_css_analyze/src/registry.rs");
+    let path = project_root().join("crates/check_css_analyze/src/registry.rs");
 
     let categories = analyzers.into_values();
 
     let tokens = xtask::reformat(quote! {
-        use biome_analyze::RegistryVisitor;
-        use biome_css_syntax::CssLanguage;
+        use check_analyze::RegistryVisitor;
+        use check_css_syntax::CssLanguage;
 
         pub fn visit_registry<V: RegistryVisitor<CssLanguage>>(registry: &mut V) {
             #( #categories )*
@@ -266,13 +266,13 @@ fn update_css_registry_builder(analyzers: BTreeMap<&'static str, TokenStream>) -
 }
 
 fn update_graphql_registry_builder(analyzers: BTreeMap<&'static str, TokenStream>) -> Result<()> {
-    let path = project_root().join("crates/biome_graphql_analyze/src/registry.rs");
+    let path = project_root().join("crates/check_graphql_analyze/src/registry.rs");
 
     let categories = analyzers.into_values();
 
     let tokens = xtask::reformat(quote! {
-        use biome_analyze::RegistryVisitor;
-        use biome_graphql_syntax::GraphqlLanguage;
+        use check_analyze::RegistryVisitor;
+        use check_graphql_syntax::GraphqlLanguage;
 
         pub fn visit_registry<V: RegistryVisitor<GraphqlLanguage>>(registry: &mut V) {
             #( #categories )*

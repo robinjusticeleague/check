@@ -12,11 +12,11 @@ on:
       - 'crates/**_analyze/**/*.rs'
       - 'crates/**_formatter/**/*.rs'
       - 'crates/**_parser/**/*.rs'
-      - 'crates/biome_configuration/**/*.rs'
-      - 'crates/biome_grit_patterns/**/*.rs'
-      - 'crates/biome_module_graph/**/*.rs'
-      - 'crates/biome_package/**/*.rs'
-      - 'crates/biome_rowan/**/*.rs'
+      - 'crates/check_configuration/**/*.rs'
+      - 'crates/check_grit_patterns/**/*.rs'
+      - 'crates/check_module_graph/**/*.rs'
+      - 'crates/check_package/**/*.rs'
+      - 'crates/check_rowan/**/*.rs'
   push:
     branches:
       - main
@@ -26,11 +26,11 @@ on:
       - 'crates/**_analyze/**/*.rs'
       - 'crates/**_formatter/**/*.rs'
       - 'crates/**_parser/**/*.rs'
-      - 'crates/biome_configuration/**/*.rs'
-      - 'crates/biome_grit_patterns/**/*.rs'
-      - 'crates/biome_module_graph/**/*.rs'
-      - 'crates/biome_package/**/*.rs'
-      - 'crates/biome_rowan/**/*.rs'
+      - 'crates/check_configuration/**/*.rs'
+      - 'crates/check_grit_patterns/**/*.rs'
+      - 'crates/check_module_graph/**/*.rs'
+      - 'crates/check_package/**/*.rs'
+      - 'crates/check_rowan/**/*.rs'
 
 env:
   RUST_LOG: info
@@ -44,22 +44,22 @@ jobs:
     strategy:
       matrix:
         package:
-          - biome_js_parser
-          - biome_js_formatter
-          - biome_js_analyze
-          - biome_css_parser
-          - biome_css_formatter
-          - biome_css_analyze
-          - biome_json_parser
-          - biome_json_formatter
-          - biome_json_analyze
-          - biome_graphql_parser
-          - biome_graphql_formatter
-          - biome_html_parser
-          - biome_html_formatter
-          - biome_module_graph
-          - biome_package
-          - biome_configuration
+          - check_js_parser
+          - check_js_formatter
+          - check_js_analyze
+          - check_css_parser
+          - check_css_formatter
+          - check_css_analyze
+          - check_json_parser
+          - check_json_formatter
+          - check_json_analyze
+          - check_graphql_parser
+          - check_graphql_formatter
+          - check_html_parser
+          - check_html_formatter
+          - check_module_graph
+          - check_package
+          - check_configuration
 
     steps:
 

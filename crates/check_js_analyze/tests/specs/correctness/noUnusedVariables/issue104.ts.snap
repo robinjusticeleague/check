@@ -1,0 +1,16 @@
+---
+source: crates/check_js_analyze/tests/spec_tests.rs
+expression: issue104.ts
+---
+# Input
+```ts
+// See https://github.com/checkjs/check/issues/104
+
+import { X } from "mod"
+export function f(X: X): X {
+    return X;
+}
+
+```
+
+

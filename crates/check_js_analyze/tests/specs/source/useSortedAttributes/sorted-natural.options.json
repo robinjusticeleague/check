@@ -1,0 +1,15 @@
+{
+	"$schema": "../../../../../../packages/@checkjs/check/configuration_schema.json",
+	"assist": {
+		"actions": {
+			"source": {
+				"useSortedAttributes": {
+					"level": "on",
+					"options": {
+						"sortOrder": "natural"
+					}
+				}
+			}
+		}
+	}
+}

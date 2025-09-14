@@ -1,0 +1,63 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+## `foo/check.json`
+
+```json
+{ "linter": { "rules": { "recommended": true } } }
+```
+
+## `check.json`
+
+```json
+{ "linter": { "rules": { "recommended": true } } }
+```
+
+## `bar/check.json`
+
+```json
+{ "linter": { "rules": { "recommended": true } } }
+```
+
+# Emitted Messages
+
+```block
+<TEMP_DIR>/should_migrate_nested_config/bar/check.json migrate ━━━━━━━━━━━━━━━━━━━━
+
+  i Configuration file can be updated.
+  
+    1 │ {·"root":·false,"linter":·{·"rules":·{·"recommended":·true·}·}·}
+      │    ++++++++++++++                                               
+
+```
+
+```block
+Your configuration file is up to date.
+```
+
+```block
+<TEMP_DIR>/should_migrate_nested_config/foo/check.json migrate ━━━━━━━━━━━━━━━━━━━━
+
+  i Configuration file can be updated.
+  
+    1 │ {·"root":·false,"linter":·{·"rules":·{·"recommended":·true·}·}·}
+      │    ++++++++++++++                                               
+
+```
+
+```block
+configuration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i Migration results:
+  
+  - <TEMP_DIR>/should_migrate_nested_config/bar/check.json: configuration needs migration.
+  - <TEMP_DIR>/should_migrate_nested_config/check.json: no migration needed.
+  - <TEMP_DIR>/should_migrate_nested_config/foo/check.json: configuration needs migration.
+  
+  i Use --write to apply the changes.
+  
+  $ check migrate --write
+  
+
+```

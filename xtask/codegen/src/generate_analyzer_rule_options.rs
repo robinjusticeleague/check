@@ -1,5 +1,5 @@
 use crate::update;
-use biome_string_case::Case;
+use check_string_case::Case;
 use proc_macro2::{Ident, Span};
 use quote::quote;
 use std::path::PathBuf;
@@ -7,12 +7,12 @@ use xtask::*;
 
 /// The path to the analyzer rule options directory.
 pub fn get_analyzer_rule_options_path() -> PathBuf {
-    project_root().join("crates/biome_rule_options/src/")
+    project_root().join("crates/check_rule_options/src/")
 }
 
 /// Generates the options struct for a new analyzer rule.
 /// This function creates a new struct with the name `<RuleName>Options` and saves it in the
-/// `biome_rule_options` crate.
+/// `check_rule_options` crate.
 pub fn generate_analyzer_rule_options(
     rule_name: &str,
     mode: Mode,
@@ -24,7 +24,7 @@ pub fn generate_analyzer_rule_options(
     );
 
     let content = quote! {
-        use biome_deserialize_macros::Deserializable;
+        use check_deserialize_macros::Deserializable;
         use serde::{Deserialize, Serialize};
 
         #[derive(Default, Clone, Debug, Deserialize, Deserializable, Eq, PartialEq, Serialize)]
@@ -50,7 +50,7 @@ pub fn generate_analyzer_rule_options(
     Ok(())
 }
 
-/// Registers the new analyzer rule options module in the `lib.rs` file of the `biome_rule_options` crate.
+/// Registers the new analyzer rule options module in the `lib.rs` file of the `check_rule_options` crate.
 /// This is a temporal addition to let configuration codegen properly run afterward.
 /// Configuration codegen will re-create the `lib.rs` file and put mods in the right order.
 fn register_analyzer_rule_options(mod_name: &str) -> Result<()> {

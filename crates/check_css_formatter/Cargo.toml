@@ -1,0 +1,55 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Check's CSS formatter"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_css_formatter"
+repository.workspace = true
+version              = "0.5.7"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+check_css_syntax  = { workspace = true }
+check_diagnostics = { workspace = true }
+check_formatter   = { workspace = true }
+check_rowan       = { workspace = true }
+check_string_case = { workspace = true }
+check_suppression = { workspace = true }
+
+[dev-dependencies]
+check_configuration  = { path = "../check_configuration" }
+check_css_parser     = { path = "../check_css_parser" }
+check_formatter      = { workspace = true, features = ["countme"] }
+check_formatter_test = { path = "../check_formatter_test" }
+check_fs             = { path = "../check_fs" }
+check_parser         = { path = "../check_parser" }
+check_service        = { path = "../check_service" }
+check_test_utils     = { path = "../check_test_utils" }
+camino               = { workspace = true }
+countme              = { workspace = true, features = ["enable"] }
+criterion            = { package = "codspeed-criterion-compat", version = "=3.0.3" }
+serde                = { workspace = true, features = ["derive"] }
+serde_json           = { workspace = true }
+tests_macros         = { path = "../tests_macros" }
+
+[target.'cfg(target_os = "windows")'.dev-dependencies]
+mimalloc = { workspace = true }
+
+[target.'cfg(all(target_family="unix", not(all(target_arch = "aarch64", target_env = "musl"))))'.dev-dependencies]
+tikv-jemallocator = { workspace = true }
+
+
+# cargo-workspaces metadata
+[package.metadata.workspaces]
+independent = true
+
+[lints]
+workspace = true
+
+[[bench]]
+harness = false
+name    = "css_formatter"

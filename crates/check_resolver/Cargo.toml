@@ -1,0 +1,23 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Responsible for resolving dependency path"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_resolver"
+repository.workspace = true
+version              = "0.1.0"
+
+[lints]
+workspace = true
+
+[dependencies]
+check_console     = { workspace = true }
+check_diagnostics = { workspace = true }
+check_fs          = { workspace = true }
+check_json_value  = { workspace = true }
+check_package     = { workspace = true }
+check_rowan       = { workspace = true }
+camino            = { workspace = true }

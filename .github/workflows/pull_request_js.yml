@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths: # Only run when changes are made to js code
-      - 'packages/@biomejs/**'
+      - 'packages/@checkjs/**'
       - 'packages/aria-data/**'
       - 'packages/tailwindcss-config-analyzer/**'
       - 'package.json'
@@ -35,7 +35,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-
       - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
-      - name: Run Biome CI check
+      - name: Run Check CI check
         run: |
           pnpm i
           pnpm run ci

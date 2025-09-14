@@ -16,7 +16,7 @@ export default [
       "@typescript-eslint": tsPlugin,
     },
     rules: {
-      // Biome complexity
+      // Check complexity
       // deprecated rule
       //"@typescript-eslint/ban-types": "error",
       "no-extra-boolean-cast": "error",
@@ -36,7 +36,7 @@ export default [
       //"@typescript-eslint/prefer-optional-chain": "error",
       "prefer-regex-literals": "error",
 
-      // Biome correctness
+      // Check correctness
       "no-const-assign": "error",
       "no-constant-condition": "error",
       "no-constructor-return": "error",
@@ -65,10 +65,10 @@ export default [
       "for-direction": "error",
       "require-yield": "error",
 
-      // Biome security
+      // Check security
       "no-eval": "error",
 
-      // Biome style
+      // Check style
       "prefer-rest-params": "error",
       "no-sequences": "error",
       "@typescript-eslint/no-inferrable-types": "error",
@@ -100,7 +100,7 @@ export default [
       "one-var": "error",
       "prefer-template": "error",
 
-      // Biome suspicious
+      // Check suspicious
       "no-async-promise-executor": "error",
       "no-cond-assign": "error",
       "no-ex-assign": "error",

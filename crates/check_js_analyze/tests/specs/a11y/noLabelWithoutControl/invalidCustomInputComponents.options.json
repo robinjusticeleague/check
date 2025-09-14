@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../../../../packages/@checkjs/check/configuration_schema.json",
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "a11y": {
+        "noLabelWithoutControl": {
+          "level": "error",
+          "options": {
+            "inputComponents": [
+              "CustomInput"
+            ],
+            "labelAttributes": [],
+            "labelComponents": []
+          }
+        }
+      }
+    }
+  }
+}

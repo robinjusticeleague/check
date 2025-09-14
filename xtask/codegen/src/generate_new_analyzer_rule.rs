@@ -1,4 +1,4 @@
-use biome_string_case::Case;
+use check_string_case::Case;
 use bpaf::Bpaf;
 use std::str::FromStr;
 use xtask::project_root;
@@ -72,13 +72,13 @@ fn generate_rule_template(
     match kind {
         LanguageKind::Js => {
             format!(
-                r#"use biome_analyze::{{
+                r#"use check_analyze::{{
     context::RuleContext, {macro_name}, Rule, RuleDiagnostic, Ast
 }};
-use biome_console::markup;
-use biome_js_syntax::JsIdentifierBinding;
-use biome_rowan::AstNode;
-use biome_rule_options::{rule_name_snake_case}::{rule_name_upper_camel}Options;
+use check_console::markup;
+use check_js_syntax::JsIdentifierBinding;
+use check_rowan::AstNode;
+use check_rule_options::{rule_name_snake_case}::{rule_name_upper_camel}Options;
 
 {macro_name}! {{
     /// Succinct description of the rule.
@@ -125,7 +125,7 @@ impl Rule for {rule_name_upper_camel} {{
     fn diagnostic(ctx: &RuleContext<Self>, _state: &Self::State) -> Option<RuleDiagnostic> {{
         //
         // Read our guidelines to write great diagnostics:
-        // https://docs.rs/biome_analyze/latest/biome_analyze/#what-a-rule-should-say-to-the-user
+        // https://docs.rs/check_analyze/latest/check_analyze/#what-a-rule-should-say-to-the-user
         //
         let node = ctx.query();
         Some(
@@ -147,11 +147,11 @@ impl Rule for {rule_name_upper_camel} {{
         }
         LanguageKind::Css => {
             format!(
-                r#"use biome_analyze::{{context::RuleContext, {macro_name}, Ast, Rule, RuleDiagnostic}};
-use biome_console::markup;
-use biome_css_syntax::CssDeclarationOrRuleBlock;
-use biome_rowan::AstNode;
-use biome_rule_options::{rule_name_snake_case}::{rule_name_upper_camel}Options;
+                r#"use check_analyze::{{context::RuleContext, {macro_name}, Ast, Rule, RuleDiagnostic}};
+use check_console::markup;
+use check_css_syntax::CssDeclarationOrRuleBlock;
+use check_rowan::AstNode;
+use check_rule_options::{rule_name_snake_case}::{rule_name_upper_camel}Options;
 
 {macro_name}! {{
     /// Succinct description of the rule.
@@ -205,7 +205,7 @@ impl Rule for {rule_name_upper_camel} {{
     fn diagnostic(_: &RuleContext<Self>, node: &Self::State) -> Option<RuleDiagnostic> {{
         //
         // Read our guidelines to write great diagnostics:
-        // https://docs.rs/biome_analyze/latest/biome_analyze/#what-a-rule-should-say-to-the-user
+        // https://docs.rs/check_analyze/latest/check_analyze/#what-a-rule-should-say-to-the-user
         //
         let span = node.range();
         Some(
@@ -227,11 +227,11 @@ impl Rule for {rule_name_upper_camel} {{
         }
         LanguageKind::Json => {
             format!(
-                r#"use biome_analyze::{{context::RuleContext, {macro_name}, Ast, Rule, RuleDiagnostic}};
-use biome_console::markup;
-use biome_json_syntax::JsonMember;
-use biome_rowan::AstNode;
-use biome_rule_options::{rule_name_snake_case}::{rule_name_upper_camel}Options;
+                r#"use check_analyze::{{context::RuleContext, {macro_name}, Ast, Rule, RuleDiagnostic}};
+use check_console::markup;
+use check_json_syntax::JsonMember;
+use check_rowan::AstNode;
+use check_rule_options::{rule_name_snake_case}::{rule_name_upper_camel}Options;
 
 {macro_name}! {{
     /// Succinct description of the rule.
@@ -282,7 +282,7 @@ impl Rule for {rule_name_upper_camel} {{
     fn diagnostic(ctx: &RuleContext<Self>, _state: &Self::State) -> Option<RuleDiagnostic> {{
         //
         // Read our guidelines to write great diagnostics:
-        // https://docs.rs/biome_analyze/latest/biome_analyze/#what-a-rule-should-say-to-the-user
+        // https://docs.rs/check_analyze/latest/check_analyze/#what-a-rule-should-say-to-the-user
         //
         let span = ctx.query().range();
         Some(
@@ -304,11 +304,11 @@ impl Rule for {rule_name_upper_camel} {{
         }
         LanguageKind::Graphql => {
             format!(
-                r#"use biome_analyze::{{context::RuleContext, {macro_name}, Ast, Rule, RuleDiagnostic}};
-use biome_console::markup;
-use biome_graphql_syntax::GraphqlRoot;
-use biome_rowan::AstNode;
-use biome_rule_options::{rule_name_snake_case}::{rule_name_upper_camel}Options;
+                r#"use check_analyze::{{context::RuleContext, {macro_name}, Ast, Rule, RuleDiagnostic}};
+use check_console::markup;
+use check_graphql_syntax::GraphqlRoot;
+use check_rowan::AstNode;
+use check_rule_options::{rule_name_snake_case}::{rule_name_upper_camel}Options;
 
 {macro_name}! {{
     /// Succinct description of the rule.
@@ -359,7 +359,7 @@ impl Rule for {rule_name_upper_camel} {{
     fn diagnostic(ctx: &RuleContext<Self>, _state: &Self::State) -> Option<RuleDiagnostic> {{
         //
         // Read our guidelines to write great diagnostics:
-        // https://docs.rs/biome_analyze/latest/biome_analyze/#what-a-rule-should-say-to-the-user
+        // https://docs.rs/check_analyze/latest/check_analyze/#what-a-rule-should-say-to-the-user
         //
         let span = ctx.query().range();
         Some(
@@ -385,7 +385,7 @@ impl Rule for {rule_name_upper_camel} {{
 pub fn generate_new_analyzer_rule(kind: LanguageKind, category: Category, rule_name: &str) {
     let rule_name_camel = Case::Camel.convert(rule_name);
     let rule_kind = kind.as_str();
-    let crate_folder = project_root().join(format!("crates/biome_{rule_kind}_analyze"));
+    let crate_folder = project_root().join(format!("crates/check_{rule_kind}_analyze"));
     let test_folder = crate_folder.join("tests/specs/nursery");
     let rule_folder = match &category {
         Category::Lint => crate_folder.join("src/lint/nursery"),
@@ -410,7 +410,7 @@ pub fn generate_new_analyzer_rule(kind: LanguageKind, category: Category, rule_n
     );
     std::fs::write(file_name.clone(), code).unwrap_or_else(|_| panic!("To write {}", &file_name));
 
-    let categories_path = "crates/biome_diagnostics_categories/src/categories.rs";
+    let categories_path = "crates/check_diagnostics_categories/src/categories.rs";
     let mut categories = std::fs::read_to_string(categories_path).unwrap();
 
     if !categories.contains(&rule_name_camel) {
@@ -418,10 +418,10 @@ pub fn generate_new_analyzer_rule(kind: LanguageKind, category: Category, rule_n
         // We sort rules to reduce conflicts between contributions made in parallel.
         let rule_line = match category {
             Category::Lint => format!(
-                r#"    "lint/nursery/{rule_name_camel}": "https://biomejs.dev/linter/rules/{kebab_case_rule}","#
+                r#"    "lint/nursery/{rule_name_camel}": "https://checkjs.dev/linter/rules/{kebab_case_rule}","#
             ),
             Category::Assist => format!(
-                r#"    "assists/nursery/{rule_name_camel}": "https://biomejs.dev/assists/{kebab_case_rule}","#
+                r#"    "assists/nursery/{rule_name_camel}": "https://checkjs.dev/assists/{kebab_case_rule}","#
             ),
             Category::Syntax => format!(r#"    "syntax/nursery/{rule_name_camel}","#),
         };

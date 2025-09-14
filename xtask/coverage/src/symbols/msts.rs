@@ -1,11 +1,11 @@
-use biome_js_semantic::SemanticEvent;
-use biome_js_syntax::JsFileSource;
-use biome_rowan::TextSize;
+use check_js_semantic::SemanticEvent;
+use check_js_syntax::JsFileSource;
+use check_rowan::TextSize;
 
 use super::utils::{parse_separated_list, parse_str, parse_until_chr, parse_whitespace0};
 use crate::check_file_encoding;
 use crate::runner::{TestCase, TestCaseFiles, TestRunOutcome, TestSuite};
-use biome_js_parser::JsParserOptions;
+use check_js_parser::JsParserOptions;
 use std::collections::HashSet;
 use std::fmt::Write;
 use std::io;
@@ -85,8 +85,8 @@ impl TestCase for SymbolsMicrosoftTestCase {
         );
 
         let mut prev_starts: HashSet<TextSize> = HashSet::default();
-        let r = biome_js_parser::parse(&code, JsFileSource::tsx(), options);
-        let mut actual: Vec<_> = biome_js_semantic::semantic_events(r.syntax())
+        let r = check_js_parser::parse(&code, JsFileSource::tsx(), options);
+        let mut actual: Vec<_> = check_js_semantic::semantic_events(r.syntax())
             .into_iter()
             .filter(|x| {
                 // We filter any event pointing to string literals.

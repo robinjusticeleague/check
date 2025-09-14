@@ -1,0 +1,21 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+snapshot_kind: text
+---
+## `check.yml`
+
+```yml
+blah: foo
+```
+
+# Termination Message
+
+```block
+check.yml configuration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Invalid configuration file. Expected JSON or JSONC file, but got check.yml.
+  
+
+
+```

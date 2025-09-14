@@ -1,4 +1,4 @@
-use biome_string_case::Case;
+use check_string_case::Case;
 use std::env;
 use std::fs;
 use std::path::Path;
@@ -21,11 +21,11 @@ const KNOWN_GROUPS: &[&str] = &[
 ];
 
 const KNOWN_PATHS: &[&str] = &[
-    "crates/biome_js_analyze",
-    "crates/biome_css_analyze",
-    "crates/biome_html_analyze",
-    "crates/biome_graphql_analyze",
-    "crates/biome_json_analyze",
+    "crates/check_js_analyze",
+    "crates/check_css_analyze",
+    "crates/check_html_analyze",
+    "crates/check_graphql_analyze",
+    "crates/check_json_analyze",
 ];
 
 pub fn move_rule(rule_name: &str, new_group: &str) {
@@ -95,7 +95,7 @@ fn move_to_group(
     let new_rule_path = new_group_src_path.join(format!("{rule_name_snake}.rs"));
     let new_group_test_path = analyzers_path.join("tests/specs").join(new_group);
 
-    let categories_path = "crates/biome_diagnostics_categories/src/categories.rs";
+    let categories_path = "crates/check_diagnostics_categories/src/categories.rs";
     let categories = std::fs::read_to_string(categories_path).unwrap();
 
     let mut categories = categories.replace(

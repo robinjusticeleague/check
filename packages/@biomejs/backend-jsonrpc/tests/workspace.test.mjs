@@ -9,7 +9,7 @@ describe("Workspace API", () => {
 		const command = resolve(
 			fileURLToPath(import.meta.url),
 			"../../../../..",
-			`target/release/biome${extension}`,
+			`target/release/check${extension}`,
 		);
 
 		const workspace = await createWorkspaceWithBinary(command);

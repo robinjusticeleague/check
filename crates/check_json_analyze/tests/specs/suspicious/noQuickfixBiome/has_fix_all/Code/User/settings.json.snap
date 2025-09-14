@@ -1,0 +1,43 @@
+---
+source: crates/check_json_analyze/tests/spec_tests.rs
+expression: settings.json
+---
+# Input
+```json
+{
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.check": "explicit",
+    "source.fixAll.check": "explicit",
+    "quickfix.check": "explicit"
+  }
+}
+
+```
+
+# Diagnostics
+```
+settings.json:5:5 lint/suspicious/noQuickfixCheck  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i The use of quickfix.check is deprecated.
+  
+    3 │     "source.organizeImports.check": "explicit",
+    4 │     "source.fixAll.check": "explicit",
+  > 5 │     "quickfix.check": "explicit"
+      │     ^^^^^^^^^^^^^^^^
+    6 │   }
+    7 │ }
+  
+  i The code action quickfix.check applies the code fix of rules and actions without being aware of each other. This might cause the emission of malformed code, especially if the code fixes are applied to the same lines of code.
+  
+  i Safe fix: Remove the code action.
+  
+    2 2 │     "editor.codeActionsOnSave": {
+    3 3 │       "source.organizeImports.check": "explicit",
+    4   │ - ····"source.fixAll.check":·"explicit",
+    5   │ - ····"quickfix.check":·"explicit"
+      4 │ + ····"source.fixAll.check":·"explicit"
+    6 5 │     }
+    7 6 │   }
+  
+
+```

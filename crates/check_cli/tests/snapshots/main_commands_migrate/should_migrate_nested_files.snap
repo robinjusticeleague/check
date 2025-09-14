@@ -1,0 +1,98 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+## `check.json`
+
+```json
+{
+  "organizeImports": {
+    "enabled": true
+  }
+}
+```
+
+## `lorem/check.json`
+
+```json
+{
+  "organizeImports": {
+    "enabled": true
+  }
+}
+```
+
+## `ipsum/check.json`
+
+```json
+{
+  "organizeImports": {
+    "enabled": true
+  }
+}
+```
+
+# Emitted Messages
+
+```block
+<TEMP_DIR>/missing_configuration_file/check.json migrate ━━━━━━━━━━━━━━━━━━━━
+
+  i Configuration file can be updated.
+  
+    1 1 │   {
+    2   │ - ····"organizeImports":·{
+    3   │ - ········"enabled":·true
+    4   │ - ····}
+      2 │ + ····"assist":·{·"actions":·{·"source":·{·"organizeImports":·"on"·}·}·}
+    5 3 │   }
+  
+
+```
+
+```block
+<TEMP_DIR>/missing_configuration_file/ipsum/check.json migrate ━━━━━━━━━━━━━━━━━━━━
+
+  i Configuration file can be updated.
+  
+    1 1 │   {
+    2   │ - ····"organizeImports":·{
+    3   │ - ········"enabled":·true
+    4   │ - ····}
+      2 │ + ····"root":·false,
+      3 │ + ····"assist":·{·"actions":·{·"source":·{·"organizeImports":·"on"·}·}·}
+    5 4 │   }
+  
+
+```
+
+```block
+<TEMP_DIR>/missing_configuration_file/lorem/check.json migrate ━━━━━━━━━━━━━━━━━━━━
+
+  i Configuration file can be updated.
+  
+    1 1 │   {
+    2   │ - ····"organizeImports":·{
+    3   │ - ········"enabled":·true
+    4   │ - ····}
+      2 │ + ····"root":·false,
+      3 │ + ····"assist":·{·"actions":·{·"source":·{·"organizeImports":·"on"·}·}·}
+    5 4 │   }
+  
+
+```
+
+```block
+configuration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i Migration results:
+  
+  - <TEMP_DIR>/missing_configuration_file/check.json: configuration needs migration.
+  - <TEMP_DIR>/missing_configuration_file/ipsum/check.json: configuration needs migration.
+  - <TEMP_DIR>/missing_configuration_file/lorem/check.json: configuration needs migration.
+  
+  i Use --write to apply the changes.
+  
+  $ check migrate --write
+  
+
+```

@@ -170,7 +170,7 @@ async function checkDiff(sha: string, version: string) {
 }
 
 async function getCommit(sha: string): Promise<CommitResponse> {
-	const url = `https://api.github.com/repos/biomejs/biome/commits/${sha}`;
+	const url = `https://api.github.com/repos/checkjs/check/commits/${sha}`;
 	const response = await fetch(url);
 	if (!response.ok) {
 		throw new Error(

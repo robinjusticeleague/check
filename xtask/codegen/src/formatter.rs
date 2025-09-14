@@ -374,7 +374,7 @@ fn generate_formatter(repo: &GitRepo, language_kind: LanguageKind) {
                         use crate::prelude::*;
 
                         use #syntax_crate_ident::{#node_id, #node_fields_id};
-                        use biome_formatter::write;
+                        use check_formatter::write;
 
                         #[derive(Debug, Clone, Default)]
                         pub(crate) struct #format_id;
@@ -395,7 +395,7 @@ fn generate_formatter(repo: &GitRepo, language_kind: LanguageKind) {
                     quote! {
                         use crate::prelude::*;
 
-                        use biome_rowan::AstNode;
+                        use check_rowan::AstNode;
                         use #syntax_crate_ident::#node_id;
 
                         #[derive(Debug, Clone, Default)]
@@ -542,7 +542,7 @@ impl BoilerplateImpls {
             #![allow(clippy::use_self)]
             #![expect(clippy::default_constructed_unit_structs)]
             use crate::{AsFormat, IntoFormat, FormatNodeRule, FormatBogusNodeRule, #formatter_ident, #formatter_context_ident};
-            use biome_formatter::{FormatRefWithRule, FormatOwnedWithRule, FormatRule, FormatResult};
+            use check_formatter::{FormatRefWithRule, FormatOwnedWithRule, FormatRule, FormatResult};
 
             #( #impls )*
         };

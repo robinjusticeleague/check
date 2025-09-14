@@ -1,0 +1,28 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+## `base.check.jsonc`
+
+```jsonc
+
+    // this is another comment
+    {
+    // this is a comment
+    "organizeImports": {
+        "enabled": true
+    }
+}
+```
+
+# Emitted Messages
+
+```block
+configuration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i Migration results:
+  
+  - <TEMP_DIR>/should_migrate_jsonc_with_config_path/base.check.jsonc: configuration successfully migrated.
+  
+
+```

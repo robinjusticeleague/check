@@ -1,0 +1,36 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "This crate is internally used to share lint rule options across analyzers"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_rule_options"
+repository.workspace = true
+version              = "0.0.1"
+
+[dependencies]
+check_console            = { workspace = true }
+check_deserialize        = { workspace = true, features = ["smallvec"] }
+check_deserialize_macros = { workspace = true }
+check_diagnostics        = { workspace = true }
+check_glob               = { workspace = true, features = ["check_deserialize", "serde"] }
+check_js_syntax          = { workspace = true }
+check_resolver           = { workspace = true }
+check_rowan              = { workspace = true }
+check_string_case        = { workspace = true, features = ["check_rowan"] }
+camino                   = { workspace = true }
+enumflags2               = { workspace = true }
+regex                    = { workspace = true }
+rustc-hash               = { workspace = true }
+schemars                 = { workspace = true, optional = true }
+serde                    = { workspace = true }
+smallvec                 = { workspace = true }
+
+[lints]
+workspace = true
+
+
+[features]
+schema = ["dep:schemars"]

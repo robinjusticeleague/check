@@ -1,0 +1,27 @@
+---
+source: crates/check_js_analyze/tests/spec_tests.rs
+expression: ignore-types.ts
+---
+# Input
+```ts
+export function f(): UndeclaredType {}
+
+export const X = UndeclaredVariable;
+```
+
+# Diagnostics
+```
+ignore-types.ts:3:18 lint/correctness/noUndeclaredVariables ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × The UndeclaredVariable variable is undeclared.
+  
+    1 │ export function f(): UndeclaredType {}
+    2 │ 
+  > 3 │ export const X = UndeclaredVariable;
+      │                  ^^^^^^^^^^^^^^^^^^
+  
+  i By default, Check recognizes browser and Node.js globals.
+    You can ignore more globals using the javascript.globals configuration.
+  
+
+```

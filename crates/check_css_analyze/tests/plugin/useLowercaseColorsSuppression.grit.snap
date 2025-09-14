@@ -1,0 +1,54 @@
+---
+source: crates/check_css_analyze/tests/spec_tests.rs
+expression: useLowercaseColorsSuppression.grit
+---
+# Input
+```css
+div {
+    /* check-ignore lint/plugin/useLowercaseColorsSuppression: reason */
+    color: #FFF;
+
+    /* check-ignore-start lint/plugin/useLowercaseColorsSuppression: reason */
+    color: #FFF;
+    /* check-ignore-end lint/plugin/useLowercaseColorsSuppression: reason */
+
+    /* if no name is specified, should suppress all plugins */
+    /* check-ignore lint/plugin: reason */
+    color: #FFF;
+
+    /* only suppress specified plugin */
+    /* check-ignore lint/plugin/anotherPlugin: reason; */
+    color: #FFF;
+}
+
+```
+
+# Diagnostics
+```
+useLowercaseColorsSuppression.grit:15:12 plugin ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × Prefer lowercase colors
+  
+    13 │     /* only suppress specified plugin */
+    14 │     /* check-ignore lint/plugin/anotherPlugin: reason; */
+  > 15 │     color: #FFF;
+       │            ^^^^
+    16 │ }
+    17 │ 
+  
+
+```
+
+```
+useLowercaseColorsSuppression.grit:14:5 suppressions/unused ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ! Suppression comment has no effect. Remove the suppression or make sure you are suppressing the correct rule.
+  
+    13 │     /* only suppress specified plugin */
+  > 14 │     /* check-ignore lint/plugin/anotherPlugin: reason; */
+       │     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    15 │     color: #FFF;
+    16 │ }
+  
+
+```

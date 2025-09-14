@@ -1,0 +1,73 @@
+[package]
+authors.workspace    = true
+categories.workspace = true
+description          = "Check's JavaScript linter"
+edition.workspace    = true
+homepage.workspace   = true
+keywords.workspace   = true
+license.workspace    = true
+name                 = "check_js_analyze"
+repository.workspace = true
+version              = "0.5.7"
+
+[dependencies]
+check_analyze            = { workspace = true }
+check_aria               = { workspace = true }
+check_aria_metadata      = { workspace = true }
+check_console            = { workspace = true }
+check_control_flow       = { workspace = true }
+check_deserialize        = { workspace = true, features = ["smallvec"] }
+check_deserialize_macros = { workspace = true }
+check_diagnostics        = { workspace = true }
+check_fs                 = { workspace = true }
+check_glob               = { workspace = true, features = ["check_deserialize", "serde"] }
+check_js_factory         = { workspace = true }
+check_js_semantic        = { workspace = true }
+check_js_syntax          = { workspace = true }
+check_js_type_info       = { workspace = true }
+check_jsdoc_comment      = { workspace = true }
+check_module_graph       = { workspace = true }
+check_package            = { workspace = true }
+check_project_layout     = { workspace = true }
+check_resolver           = { workspace = true }
+check_rowan              = { workspace = true }
+check_rule_options       = { workspace = true }
+check_string_case        = { workspace = true, features = ["check_rowan"] }
+check_suppression        = { workspace = true }
+check_unicode_table      = { workspace = true }
+bitvec                   = "1.0.1"
+camino                   = { workspace = true }
+enumflags2               = { workspace = true }
+globset                  = { workspace = true }
+regex                    = { workspace = true }
+roaring                  = "0.11.2"
+rustc-hash               = { workspace = true }
+schemars                 = { workspace = true, optional = true }
+serde                    = { workspace = true, features = ["derive"] }
+smallvec                 = { workspace = true }
+
+
+[dev-dependencies]
+check_fs            = { workspace = true }
+check_js_parser     = { path = "../check_js_parser", features = ["tests"] }
+check_plugin_loader = { workspace = true }
+check_service       = { workspace = true }
+check_test_utils    = { path = "../check_test_utils" }
+criterion           = { package = "codspeed-criterion-compat", version = "=3.0.3" }
+insta               = { workspace = true, features = ["glob"] }
+tests_macros        = { path = "../tests_macros" }
+
+[target.'cfg(target_os = "windows")'.dev-dependencies]
+mimalloc = { workspace = true }
+
+[target.'cfg(all(target_family="unix", not(all(target_arch = "aarch64", target_env = "musl"))))'.dev-dependencies]
+tikv-jemallocator = { workspace = true }
+[features]
+schema = ["schemars", "check_glob/schema"]
+
+[lints]
+workspace = true
+
+[[bench]]
+harness = false
+name    = "js_analyzer"

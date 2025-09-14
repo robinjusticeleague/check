@@ -45,9 +45,9 @@ jobs:
 
       - name: Compile on PR Branch
         run: |
-          cargo build --release --bin biome
+          cargo build --release --bin check
           mkdir -p benchmark/target
-          cp target/release/biome benchmark/target/biome_pr
+          cp target/release/check benchmark/target/check_pr
 
       - name: Checkout Main Branch
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
@@ -57,8 +57,8 @@ jobs:
 
       - name: Compile on Main Branch
         run: |
-          cargo build --release --bin biome
-          cp target/release/biome benchmark/target/biome_main
+          cargo build --release --bin check
+          cp target/release/check benchmark/target/check_main
 
       - name: Checkout webpack
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
@@ -84,11 +84,11 @@ jobs:
           CHECK_BENCH_COMMAND: "--max-diagnostics=0 eslint/lib eslint/messages eslint/tests/lib eslint/tests/performance eslint/tools webpack/lib --no-errors-on-unmatched"
         run: |
           hyperfine -w 2 --export-markdown benchmark_format.md \
-            -n "biome format (main)" "./biome_main $FORMAT_BENCH_COMMAND" \
-            -n "biome format (pr)" "./biome_pr $FORMAT_BENCH_COMMAND"
+            -n "check format (main)" "./check_main $FORMAT_BENCH_COMMAND" \
+            -n "check format (pr)" "./check_pr $FORMAT_BENCH_COMMAND"
           hyperfine -w 2 --export-markdown --ignore-failure benchmark_check.md \
-            -n "biome check (main)" "./biome_main check $CHECK_BENCH_COMMAND" \
-            -n "biome check (pr)" "./biome_pr check $CHECK_BENCH_COMMAND"
+            -n "check check (main)" "./check_main check $CHECK_BENCH_COMMAND" \
+            -n "check check (pr)" "./check_pr check $CHECK_BENCH_COMMAND"
           cat benchmark_format.md >> benchmark.md
           echo $'\n' >> benchmark.md
           cat benchmark_check.md >> benchmark.md

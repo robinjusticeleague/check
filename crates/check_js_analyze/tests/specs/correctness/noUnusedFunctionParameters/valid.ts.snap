@@ -1,0 +1,10 @@
+---
+source: crates/check_js_analyze/tests/spec_tests.rs
+expression: valid.ts
+---
+# Input
+```ts
+/* should not generate diagnostics */
+type Classlike = new (arg: unknown) => string;
+
+```

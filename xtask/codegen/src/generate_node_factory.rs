@@ -1,7 +1,7 @@
 use super::js_kinds_src::AstSrc;
 use crate::js_kinds_src::Field;
 use crate::language_kind::LanguageKind;
-use biome_string_case::Case;
+use check_string_case::Case;
 use quote::{format_ident, quote};
 use xtask::Result;
 
@@ -207,7 +207,7 @@ pub fn generate_node_factory(ast: &AstSrc, language_kind: LanguageKind) -> Resul
     let output = quote! {
         #![allow(clippy::redundant_closure)]
         use #syntax_crate::{*, #syntax_token as SyntaxToken, #syntax_node as SyntaxNode, #syntax_element as SyntaxElement};
-        use biome_rowan::AstNode;
+        use check_rowan::AstNode;
 
         #(#nodes)*
         #(#lists)*

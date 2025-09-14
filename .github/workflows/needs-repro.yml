@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   reply-labeled:
-    if: github.repository == 'biomejs/biome'
+    if: github.repository == 'checkjs/check'
     runs-on: depot-ubuntu-24.04-arm-small
     steps:
       - name: Remove triaging label
@@ -31,8 +31,8 @@ jobs:
           body: |
             Hello @${{ github.event.issue.user.login }}, please provide a minimal reproduction. You can use one of the following options:
 
-            - Provide a link to [our playground](https://biomejs.dev/playground), if it's applicable.
-            - Provide a link to GitHub repository. To easily create a reproduction, you can use our interactive CLI via `npm create @biomejs/biome-reproduction`
+            - Provide a link to [our playground](https://checkjs.dev/playground), if it's applicable.
+            - Provide a link to GitHub repository. To easily create a reproduction, you can use our interactive CLI via `npm create @checkjs/check-reproduction`
 
             Issues marked with `S-Needs repro` will be **closed** if they have **no activity within 3 days**.
           labels: "S-Needs triage"

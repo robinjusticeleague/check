@@ -19,24 +19,24 @@ function isMusl() {
 
 const PLATFORMS = {
 	win32: {
-		x64: "@biomejs/cli-win32-x64/biome.exe",
-		arm64: "@biomejs/cli-win32-arm64/biome.exe",
+		x64: "@checkjs/cli-win32-x64/check.exe",
+		arm64: "@checkjs/cli-win32-arm64/check.exe",
 	},
 	darwin: {
-		x64: "@biomejs/cli-darwin-x64/biome",
-		arm64: "@biomejs/cli-darwin-arm64/biome",
+		x64: "@checkjs/cli-darwin-x64/check",
+		arm64: "@checkjs/cli-darwin-arm64/check",
 	},
 	linux: {
-		x64: "@biomejs/cli-linux-x64/biome",
-		arm64: "@biomejs/cli-linux-arm64/biome",
+		x64: "@checkjs/cli-linux-x64/check",
+		arm64: "@checkjs/cli-linux-arm64/check",
 	},
 	"linux-musl": {
-		x64: "@biomejs/cli-linux-x64-musl/biome",
-		arm64: "@biomejs/cli-linux-arm64-musl/biome",
+		x64: "@checkjs/cli-linux-x64-musl/check",
+		arm64: "@checkjs/cli-linux-arm64-musl/check",
 	},
 };
 
-const binPath = env.BIOME_BINARY ||
+const binPath = env.CHECK_BINARY ||
 	(platform === "linux" && isMusl()
 		? PLATFORMS?.["linux-musl"]?.[arch]
 		: PLATFORMS?.[platform]?.[arch]
@@ -68,8 +68,8 @@ if (binPath) {
 	process.exitCode = result.status;
 } else {
 	console.error(
-		"The Biome CLI package doesn't ship with prebuilt binaries for your platform yet. " +
-			"You can still use the CLI by cloning the biome/tools repo from GitHub, " +
+		"The Check CLI package doesn't ship with prebuilt binaries for your platform yet. " +
+			"You can still use the CLI by cloning the check/tools repo from GitHub, " +
 			"and follow the instructions there to build the CLI for your platform.",
 	);
 	process.exitCode = 1;

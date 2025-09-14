@@ -1,0 +1,40 @@
+---
+source: crates/check_json_analyze/tests/spec_tests.rs
+expression: settings.json
+---
+# Input
+```json
+{
+  "editor.code_action_on_format": {
+    "quickfix.check": true
+  }
+}
+
+```
+
+# Diagnostics
+```
+settings.json:3:5 lint/suspicious/noQuickfixCheck  FIXABLE  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  i The use of quickfix.check is deprecated.
+  
+    1 │ {
+    2 │   "editor.code_action_on_format": {
+  > 3 │     "quickfix.check": true
+      │     ^^^^^^^^^^^^^^^^
+    4 │   }
+    5 │ }
+  
+  i The code action quickfix.check applies the code fix of rules and actions without being aware of each other. This might cause the emission of malformed code, especially if the code fixes are applied to the same lines of code.
+  
+  i Safe fix: Remove the code action.
+  
+    1 1 │   {
+    2 2 │     "editor.code_action_on_format": {
+    3   │ - ····"quickfix.check":·true
+      3 │ + ····"source.fixAll.check":·true
+    4 4 │     }
+    5 5 │   }
+  
+
+```

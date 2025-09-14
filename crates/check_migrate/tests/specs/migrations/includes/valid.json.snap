@@ -1,0 +1,13 @@
+---
+source: crates/check_migrate/tests/spec_tests.rs
+expression: valid.json
+---
+# Input
+```json
+{
+    "files": {
+      "includes": ["src/**/*.js"]
+    }
+  }
+  
+```

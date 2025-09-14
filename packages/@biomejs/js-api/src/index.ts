@@ -1,16 +1,16 @@
 import type {
 	Configuration as ConfigurationBundler,
 	Diagnostic as DiagnosticBundler,
-} from "@biomejs/wasm-bundler";
+} from "@checkjs/wasm-bundler";
 import type {
 	Configuration as ConfigurationNodejs,
 	Diagnostic as DiagnosticNodeJs,
-} from "@biomejs/wasm-nodejs";
+} from "@checkjs/wasm-nodejs";
 import type {
 	Configuration as ConfigurationWeb,
 	Diagnostic as DiagnosticWeb,
-} from "@biomejs/wasm-web";
-import { BiomeCommon } from "./common";
+} from "@checkjs/wasm-web";
+import { CheckCommon } from "./common";
 
 export type * from "./common";
 export type Configuration =
@@ -20,7 +20,7 @@ export type Configuration =
 export type Diagnostic = DiagnosticBundler | DiagnosticNodeJs | DiagnosticWeb;
 
 /**
- * What kind of client Biome should use to communicate with the binary
+ * What kind of client Check should use to communicate with the binary
  */
 export enum Distribution {
 	/**
@@ -40,22 +40,22 @@ export enum Distribution {
 	WEB = 2,
 }
 
-export interface BiomeCreate {
+export interface CheckCreate {
 	distribution: Distribution;
 }
 
-export class Biome extends BiomeCommon<Configuration, Diagnostic> {
+export class Check extends CheckCommon<Configuration, Diagnostic> {
 	/**
-	 * It creates a new instance of the class {Biome}.
+	 * It creates a new instance of the class {Check}.
 	 */
-	static async create({ distribution }: BiomeCreate): Promise<Biome> {
+	static async create({ distribution }: CheckCreate): Promise<Check> {
 		switch (distribution) {
 			case Distribution.BUNDLER:
-				return new Biome(await import("@biomejs/wasm-bundler"));
+				return new Check(await import("@checkjs/wasm-bundler"));
 			case Distribution.NODE:
-				return new Biome(await import("@biomejs/wasm-nodejs"));
+				return new Check(await import("@checkjs/wasm-nodejs"));
 			case Distribution.WEB:
-				return new Biome(await import("@biomejs/wasm-web"));
+				return new Check(await import("@checkjs/wasm-web"));
 			default:
 				throw new Error(`Unknown distribution: ${distribution}`);
 		}

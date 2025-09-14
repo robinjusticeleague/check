@@ -21,8 +21,8 @@ use crate::{
     generate_macros::generate_macros, generate_nodes::generate_nodes,
     generate_syntax_kinds::generate_syntax_kinds, update,
 };
-use biome_string_case::Case;
-use biome_ungrammar::{Grammar, Rule, Token};
+use check_string_case::Case;
+use check_ungrammar::{Grammar, Rule, Token};
 use std::fmt::Write;
 use std::str::FromStr;
 use xtask::{Result, project_root};
@@ -78,7 +78,7 @@ pub(crate) fn generate_syntax(ast: AstSrc, mode: &Mode, language_kind: LanguageK
         .join(language_kind.factory_crate_name())
         .join("src/generated");
     let target_language_path = project_root()
-        .join("crates/biome_grit_patterns/src/grit_target_language")
+        .join("crates/check_grit_patterns/src/grit_target_language")
         .join(language_kind.grit_target_language_module_name());
 
     let kind_src = language_kind.kinds();

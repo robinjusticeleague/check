@@ -1,0 +1,16 @@
+{
+	"$schema": "../../../../../../packages/@checkjs/check/configuration_schema.json",
+	"linter": {
+		"rules": {
+			"style": {
+				"useFilenamingConvention": {
+					"level": "error",
+					"options": {
+						"match": "[^i].*",
+						"filenameCases": ["camelCase"]
+					}
+				}
+			}
+		}
+	}
+}

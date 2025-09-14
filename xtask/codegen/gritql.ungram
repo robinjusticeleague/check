@@ -61,14 +61,14 @@ AnyGritVersion =
     GritVersion
     | GritBogusVersion
 
-// engine biome(1.0)
+// engine check(1.0)
 // ^^^^^^ ^^^^^^^^^^
 GritVersion =
 	'engine'
 	engine_name: GritEngineName
 	'(' version: GritDoubleLiteral ')'
 
-GritEngineName = engine_kind: ('biome' | 'marzano')
+GritEngineName = engine_kind: ('check' | 'marzano')
 
 AnyGritLanguageDeclaration =
     GritLanguageDeclaration

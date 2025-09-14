@@ -1,5 +1,5 @@
 {
-  "name": "@biomejs/backend-jsonrpc",
+  "name": "@checkjs/backend-jsonrpc",
   "version": "2.0.17",
   "main": "dist/index.js",
   "scripts": {
@@ -15,15 +15,15 @@
     "LICENSE-MIT",
     "ROME-LICENSE-MIT"
   ],
-  "homepage": "https://biomejs.dev",
+  "homepage": "https://checkjs.dev",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/biomejs/biome.git",
+    "url": "git+https://github.com/checkjs/check.git",
     "directory": "npm/backend-jsonrpc"
   },
-  "author": "Biome Developers and Contributors",
-  "bugs": "https://github.com/biomejs/biome/issues",
-  "description": "Bindings to the JSON-RPC Workspace API of the Biome daemon",
+  "author": "Check Developers and Contributors",
+  "bugs": "https://github.com/checkjs/check/issues",
+  "description": "Bindings to the JSON-RPC Workspace API of the Check daemon",
   "keywords": [
     "JavaScript",
     "TypeScript",
@@ -45,13 +45,13 @@
     "provenance": true
   },
   "optionalDependencies": {
-    "@biomejs/cli-win32-x64": "2.2.4",
-    "@biomejs/cli-win32-arm64": "2.2.4",
-    "@biomejs/cli-darwin-x64": "2.2.4",
-    "@biomejs/cli-darwin-arm64": "2.2.4",
-    "@biomejs/cli-linux-x64": "2.2.4",
-    "@biomejs/cli-linux-arm64": "2.2.4",
-    "@biomejs/cli-linux-x64-musl": "2.2.4",
-    "@biomejs/cli-linux-arm64-musl": "2.2.4"
+    "@checkjs/cli-win32-x64": "2.2.4",
+    "@checkjs/cli-win32-arm64": "2.2.4",
+    "@checkjs/cli-darwin-x64": "2.2.4",
+    "@checkjs/cli-darwin-arm64": "2.2.4",
+    "@checkjs/cli-linux-x64": "2.2.4",
+    "@checkjs/cli-linux-arm64": "2.2.4",
+    "@checkjs/cli-linux-x64-musl": "2.2.4",
+    "@checkjs/cli-linux-arm64-musl": "2.2.4"
   }
 }

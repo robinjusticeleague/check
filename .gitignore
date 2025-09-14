@@ -19,14 +19,14 @@ Profile-*.json
 # https://github.com/nnethercote/dhat-rs output file
 dhat-heap.json
 
-/crates/biome_css_formatter/report.*
-/crates/biome_graphql_formatter/report.*
-/crates/biome_js_formatter/report.*
-/crates/biome_json_formatter/report.*
-/crates/biome_json_formatter/report_incompatible.*
+/crates/check_css_formatter/report.*
+/crates/check_graphql_formatter/report.*
+/crates/check_js_formatter/report.*
+/crates/check_json_formatter/report.*
+/crates/check_json_formatter/report_incompatible.*
 
 # don't ignore any files inside prettier test specs
-!/crates/biome_js_formatter/tests/specs/prettier/**/*
-!/crates/biome_json_formatter/tests/specs/prettier/**/*
-!/crates/biome_css_formatter/tests/specs/prettier/**/*
-!/crates/biome_graphql_formatter/tests/specs/prettier/**/*
+!/crates/check_js_formatter/tests/specs/prettier/**/*
+!/crates/check_json_formatter/tests/specs/prettier/**/*
+!/crates/check_css_formatter/tests/specs/prettier/**/*
+!/crates/check_graphql_formatter/tests/specs/prettier/**/*

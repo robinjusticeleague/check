@@ -1,0 +1,58 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+## `node_modules/base-config/configs/check.jsonc`
+
+```json
+{
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 3
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  }
+}
+```
+
+## `check.jsonc`
+
+```json
+{
+  "extends": ["base-config/check"],
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single"
+    }
+  }
+}
+```
+
+## `node_modules/base-config/package.json`
+
+```json
+{
+  "exports": {
+    "./check": "./configs/check.jsonc"
+  }
+}
+```
+
+# Input messages
+
+```block
+let a = "a"; if (true) { a = "b" }
+```
+
+# Emitted Messages
+
+```block
+let _a = 'a';
+if (true) {
+   _a = 'b';
+}
+
+```

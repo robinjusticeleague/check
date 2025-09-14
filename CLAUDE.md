@@ -29,12 +29,12 @@ just gen-all
 ### Cargo Commands
 
 ```bash
-# Run Biome CLI in development mode
-cargo biome-cli-dev --help
-cargo biome-cli-dev check --write
+# Run Check CLI in development mode
+cargo check-cli-dev --help
+cargo check-cli-dev check --write
 
 # Run tests for specific crate
-cargo test -p biome_html_formatter
+cargo test -p check_html_formatter
 
 # Build in release mode
 cargo build --release
@@ -58,25 +58,25 @@ just move-rule stable ruleName
 
 ## Architecture Overview
 
-**Biome** is a Rust-based monorepo implementing a high-performance web development toolchain. The architecture follows a modular, language-agnostic design.
+**Check** is a Rust-based monorepo implementing a high-performance web development toolchain. The architecture follows a modular, language-agnostic design.
 
 ### Core Components
 
-- **biome_service**: Central workspace service providing unified APIs
-- **biome_rowan**: Lossless syntax tree foundation (preserves all source info)
-- **biome_formatter**: Pretty-printing infrastructure using intermediate representation
-- **biome_analyze**: Rule-based analysis framework with visitor patterns
+- **check_service**: Central workspace service providing unified APIs
+- **check_rowan**: Lossless syntax tree foundation (preserves all source info)
+- **check_formatter**: Pretty-printing infrastructure using intermediate representation
+- **check_analyze**: Rule-based analysis framework with visitor patterns
 
 ### Language Support Pattern
 
 Each language follows consistent crate structure:
 ```
-biome_{lang}_syntax     # AST definitions
-biome_{lang}_parser     # Parser implementation
-biome_{lang}_formatter  # Formatting logic
-biome_{lang}_analyze    # Linting rules
-biome_{lang}_factory    # AST construction
-biome_{lang}_semantic   # Semantic analysis (where applicable)
+check_{lang}_syntax     # AST definitions
+check_{lang}_parser     # Parser implementation
+check_{lang}_formatter  # Formatting logic
+check_{lang}_analyze    # Linting rules
+check_{lang}_factory    # AST construction
+check_{lang}_semantic   # Semantic analysis (where applicable)
 ```
 
 Languages: JavaScript/TypeScript, CSS, JSON, HTML, GraphQL, Grit
@@ -91,10 +91,10 @@ Languages: JavaScript/TypeScript, CSS, JSON, HTML, GraphQL, Grit
 
 ### File Locations
 
-- Core crates: `/crates/biome_*/`
+- Core crates: `/crates/check_*/`
 - Grammar definitions: `/xtask/codegen/*.ungram`
 - Test snapshots: `tests/specs/` in each crate
-- Configuration: `biome_configuration/src/`
+- Configuration: `check_configuration/src/`
 
 ### Testing Strategy
 
@@ -113,10 +113,10 @@ Languages: JavaScript/TypeScript, CSS, JSON, HTML, GraphQL, Grit
 
 ### Working with Current Directory
 
-You are currently in `/crates/biome_html_formatter/` - the HTML formatter implementation. This crate:
+You are currently in `/crates/check_html_formatter/` - the HTML formatter implementation. This crate:
 
 - Implements HTML/Astro/Svelte formatting
-- Follows the standard formatter architecture using `biome_formatter` IR
+- Follows the standard formatter architecture using `check_formatter` IR
 - Has test files in `tests/` directory
 - Benchmark in `benches/html_formatter.rs`
 

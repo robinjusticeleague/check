@@ -1,9 +1,9 @@
 # Rome changelog
 
-Biome is a fork of [Rome Tools](https://github.com/rome/tools).
+Check is a fork of [Rome Tools](https://github.com/rome/tools).
 This CHANGELOG describes all released of Rome Tools.
 
-All releases of Biome are described in its own [CHANGELOG](./CHANGELOG.md).
+All releases of Check are described in its own [CHANGELOG](./CHANGELOG.md).
 
 ## 12.1.3
 

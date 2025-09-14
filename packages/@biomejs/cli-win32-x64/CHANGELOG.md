@@ -1,4 +1,4 @@
-# @biomejs/cli-win32-x64
+# @checkjs/cli-win32-x64
 
 ## 2.2.4
 

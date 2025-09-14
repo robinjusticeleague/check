@@ -1,0 +1,17 @@
+---
+source: crates/check_json_analyze/tests/spec_tests.rs
+expression: valid_extends_file.check.jsonc
+---
+# Input
+```jsonc
+// should not generate diagnostics
+{
+	"extends": ["valid_extends.check.jsonc"],
+	"files": {
+		"includes": [
+			"!**/dist"
+		]
+	}
+}
+
+```

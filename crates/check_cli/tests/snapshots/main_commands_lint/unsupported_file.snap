@@ -1,0 +1,33 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+expression: redactor(content)
+---
+## `check.txt`
+
+```txt
+for(;true;);
+
+```
+
+# Termination Message
+
+```block
+lint ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × No files were processed in the specified paths.
+  
+  i Check your check.json or check.jsonc to ensure the paths are not ignored by the configuration.
+  
+  i These paths were provided but ignored:
+  
+  - check.txt
+  
+
+
+```
+
+# Emitted Messages
+
+```block
+Checked 0 files in <TIME>. No fixes applied.
+```

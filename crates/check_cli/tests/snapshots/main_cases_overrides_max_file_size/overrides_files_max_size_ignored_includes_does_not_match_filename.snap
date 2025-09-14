@@ -1,0 +1,33 @@
+---
+source: crates/check_cli/tests/snap_test.rs
+assertion_line: 432
+expression: redactor(content)
+---
+## `check.json`
+
+```json
+{
+  "files": {
+    "maxSize": 1024
+  },
+  "overrides": [
+    {
+      "includes": ["invalidFile.js"],
+      "files": { "maxSize": 1 }
+    }
+  ]
+}
+```
+
+## `test.js`
+
+```js
+statement();
+
+```
+
+# Emitted Messages
+
+```block
+Checked 1 file in <TIME>. No fixes applied.
+```

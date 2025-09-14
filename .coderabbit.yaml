@@ -15,8 +15,8 @@ reviews:
   path_filters:
     - "**"
     - "!**/generated/**"
-    - "!**/biome_unicode_table/src/tables.rs"
-    - "!**/migrate/eslint_any_rule_to_biome.rs"
+    - "!**/check_unicode_table/src/tables.rs"
+    - "!**/migrate/eslint_any_rule_to_check.rs"
     - "!**/nursery.rs"
     - "!**/categories.rs"
     - "!**/rules.rs"
@@ -27,8 +27,8 @@ reviews:
     base_branches: ["main", "next"]
     drafts: false
   tools:
-    biome:
-      enabled: false # We use our own Biome workflow :)
+    check:
+      enabled: false # We use our own Check workflow :)
     clippy:
       enabled: false # Same for Clippy
 tone_instructions: "Please keep it short and to the point. Be patient, especially with new contributors. Feel free to be witty with maintainers."

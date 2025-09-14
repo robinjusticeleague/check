@@ -2,8 +2,8 @@ linkWorkspacePackages: true
 packages:
   - "packages/aria-data"
   - "packages/tailwindcss-config-analyzer"
-  - "crates/biome_formatter_test/src/prettier"
+  - "crates/check_formatter_test/src/prettier"
   - "benchmark"
-  - "packages/@biomejs/*"
+  - "packages/@checkjs/*"
 ignoredOptionalDependencies:
-  - "@biomejs/cli*-"
+  - "@checkjs/cli*-"

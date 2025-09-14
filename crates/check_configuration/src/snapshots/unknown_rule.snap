@@ -1,0 +1,7 @@
+---
+source: crates/check_service/src/configuration/diagnostics.rs
+expression: content
+---
+rome.json configuration ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  × invalid rule name `foo_bar`

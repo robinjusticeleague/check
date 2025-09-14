@@ -24,7 +24,7 @@ const REPOSITORIES = {
 
 const TMP_DIR = path.resolve("./target");
 
-function benchmarkFormatter(biomeBin, options) {
+function benchmarkFormatter(checkBin, options) {
   // Run Dprint once to run the installer
   execSync("npx dprint --version");
 
@@ -45,14 +45,14 @@ function benchmarkFormatter(biomeBin, options) {
 
     const dirs = config.formattedDirs.join(" ");
     const dirGlobs = config.formattedDirs.map((dir) => `"${dir}/**"`).join(" ");
-    const biomeCommand = `${biomeBin} format --config-path=../../ --write --max-diagnostics=0 ${dirs}`;
+    const checkCommand = `${checkBin} format --config-path=../../ --write --max-diagnostics=0 ${dirs}`;
     const benchCommands = {
       prettier: `../../node_modules/.bin/prettier --config=../../.prettierrc.json --ignore-path=../../.prettierignore  --write --log-level=error ${dirs}`,
       // FIXME: Parallel Prettier is crashing on Node 22
       // "parallel-prettier": `../../node_modules/.bin/pprettier --write --concurrency ${os.cpus().length} ${dirGlobs}`,
       dprint: `../../node_modules/dprint/dprint fmt --config=../../dprint.json ${dirGlobs}`,
-      biome: biomeCommand,
-      "biome-1-thread": withEnvVariable("RAYON_NUM_THREADS", "1", biomeCommand),
+      check: checkCommand,
+      "check-1-thread": withEnvVariable("RAYON_NUM_THREADS", "1", checkCommand),
     };
 
     let suite = "";
@@ -81,7 +81,7 @@ function benchmarkFormatter(biomeBin, options) {
   }
 }
 
-function benchmarkLinter(biomeBin, options) {
+function benchmarkLinter(checkBin, options) {
   for (const [name, config] of Object.entries(REPOSITORIES)) {
     if (
       !config.lintedDirs ||
@@ -98,13 +98,13 @@ function benchmarkLinter(biomeBin, options) {
     console.info("");
 
     const dirs = config.lintedDirs.map((dir) => `"${dir}"`).join(" ");
-    const biomeCmd = `"${biomeBin}" lint --config-path=../../ --max-diagnostics=0 ${dirs}`;
+    const checkCmd = `"${checkBin}" lint --config-path=../../ --max-diagnostics=0 ${dirs}`;
     const benchCommands = {
       eslint: `../../node_modules/.bin/eslint --quiet --config=../../eslint.config.js --no-ignore ${dirs}`,
       "ts-eslint": `../../node_modules/.bin/eslint --quiet --config=../../ts-eslint.config.js --no-ignore ${dirs}`,
-      biome: biomeCmd,
-      "biome-1-thread": withEnvVariable("RAYON_NUM_THREADS", "1", biomeCmd),
-      "ts-biome": `"${biomeBin}" lint --config-path=../../ts-biome.json --max-diagnostics=0 ${dirs}`,
+      check: checkCmd,
+      "check-1-thread": withEnvVariable("RAYON_NUM_THREADS", "1", checkCmd),
+      "ts-check": `"${checkBin}" lint --config-path=../../ts-check.json --max-diagnostics=0 ${dirs}`,
     };
 
     let suite = "";
@@ -189,35 +189,35 @@ function cloneProject(name, repository, dirs = []) {
   return projectDirectory;
 }
 
-function buildBiome() {
-  console.info("Building Biome...");
+function buildCheck() {
+  console.info("Building Check...");
   execSync(
     withEnvVariable(
-      "BIOME_VERSION",
+      "CHECK_VERSION",
       "0.0.0",
-      "cargo build --bin biome --release",
+      "cargo build --bin check --release",
     ),
     {
       stdio: "inherit",
     },
   );
-  return path.resolve("../target/release/biome");
+  return path.resolve("../target/release/check");
 }
 
 function run({ positionals, values: options }) {
   fs.mkdirSync(TMP_DIR, { recursive: true });
-  let biomeBinPath;
-  if ("biome" in options) {
-    biomeBinPath = options.biome;
+  let checkBinPath;
+  if ("check" in options) {
+    checkBinPath = options.check;
   } else {
-    biomeBinPath = buildBiome();
+    checkBinPath = buildCheck();
   }
   switch (positionals[0]) {
     case "formatter":
-      benchmarkFormatter(biomeBinPath, options);
+      benchmarkFormatter(checkBinPath, options);
       break;
     case "linter":
-      benchmarkLinter(biomeBinPath, options);
+      benchmarkLinter(checkBinPath, options);
       break;
     default:
       console.error(
@@ -235,7 +235,7 @@ run(
         multiple: true,
         type: "string",
       },
-      biome: {
+      check: {
         type: "string",
       },
       repository: {
