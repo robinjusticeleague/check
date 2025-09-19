@@ -1,7 +1,7 @@
 [workspace]
 # Use the newer version of the cargo resolver
 # https://doc.rust-lang.org/cargo/reference/resolver.html#resolver-versions
-members  = ["crates/*", "xtask/codegen", "xtask/coverage", "xtask/rules_check"]
+members  = ["crates/*"]
 resolver = "2"
 
 [workspace.lints.rust]
